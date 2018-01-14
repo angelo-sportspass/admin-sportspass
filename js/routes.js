@@ -2,7 +2,7 @@ angular
 .module('app')
 .config(['$stateProvider', '$urlRouterProvider', '$ocLazyLoadProvider', '$breadcrumbProvider', function($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, $breadcrumbProvider) {
 
-  $urlRouterProvider.otherwise('/dashboard');
+  $urlRouterProvider.otherwise('/login');
 
   $ocLazyLoadProvider.config({
     // Set to true if you want to see what and when is dynamically loaded
@@ -52,10 +52,13 @@ angular
   })
   .state('app.main', {
     url: '/dashboard',
-    templateUrl: 'views/main.html',
+    templateUrl: 'views/pages/dashboard/main.html',
+    controller: 'DashboardController',
+    controllerAs: 'dashboard',
+
     //page title goes here
     ncyBreadcrumb: {
-      label: 'Home',
+      label: 'Dashboard',
     },
     //page subtitle goes here
     params: { subtitle: 'Welcome to ROOT powerfull Bootstrap & AngularJS UI Kit' },
@@ -81,7 +84,156 @@ angular
       }]
     }
   })
-  .state('appSimple', {
+
+  /**
+   * Account State
+   * @return Get All Account
+   */
+  .state('app.account', {
+    url: '/account',
+    templateUrl: 'views/pages/account/account.html',
+    // controller: 'AccountController',
+    // controllerAs: 'account',
+
+    //page title goes here
+    ncyBreadcrumb: {
+      label: 'Account'
+    }
+  })
+
+  /**
+   * Banner State
+   * @return Get All Banners
+   */
+  .state('app.banners', {
+    url: '/banners',
+    templateUrl: 'views/pages/banners/banners.html',
+    // controller: 'BannersController',
+    // controllerAs: 'banners',
+
+    //page title goes here
+    ncyBreadcrumb: {
+      label: 'Banners'
+    }
+  })
+
+  /**
+   * Category State
+   * @return Get All Category
+   */
+  .state('app.category', {
+    url: '/category',
+    templateUrl: 'views/pages/category/category.html',
+    // controller: 'CategoryController',
+    // controllerAs: 'category',
+
+    //page title goes here
+    ncyBreadcrumb: {
+      label: 'Category'
+    }
+  })
+
+  /**
+   * Clubs State
+   * @return Get All Clubs
+   */
+  .state('app.clubs', {
+    url: '/clubs',
+    templateUrl: 'views/pages/clubs/clubs.html',
+    // controller: 'ClubsController',
+    // controllerAs: 'clubs',
+
+    //page title goes here
+    ncyBreadcrumb: {
+      label: 'Clubs'
+    }
+  })
+
+  /**
+   * Deals State
+   * @return Get All Deals
+   */
+  .state('app.deals', {
+    url: '/deals',
+    templateUrl: 'views/pages/deals/deals.html',
+    // controller: 'DealsController',
+    // controllerAs: 'deals',
+
+    //page title goes here
+    ncyBreadcrumb: {
+      label: 'Deals'
+    }
+  })
+
+  /**
+   * Members State
+   * @return Get All Members
+   */
+  .state('app.members', {
+    url: '/members',
+    templateUrl: 'views/pages/members/members.html',
+    // controller: 'MembersController',
+    // controllerAs: 'members',
+
+    //page title goes here
+    ncyBreadcrumb: {
+      label: 'Members'
+    }
+  })
+
+  /**
+   * Program State
+   * @return Get All Program
+   */
+  .state('app.program', {
+    url: '/program',
+    templateUrl: 'views/pages/program/program.html',
+    // controller: 'ProgramController',
+    // controllerAs: 'program',
+
+    //page title goes here
+    ncyBreadcrumb: {
+      label: 'Program'
+    }
+  })
+
+  /**
+   * User State
+   * @return 
+   */
+  .state('app.user', {
+    url: '/user',
+    templateUrl: 'views/pages/user/user.html',
+    controller: 'UserController',
+    controllerAs: 'user',
+
+    //page title goes here
+    ncyBreadcrumb: {
+      label: 'Users'
+    },
+    
+  })
+
+
+  /**
+   * Settings State
+   * @return 
+   */
+  .state('app.settings', {
+    url: '/settings',
+    templateUrl: 'views/pages/settings/settings.html',
+    // controller: 'SettingsController',
+    // controllerAs: 'settings',
+
+    //page title goes here
+    ncyBreadcrumb: {
+      label: 'Settings'
+    },
+    
+  })
+
+  // For Full Width
+  .state('appFullWidth', {
     abstract: true,
     templateUrl: 'views/common/layouts/simple.html',
     resolve: {
@@ -99,21 +251,23 @@ angular
       }],
     }
   })
-
-  // Additional Pages
-  .state('appSimple.login', {
+  .state('appFullWidth.login', {
     url: '/login',
-    templateUrl: 'views/pages/login.html'
+    templateUrl: 'views/pages/login/login.html',
+    controller: 'LoginController',
+    controllerAs: 'login',
   })
-  .state('appSimple.register', {
+  .state('appFullWidth.register', {
     url: '/register',
-    templateUrl: 'views/pages/register.html'
+    templateUrl: 'views/pages/register/register.html',
+    controller: 'RegisterController',
+    controllerAs: 'register'
   })
-  .state('appSimple.404', {
+  .state('appFullWidth.404', {
     url: '/404',
     templateUrl: 'views/pages/404.html'
   })
-  .state('appSimple.500', {
+  .state('appFullWidth.500', {
     url: '/500',
     templateUrl: 'views/pages/500.html'
   })

@@ -16,11 +16,29 @@ angular
   'ui.router',
   'oc.lazyLoad',
   'ncy-angular-breadcrumb',
-  'angular-loading-bar'
+  'angular-loading-bar',
+  'ui.bootstrap'
 ])
-.config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
+.config(['cfpLoadingBarProvider', '$qProvider', '$httpProvider', function(cfpLoadingBarProvider, $qProvider, $httpProvider) {
+
   cfpLoadingBarProvider.includeSpinner = false;
   cfpLoadingBarProvider.latencyThreshold = 1;
+  $qProvider.errorOnUnhandledRejections(false);
+
+  $httpProvider.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
+  $httpProvider.defaults.transformRequest.unshift(function (data, headersGetter) {
+    var key, result = [];
+
+    if (typeof data === "string")
+      return data;
+
+    for (key in data) {
+      if (data.hasOwnProperty(key))
+        result.push(encodeURIComponent(key) + "=" + encodeURIComponent(data[key]));
+    }
+    return result.join("&");
+  });
+
 }])
 .run(['$rootScope', '$state', '$stateParams', function($rootScope, $state, $stateParams) {
   $rootScope.$on('$stateChangeSuccess',function(){
