@@ -19,9 +19,9 @@
   		};
 
   		var res = LoginService.login(data).then(function (response) {
-            console.log(response);
-            $state.go('app.main');
-        });
+          console.log(response);
+          $state.go('app.main');
+      });
   	}
   }
 

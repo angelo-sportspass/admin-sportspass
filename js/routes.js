@@ -186,15 +186,33 @@ angular
    * @return Get All Program
    */
   .state('app.program', {
+    abstract: true,
     url: '/program',
-    templateUrl: 'views/pages/program/program.html',
-    // controller: 'ProgramController',
-    // controllerAs: 'program',
+    defaultChild: 'app.program.list',
+    template: '<ui-view></ui-view>',
 
     //page title goes here
     ncyBreadcrumb: {
       label: 'Program'
+    },
+
+    params: {
+        subtitle: 'Programs'
     }
+  })
+  .state('app.program.list', {
+      url: '',
+      templateUrl: 'views/pages/program/program.html',
+      controller: 'ProgramController',
+      controllerAs: 'program',
+      //page title goes here
+      ncyBreadcrumb: {
+          label: 'List',
+      },
+      //page subtitle goes here
+      params: {
+          subtitle: 'Program List'
+      },
   })
 
   /**
@@ -202,18 +220,58 @@ angular
    * @return 
    */
   .state('app.user', {
+    abstract: true,
     url: '/user',
-    templateUrl: 'views/pages/user/user.html',
+    defaultChild: 'app.user.list',
+    template: '<ui-view></ui-view>',
+  
+    //page title goes here
+    ncyBreadcrumb: {
+      label: 'Users'
+    },
+
+    params: {
+        subtitle: 'Products'
+    }
+  })
+  .state('app.user.list', {
+      url: '',
+      templateUrl: 'views/pages/user/user.html',
+      controller: 'UserController',
+      controllerAs: 'user',
+      //page title goes here
+      ncyBreadcrumb: {
+          label: 'List',
+      },
+      //page subtitle goes here
+      params: {
+          subtitle: 'User List'
+      },
+  })
+  .state('app.user.create', {
+    url: '/create',
+    templateUrl: 'views/pages/user/user.create.html',
     controller: 'UserController',
     controllerAs: 'user',
 
     //page title goes here
     ncyBreadcrumb: {
-      label: 'Users'
+      label: 'Create'
     },
     
   })
+  .state('app.user.edit', {
+    url: '/edit/{id}',
+    templateUrl: 'views/pages/user/user.edit.html',
+    controller: 'UserController',
+    controllerAs: 'user',
 
+    //page title goes here
+    ncyBreadcrumb: {
+      label: 'Edit'
+    },
+    
+  })
 
   /**
    * Settings State
