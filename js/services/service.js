@@ -4,5 +4,10 @@ angular
 
     	var vm = this;
 
-    	vm.baseUrl = 'http://api.dev.local/v1';
+    	if (location.hostname === "localhost" || location.hostname === "127.0.0.1") {
+    		vm.baseUrl = '//api.dev.local/v1';
+    	} else {
+    		vm.baseUrl = '//api.sportsnomads.com.au/v1';
+    	}
+    	
     });
