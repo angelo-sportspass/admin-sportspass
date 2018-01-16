@@ -1,0 +1,53 @@
+<div class="animated fadeIn">
+     <div class="row">
+      <div class="col-lg-12">
+        <h3>Clubs Edit</h3>
+          <div class="card">
+              <div class="card-header">
+                  <strong>Clubs</strong>
+                  <small>detail</small>
+              </div>
+              <div class="card-block">
+                <form name="form" ng-submit="updateClub(form, clubs.id)" role="form">
+                  <div class="form-group">
+                      <label for="name">Organisation Name</label>
+                      <input name="name" type="text" class="form-control" id="name" ng-model="clubs.name"  placeholder="Enter organisation">
+                  </div>
+
+                  <div class="form-group">
+                      <label for="club_prefix">Organisation Prefix</label>
+                      <input name="club_prefix" type="text" class="form-control" id="club_prefix" ng-model="clubs.club_prefix"  placeholder="Enter club prefix">
+                  </div>
+
+                 <div class="form-group">
+                      <label for="link">Organisation URL</label>
+                      <input name="link" type="text" class="form-control" id="link" ng-model="clubs.link"  placeholder="Auto Generated.." disabled="">
+                  </div>
+
+                  <div class="form-group">
+                    <ul class="list list-inline">
+                      <li class="list-inline-item">Show Barcode</li>
+                      <li class="list-inline-item">
+                        <label class="switch switch-text switch-pill switch-primary">
+                          <input type="checkbox" ng-change="optionBarcode()" ng-checked="clubs.is_barcode == 1" name="is_barcode" id="is_barcode" class="switch-input" ng-model="clubs.is_barcode" />
+                          <span class="switch-label" data-on="On" data-off="Off"></span>
+                          <span class="switch-handle"></span>
+                        </label>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div class="form-group clearfix">
+                    <label for="expiry">Expiry</label>
+                    <datepicker date-format="yyyy-MM-dd" selector="form-control">
+                      <input ng-model="clubs.expiry" type="text" class="form-control" name="expiry" id="expiry" placeholder="Enter expiry date"/>
+                    </datepicker>
+                  </div>
+                  <button type="submit" class="btn btn-primary px-4" >Update</button>
+                </form>
+              </div>
+          </div>
+
+      </div>
+    </div>
+</div>

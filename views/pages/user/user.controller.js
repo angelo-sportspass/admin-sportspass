@@ -35,7 +35,7 @@
       $scope.user = {};
       $state.go('app.user.edit', {id: id});
 
-      vm.getUser(id);
+      $scope.getUser(id);
     };
 
     $scope.deleteUser = function (id) {
@@ -50,16 +50,8 @@
     $scope.saveUser = function(form) {
 
       var user = angular.copy($scope.user);
-
-      var data = {
-        user_name: user.user_name,
-        first_name: user.first_name,
-        password: user.password,
-        email: user.email,
-        last_name: user.last_name
-      };
       
-      UserService.create(data).then(function(response) {
+      UserService.create(user).then(function(response) {
           console.log(response);
           $state.go('/user');
       }, function(response) {
@@ -72,14 +64,7 @@
 
       var user = angular.copy($scope.user);
 
-      var data = {
-        user_name: user.user_name,
-        first_name: user.first_name,
-        email: user.email,
-        last_name: user.last_name
-      };
-
-      UserService.update(id, data).then(function(response) {
+      UserService.update(id, user).then(function(response) {
           console.log(response);
 
       }, function(response) {

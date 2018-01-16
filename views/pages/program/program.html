@@ -6,7 +6,7 @@
                 <div class="card-header clearfix" >
                     <i class="fa fa-align-justify"></i> Program List
 
-                    <button type="button" class="btn btn-outline-success pull-right" ><i class="fa fa-plus"></i> Create</button>
+                    <button type="button" class="btn btn-outline-success pull-right" ui-sref="app.program.create" ><i class="fa fa-plus"></i> Create</button>
                 </div>
                 <div class="card-block">
                     <table class="table table-striped">
@@ -33,12 +33,12 @@
                                 <td>
                                 	<ul class="list-inline">
                                 		<li class="list-inline-item">
-		                                	<a class="nav-link" href="javascript:;"  >
+		                                	<a class="nav-link" href="javascript:;" ng-click="editProgram(programs.id)" >
 		                                		<i class="icon-note"></i>  
 		                                	</a>
 	                                	</li>
 	                                	<li class="list-inline-item">
-		                                	<a class="nav-link" href="javascript:;" >
+		                                	<a class="nav-link" href="javascript:;" ng-click="deleteProgram(programs.id)" >
 		                                		<i class="icon-trash"></i>  
 		                                	</a>
 	                                	</li>

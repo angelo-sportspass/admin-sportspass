@@ -19,6 +19,68 @@
       });
     };
 
+    $scope.getProgram = function(id) {
+
+      ProgramService.getOne(id).then(function(response){
+
+        $scope.program = response.data;
+
+      }, function(response) {
+
+         console.log(response);
+      });
+    };
+
+    $scope.editProgram = function(id) {
+
+      $scope.program = {};
+      $state.go('app.program.edit', {id: id});
+
+      $scope.getProgram(id);
+
+    };
+
+    $scope.deleteProgram = function (id) {
+
+      ProgramService.delete(id);
+      $state.go($state.current, {}, {reload: true});
+
+      $scope.programs();
+      //@todo remove element from the table
+    };
+
+    $scope.saveProgram = function(form) {
+
+      var program = angular.copy($scope.program);
+
+      ProgramService.create(program).then(function(response) {
+          console.log(response);
+           $state.go('/program');
+      }, function(response) {
+
+         console.log(response);
+      });
+      
+    };
+
+    $scope.updateProgram = function(form, id) {
+
+      var program = angular.copy($scope.program);
+
+      ProgramService.update(id, program).then(function(response) {
+          console.log(response);
+
+      }, function(response) {
+
+         console.log(response);
+      });
+
+    };
+
+    if ($state.params.id) {
+       $scope.getProgram($state.params.id);
+    }
+
     $scope.programs();
   }
 

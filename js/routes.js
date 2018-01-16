@@ -90,15 +90,61 @@ angular
    * @return Get All Account
    */
   .state('app.account', {
+    abstract: true,
     url: '/account',
-    templateUrl: 'views/pages/account/account.html',
-    // controller: 'AccountController',
-    // controllerAs: 'account',
+    defaultChild: 'app.account.list',
+    template: '<ui-view></ui-view>',
 
     //page title goes here
     ncyBreadcrumb: {
-      label: 'Account'
+      label: 'Program'
+    },
+
+    params: {
+        subtitle: 'Programs'
     }
+  })
+  .state('app.account.list', {
+      url: '',
+      templateUrl: 'views/pages/account/account.html',
+      controller: 'AccountController',
+      controllerAs: 'account',
+      //page title goes here
+      ncyBreadcrumb: {
+          label: 'List',
+      },
+      //page subtitle goes here
+      params: {
+          subtitle: 'Account List'
+      },
+  })
+  .state('app.account.create', {
+      url: '/create',
+      templateUrl: 'views/pages/account/account.create.html',
+      controller: 'AccountController',
+      controllerAs: 'account',
+      //page title goes here
+      ncyBreadcrumb: {
+          label: 'Create',
+      },
+      //page subtitle goes here
+      params: {
+          subtitle: 'Account Create'
+      },
+  })
+  .state('app.account.edit', {
+      url: '/edit/{id}',
+      templateUrl: 'views/pages/account/account.edit.html',
+      controller: 'AccountController',
+      controllerAs: 'account',
+      //page title goes here
+      ncyBreadcrumb: {
+          label: 'Edit',
+      },
+      //page subtitle goes here
+      params: {
+          subtitle: 'Account Edit'
+      },
   })
 
   /**
@@ -138,17 +184,62 @@ angular
    * @return Get All Clubs
    */
   .state('app.clubs', {
+    abstract: true,
     url: '/clubs',
-    templateUrl: 'views/pages/clubs/clubs.html',
-    // controller: 'ClubsController',
-    // controllerAs: 'clubs',
+    defaultChild: 'app.clubs.list',
+    template: '<ui-view></ui-view>',
 
     //page title goes here
     ncyBreadcrumb: {
       label: 'Clubs'
+    },
+
+    params: {
+        subtitle: 'Clubs'
     }
   })
-
+  .state('app.clubs.list', {
+      url: '',
+      templateUrl: 'views/pages/clubs/clubs.html',
+      controller: 'ClubsController',
+      controllerAs: 'clubs',
+      //page title goes here
+      ncyBreadcrumb: {
+          label: 'List',
+      },
+      //page subtitle goes here
+      params: {
+          subtitle: 'Clubs List'
+      },
+  })
+  .state('app.clubs.create', {
+      url: '/create',
+      templateUrl: 'views/pages/clubs/clubs.create.html',
+      controller: 'ClubsController',
+      controllerAs: 'clubs',
+      //page title goes here
+      ncyBreadcrumb: {
+          label: 'Create',
+      },
+      //page subtitle goes here
+      params: {
+          subtitle: 'Clubs Create'
+      },
+  })
+  .state('app.clubs.edit', {
+      url: '/edit/{id}',
+      templateUrl: 'views/pages/clubs/clubs.edit.html',
+      controller: 'ClubsController',
+      controllerAs: 'clubs',
+      //page title goes here
+      ncyBreadcrumb: {
+          label: 'Edit',
+      },
+      //page subtitle goes here
+      params: {
+          subtitle: 'Clubs Edit'
+      },
+  })
   /**
    * Deals State
    * @return Get All Deals
@@ -212,6 +303,34 @@ angular
       //page subtitle goes here
       params: {
           subtitle: 'Program List'
+      },
+  })
+  .state('app.program.create', {
+      url: '/create',
+      templateUrl: 'views/pages/program/program.create.html',
+      controller: 'ProgramController',
+      controllerAs: 'program',
+      //page title goes here
+      ncyBreadcrumb: {
+          label: 'Create',
+      },
+      //page subtitle goes here
+      params: {
+          subtitle: 'Program Create'
+      },
+  })
+  .state('app.program.edit', {
+      url: '/edit/{id}',
+      templateUrl: 'views/pages/program/program.edit.html',
+      controller: 'ProgramController',
+      controllerAs: 'program',
+      //page title goes here
+      ncyBreadcrumb: {
+          label: 'Edit',
+      },
+      //page subtitle goes here
+      params: {
+          subtitle: 'Program Edit'
       },
   })
 

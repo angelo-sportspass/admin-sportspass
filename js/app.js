@@ -17,7 +17,8 @@ angular
   'oc.lazyLoad',
   'ncy-angular-breadcrumb',
   'angular-loading-bar',
-  'ui.bootstrap'
+  'ui.bootstrap',
+  '720kb.datepicker'
 ])
 .config(['cfpLoadingBarProvider', '$qProvider', '$httpProvider', function(cfpLoadingBarProvider, $qProvider, $httpProvider) {
 

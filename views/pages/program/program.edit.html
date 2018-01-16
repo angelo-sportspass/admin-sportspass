@@ -1,0 +1,99 @@
+<div class="animated fadeIn">
+     <div class="row">
+      <div class="col-lg-12">
+        <h3>Program Edit</h3>
+          <div class="card">
+              <div class="card-header">
+                  <strong>Program</strong>
+                  <small>detail</small>
+              </div>
+              <div class="card-block">
+                <form name="form" ng-submit="updateProgram(form, program.id)" role="form">
+
+                  <!-- <div class="form-group">
+                      <label for="program_logo">Program Logo</label>
+                      <input name="program_logo" type="file" class="form-control" id="program_logo" ng-model="program.program_logo"  placeholder="Enter your program logo name">
+                  </div> -->
+
+                  <div class="form-group">
+                      <label for="name">Program Name</label>
+                      <input name="name" type="text" class="form-control" id="name" ng-model="program.name"  placeholder="Enter your program name">
+                  </div>
+
+                  <div class="form-group">
+                      <label for="short_name">Program Short Name</label>
+                      <input name="short_name" type="text" class="form-control" id="short_name" ng-model="program.short_name"  placeholder="Enter your program short name">
+                  </div>
+
+                  <div class="form-group">
+                      <label for="program_currency">Program Currency</label>
+                      <input name="program_currency" type="text" class="form-control" id="program_currency" ng-model="program.program_currency"  placeholder="Enter your program currency">
+                  </div>
+
+                  <div class="form-group">
+                      <label for="program_currency">Program Currency Prefix</label>
+                      <input name="program_currency_prefix" type="text" class="form-control" id="program_currency_prefix" ng-model="program.program_currency_prefix"  placeholder="Enter your program currency prefix">
+                  </div>
+
+                  <div class="form-group">
+                      <label for="program_email">Program Admin Email</label>
+                      <input name="program_email" type="email" class="form-control" id="program_email" ng-model="program.program_email"  placeholder="Enter your program admin email">
+                  </div>
+
+                  <div class="form-group">
+                      <label for="info_email">Program Info Email</label>
+                      <input name="info_email" type="email" class="form-control" id="info_email" ng-model="program.info_email"  placeholder="Enter your program info email">
+                  </div>
+
+                  <div class="form-group">
+                      <label for="url_staging">Program Staging URL</label>
+                      <input name="url_staging" type="text" class="form-control" id="url_staging" ng-model="program.url_staging"  placeholder="Enter your program url Staging">
+                  </div>
+
+                  <div class="form-group">
+                      <label for="url_production">Program Production URL</label>
+                      <input name="url_production" type="text" class="form-control" id="url_production" ng-model="program.url_production"  placeholder="Enter your program url Production">
+                  </div>
+                  
+                  <div class="form-group">
+                      <label for="stripe_secret_key">Program Stripe Secrete Key</label>
+                      <input name="stripe_secret_key" type="text" class="form-control" id="stripe_secret_key" ng-model="program.stripe_secret_key"  placeholder="Enter your program Stripe Secrete Key">
+                  </div>
+
+                  <div class="form-group">
+                      <label for="stripe_public_key">Program Stripe Public Key</label>
+                      <input name="stripe_public_key" type="text" class="form-control" id="stripe_public_key" ng-model="program.stripe_public_key"  placeholder="Enter your program Stripe Public Key">
+                  </div>
+
+                  <p>
+                    <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                      [Click to Open] Google Analytics, Head Map Lucky Orange & Rakuten Automate 
+                    </a>
+                  </p>
+                  <div class="collapse" id="collapseExample">
+                    <div class="card card-body" style="border:none;">
+ 
+                      <label for="script_google">Google Analytics:</label>
+                      <textarea id="script_google" name="script_google" ng-model="program.script_google" rows="9" class="form-control" placeholder="Script.."></textarea>
+                      <br/>
+                
+                      <label for="script_lucky_orange">Head Map Lucky Orange:</label>
+                      <textarea id="script_lucky_orange" name="script_lucky_orange" ng-model="program.script_lucky_orange" rows="9" class="form-control" placeholder="Script.."></textarea>
+                      <br/>
+  
+                      <label for="script_rakuten">Rakuten Automate:</label>
+                      <textarea id="script_rakuten" name="script_rakuten" ng-model="program.script_rakuten" rows="9" class="form-control" placeholder="Script.."></textarea>
+                     
+                    </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-6">
+                          <button type="submit" class="btn btn-primary px-4" >Update</button>
+                      </div>
+                  </div>
+                </form>
+              </div>
+          </div>
+      </div>
+    </div>
+</div>

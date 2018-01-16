@@ -5,56 +5,44 @@
             <div class="card">
                 <div class="card-header">
                     <i class="fa fa-align-justify"></i> Account List
+
+                    <button type="button" class="btn btn-outline-success pull-right" ui-sref="app.account.create"><i class="fa fa-plus"></i> Create</button>
                 </div>
                 <div class="card-block">
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th>Username</th>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Email</th>
                                 <th>Date registered</th>
-                                <th>Role</th>
                                 <th>Status</th>
+                                <th class="text-center" width="15%">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Yiorgos Avraamu</td>
-                                <td>2012/01/01</td>
-                                <td>Member</td>
+                            <tr ng-repeat = "accounts in accountList">
+                                <td>{{accounts.id}}</td>
+                                <td>{{ accounts.first_name + ' ' + accounts.last_name }}</td>
+                                <td>{{ accounts.email }}</td>
+                                <td>{{ accounts.created_at }}</td>
                                 <td>
-                                    <span class="badge badge-success">Active</span>
+                                    <span class="badge badge-success" ng-if="accounts.status == 1">Active</span>
+                                    <span class="badge badge-danger" ng-if="accounts.status == 0">In Active</span>
                                 </td>
-                            </tr>
-                            <tr>
-                                <td>Avram Tarasios</td>
-                                <td>2012/02/01</td>
-                                <td>Staff</td>
                                 <td>
-                                    <span class="badge badge-danger">Banned</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Quintin Ed</td>
-                                <td>2012/02/01</td>
-                                <td>Admin</td>
-                                <td>
-                                    <span class="badge badge-default">Inactive</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Enéas Kwadwo</td>
-                                <td>2012/03/01</td>
-                                <td>Member</td>
-                                <td>
-                                    <span class="badge badge-warning">Pending</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Agapetus Tadeáš</td>
-                                <td>2012/01/21</td>
-                                <td>Staff</td>
-                                <td>
-                                    <span class="badge badge-success">Active</span>
+                                    <ul class="list-inline">
+                                        <li class="list-inline-item">
+                                            <a class="nav-link" href="javascript:;" ng-click="editAccount(accounts.id)" >
+                                                <i class="icon-note"></i>  
+                                            </a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a class="nav-link" href="javascript:;" ng-click="deleteAccount(accounts.id)">
+                                                <i class="icon-trash"></i>  
+                                            </a>
+                                        </li>
+                                    </ul>
                                 </td>
                             </tr>
                         </tbody>
