@@ -12,8 +12,10 @@
   	var vm = this;
 
     // Show All Users
-  	$scope.users = function() {
+  	vm.users = function() {
       UserService.getAll().then(function(response){
+        $scope.currentPage = 1;
+        $scope.pageSize    = 10;
         $scope.userList = response.data.users;
         $scope.count    = response.data.count;
       });
@@ -42,8 +44,8 @@
 
       UserService.delete(id);
       $state.go($state.current, {}, {reload: true});
-
-      $scope.users();
+      
+      vm.users();
       //@todo remove element from the table
     };
 
@@ -52,8 +54,9 @@
       var user = angular.copy($scope.user);
       
       UserService.create(user).then(function(response) {
-          console.log(response);
-          $state.go('/user');
+          
+          $state.go('app.user.list');
+
       }, function(response) {
 
          console.log(response);
@@ -65,8 +68,8 @@
       var user = angular.copy($scope.user);
 
       UserService.update(id, user).then(function(response) {
-          console.log(response);
-
+        $state.go($state.current, {}, {reload: true});
+        console.log(response);
       }, function(response) {
 
          console.log(response);
@@ -78,7 +81,7 @@
        $scope.getUser($state.params.id);
     }
 
-    $scope.users();
+    vm.users();
 
   }
 

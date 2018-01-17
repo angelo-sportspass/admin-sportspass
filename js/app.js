@@ -18,7 +18,9 @@ angular
   'ncy-angular-breadcrumb',
   'angular-loading-bar',
   'ui.bootstrap',
-  '720kb.datepicker'
+  '720kb.datepicker',
+  'angularUtils.directives.dirPagination',
+  'ngFileUpload'
 ])
 .config(['cfpLoadingBarProvider', '$qProvider', '$httpProvider', function(cfpLoadingBarProvider, $qProvider, $httpProvider) {
 

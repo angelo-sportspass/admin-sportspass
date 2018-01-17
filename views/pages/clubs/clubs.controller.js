@@ -12,7 +12,7 @@
   	var vm = this;
 
     // Show All Clubs
-  	$scope.clubs = function() {
+  	vm.clubs = function() {
       ClubsService.getAll().then(function(response) {
         $scope.clubList = response.data.clubs;
         $scope.count    = response.data.count;
@@ -45,17 +45,31 @@
       ClubsService.delete(id);
       $state.go($state.current, {}, {reload: true});
 
-      $scope.clubs();
+      vm.clubs();
       //@todo remove element from the table
     };
 
     $scope.saveClub = function(form) {
 
       var clubs = angular.copy($scope.clubs);
+      var blob  = $scope.dataImage($scope.clubs.logo);
+      var file  = new File([blob], 'fileName.jpeg', {type: "'image/jpeg"});
+      
+      var data = {
+        logo : angular.fromJson(file),
+        name: clubs.name,
+        club_prefix: clubs.club_prefix,
+        link: clubs.link,
+        is_barcode: clubs.is_barcode,
+        expiry : clubs.expiry
+      };
+      // console.log(data);
+      // return false;
+      //var clubs = angular.copy($scope.clubs);
 
-      ClubsService.create(clubs).then(function(response) {
+      ClubsService.create(data).then(function(response) {
           console.log(response);
-          $state.go('/clubs');
+          $state.go('app.clubs.list');
       }, function(response) {
 
          console.log(response);
@@ -67,17 +81,36 @@
 
       var clubs = angular.copy($scope.clubs);
 
-      console.log(clubs.is_barcode);
-      return false;
-
       ClubsService.update(id, clubs).then(function(response) {
-          console.log(response);
+
+        state.go($state.current, {}, {reload: true});
+        console.log(response);
 
       }, function(response) {
 
          console.log(response);
       });
 
+    };
+
+    $scope.dataImage = function(dataURI) {
+
+      var byteString;
+      if (dataURI.split(',')[0].indexOf('base64') >= 0)
+          byteString = atob(dataURI.split(',')[1]);
+      else
+          byteString = unescape(dataURI.split(',')[1]);
+
+      // separate out the mime component
+      var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+
+      // write the bytes of the string to a typed array
+      var ia = new Uint8Array(byteString.length);
+      for (var i = 0; i < byteString.length; i++) {
+          ia[i] = byteString.charCodeAt(i);
+      }
+
+      return new Blob([ia], {type:mimeString});
     };
 
     // Bug in Club Checkbox
@@ -98,7 +131,7 @@
        $scope.getClub($state.params.id);
     }
 
-    $scope.clubs();
+    vm.clubs();
     //$scope.optionBarcode();
   }
 

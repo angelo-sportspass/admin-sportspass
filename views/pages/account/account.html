@@ -9,6 +9,27 @@
                     <button type="button" class="btn btn-outline-success pull-right" ui-sref="app.account.create"><i class="fa fa-plus"></i> Create</button>
                 </div>
                 <div class="card-block">
+
+                    <form class="search-form">
+                        <div class="row">
+                            <div class="col-4">
+                                <label for="search">Search :</label>
+                                <input type="text" name="search"  ng-model="search" placeholder="ID, Name, Email..">
+                            </div>
+
+                            <div class="col-3">
+                                <label for="date">Date :</label>
+                                 <datepicker date-format="yyyy-MM-dd" selector="date">
+                                  <input ng-model="date" type="text"  class="date" name="date" />
+                                </datepicker>
+                            </div>
+
+                            <div class="col-3">
+                                {{ range.total }}
+                            </div>
+                        </div>
+                    </form>
+        
                     <table class="table table-striped">
                         <thead>
                             <tr>
@@ -21,7 +42,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat = "accounts in accountList">
+                            <tr  dir-paginate = "accounts in accountList | filter: search | filter: date | itemsPerPage: pageSize" current-page="currentPage" pagination-id="accountPagination">
                                 <td>{{accounts.id}}</td>
                                 <td>{{ accounts.first_name + ' ' + accounts.last_name }}</td>
                                 <td>{{ accounts.email }}</td>
@@ -47,7 +68,8 @@
                             </tr>
                         </tbody>
                     </table>
-                    <ul class="pagination">
+                    <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="../../bower_components/angularUtils-pagination/dirPagination.tpl.html" pagination-id="accountPagination"></dir-pagination-controls>
+                    <!-- <ul class="pagination">
                         <li class="page-item"><a class="page-link" href="#">Prev</a>
                         </li>
                         <li class="page-item active">
@@ -61,7 +83,7 @@
                         </li>
                         <li class="page-item"><a class="page-link" href="#">Next</a>
                         </li>
-                    </ul>
+                    </ul> -->
                 </div>
             </div>
         </div>

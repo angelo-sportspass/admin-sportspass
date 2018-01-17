@@ -20,7 +20,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat = "users in userList">
+                            <tr dir-paginate = "users in userList | filter: search | filter: date | itemsPerPage: pageSize" current-page="currentPage" pagination-id="usersPagination">
                                 <td>{{ users.first_name + ' ' + users.last_name }}</td>
                                 <td>{{ users.created_at }}</td>
                                 <td>Member</td>
@@ -45,7 +45,8 @@
                             </tr>
                         </tbody>
                     </table>
-                    <ul class="pagination">
+                    <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="../../bower_components/angularUtils-pagination/dirPagination.tpl.html" pagination-id="usersPagination"></dir-pagination-controls>
+                    <!-- <ul class="pagination">
                         <li class="page-item"><a class="page-link" href="#">Prev</a>
                         </li>
                         <li class="page-item active">
@@ -59,7 +60,7 @@
                         </li>
                         <li class="page-item"><a class="page-link" href="#">Next</a>
                         </li>
-                    </ul>
+                    </ul> -->
                 </div>
             </div>
         </div>

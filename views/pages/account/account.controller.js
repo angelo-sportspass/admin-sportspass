@@ -12,10 +12,14 @@
   	var vm = this;
 
     // Show All Account
-  	$scope.account = function() {
+  	vm.account = function() {
       AccountService.getAll().then(function(response) {
+
+        $scope.currentPage = 1;
+        $scope.pageSize    = 10;
         $scope.accountList = response.data.accounts;
-        $scope.count    = response.data.count;
+        $scope.count       = response.data.count;
+
       });
     };
 
@@ -24,8 +28,6 @@
       AccountService.getOne(id).then(function(response){
 
         $scope.account = response.data;
-
-        console.log($scope.account);
 
       }, function(response) {
 
@@ -47,7 +49,7 @@
       AccountService.delete(id);
       $state.go($state.current, {}, {reload: true});
 
-      $scope.account();
+      vm.account();
       //@todo remove element from the table
     };
 
@@ -57,8 +59,9 @@
       var account = angular.copy($scope.account);
 
       AccountService.create(account).then(function(response) {
-          console.log(response);
-          $state.go('/account');
+        
+          $state.go('app.account.list');
+
       }, function(response) {
 
          console.log(response);
@@ -91,7 +94,7 @@
     }
 
     $scope.getAllProgram();
-    $scope.account();
+    vm.account();
   }
 
 })();

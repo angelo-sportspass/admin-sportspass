@@ -12,8 +12,10 @@
   	var vm = this;
 
     // Show All Users
-  	$scope.programs = function() {
+  	vm.programs = function() {
       ProgramService.getAll().then(function(response) {
+        $scope.currentPage = 1;
+        $scope.pageSize    = 10;
         $scope.programList = response.data.programs;
         $scope.count    = response.data.count;
       });
@@ -45,7 +47,7 @@
       ProgramService.delete(id);
       $state.go($state.current, {}, {reload: true});
 
-      $scope.programs();
+      vm.programs();
       //@todo remove element from the table
     };
 
@@ -55,7 +57,7 @@
 
       ProgramService.create(program).then(function(response) {
           console.log(response);
-           $state.go('/program');
+           $state.go('app.program.list');
       }, function(response) {
 
          console.log(response);
@@ -68,6 +70,8 @@
       var program = angular.copy($scope.program);
 
       ProgramService.update(id, program).then(function(response) {
+
+          $state.go($state.current, {}, {reload: true});
           console.log(response);
 
       }, function(response) {
@@ -81,7 +85,7 @@
        $scope.getProgram($state.params.id);
     }
 
-    $scope.programs();
+    vm.programs();
   }
 
 })();

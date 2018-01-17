@@ -8,12 +8,12 @@
                   <small>detail</small>
               </div>
               <div class="card-block">
-                <form name="form" ng-submit="saveClub(form)" role="form">
+                <form name="form" ng-submit="saveClub(form)" role="form" enctype="multipart/form-data">
 
-                  <!-- <div class="form-group">
-                      <label for="program_logo">Program Logo</label>
-                      <input name="program_logo" type="file" class="form-control" id="program_logo" ng-model="program.program_logo"  placeholder="Enter your program logo name">
-                  </div> -->
+                  <div class="form-group">
+                      <label for="logo">Club Logo</label>
+                      <input name="logo" type="file" class="form-control" id="logo" fileread="clubs.logo"  />
+                  </div>
 
                   <div class="form-group">
                       <label for="name">Organisation Name</label>

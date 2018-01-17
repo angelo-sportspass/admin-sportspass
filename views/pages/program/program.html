@@ -21,7 +21,8 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat = "programs in programList">
+                            <!-- <tr ng-repeat = "programs in programList"> -->
+                            <tr  dir-paginate = "programs in programList | filter: search | filter: date | itemsPerPage: pageSize" current-page="currentPage" pagination-id="programPagination">
                             	<td>{{ programs.id }}</td>
                                 <td>{{ programs.name }} </td>
                                 <td>{{ programs.short_name }}</td>
@@ -47,7 +48,8 @@
                             </tr>
                         </tbody>
                     </table>
-                    <ul class="pagination">
+                    <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="../../bower_components/angularUtils-pagination/dirPagination.tpl.html" pagination-id="programPagination"></dir-pagination-controls>
+                    <!-- <ul class="pagination">
                         <li class="page-item"><a class="page-link" href="#">Prev</a>
                         </li>
                         <li class="page-item active">
@@ -61,7 +63,7 @@
                         </li>
                         <li class="page-item"><a class="page-link" href="#">Next</a>
                         </li>
-                    </ul>
+                    </ul> -->
                 </div>
             </div>
         </div>
