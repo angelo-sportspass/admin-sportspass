@@ -10,46 +10,112 @@
               <div class="card-block">
                 <form name="form" ng-submit="saveClub(form)" role="form" enctype="multipart/form-data">
 
-                  <div class="form-group">
-                      <label for="logo">Club Logo</label>
-                      <input name="logo" type="file" class="form-control" id="logo" fileread="clubs.logo"  />
-                  </div>
+                  <ul class="nav nav-tabs" role="tablist">
+                    <li class="nav-item">
+                      <a target="_self" class="nav-link active" data-toggle="tab" href="#details" role="tab" aria-controls="details"><i class="fa fa-group fa-lg"></i> Oraganisation Details</a>
+                    </li>
+                    <li class="nav-item">
+                      <a target="_self" class="nav-link" data-toggle="tab" href="#email" role="tab" aria-controls="email"><i class="fa fa-envelope-o fa-lg"></i> Email</a>
+                    </li>
+                    <li class="nav-item">
+                      <a target="_self" class="nav-link" data-toggle="tab" href="#collateral" role="tab" aria-controls="collateral"><i class="fa fa-info-circle fa-lg"></i> Web Collateral</a>
+                    </li>
+                    <li class="nav-item">
+                      <a target="_self" class="nav-link" data-toggle="tab" href="#banners" role="tab" aria-controls="banners"><i class="fa fa-image fa-lg"></i> Web Banners</a>
+                    </li>
+                  </ul>
 
-                  <div class="form-group">
-                      <label for="name">Organisation Name</label>
-                      <input name="name" type="text" class="form-control" id="name" ng-model="clubs.name"  placeholder="Enter organisation">
-                  </div>
+                  <div class="tab-content">
+                    <!-- details -->
+                    <div class="tab-pane active" id="details" role="tabpanel">
+                     
+                      <div class="form-group">
+                          <label for="name">Organisation Name</label>
+                          <input name="name" type="text" class="form-control" id="name" ng-model="clubs.name"  placeholder="Enter organisation">
+                      </div>
 
-                  <div class="form-group">
-                      <label for="club_prefix">Organisation Prefix</label>
-                      <input name="club_prefix" type="text" class="form-control" id="club_prefix" ng-model="clubs.club_prefix"  placeholder="Enter club prefix">
-                  </div>
+                      <div class="form-group">
+                          <label for="club_prefix">Organisation Prefix</label>
+                          <input name="club_prefix" type="text" class="form-control" id="club_prefix" ng-model="clubs.club_prefix"  placeholder="Enter club prefix">
+                      </div>
 
-                 <div class="form-group">
-                      <label for="link">Organisation URL</label>
-                      <input name="link" type="text" class="form-control" id="link" ng-model="clubs.link"  placeholder="Auto Generated.." disabled="">
-                  </div>
+                     <div class="form-group">
+                          <label for="link">Organisation URL</label>
+                          <input name="link" type="text" class="form-control" id="link" ng-model="clubs.link"  placeholder="Auto Generated.." disabled="">
+                      </div>
 
-                  <div class="form-group">
-                      <ul class="list list-inline">
-                        <li class="list-inline-item">Show Barcode</li>
-                        <li class="list-inline-item">
-                          <label class="switch switch-text switch-pill switch-primary">
-                            <input type="checkbox" class="switch-input" checked="" ng-model="clubs.is_barcode">
-                            <span class="switch-label" data-on="On" data-off="Off"></span>
-                            <span class="switch-handle"></span>
-                          </label>
-                        </li>
-                      </ul>
-                  </div>
+                      <div class="form-group">
+                          <ul class="list list-inline">
+                            <li class="list-inline-item">Show Barcode</li>
+                            <li class="list-inline-item">
+                              <label class="switch switch-text switch-pill switch-primary">
+                                <input type="checkbox" class="switch-input" checked="" ng-model="clubs.is_barcode">
+                                <span class="switch-label" data-on="On" data-off="Off"></span>
+                                <span class="switch-handle"></span>
+                              </label>
+                            </li>
+                          </ul>
+                      </div>
 
-                  <div class="form-group clearfix">
-                    <label for="expiry">Expiry</label>
-                    <datepicker date-format="yyyy-MM-dd" selector="form-control">
-                      <input ng-model="clubs.expiry" type="text" class="form-control" name="expiry" id="expiry" placeholder="Enter expiry date"/>
-                    </datepicker>
-                  </div>
+                      <div class="form-group clearfix">
+                        <label for="expiry">Expiry</label>
+                        <datepicker date-format="yyyy-MM-dd" selector="form-control">
+                          <input ng-model="clubs.expiry" type="text" class="form-control" name="expiry" id="expiry" placeholder="Enter expiry date"/>
+                        </datepicker>
+                      </div>
+                    </div>
 
+                    <!-- email -->
+                    <div class="tab-pane" id="email" role="tabpanel">
+                      <div class="form-group">
+                          <label for="sport_name">Sports Name</label>
+                          <input name="sport_name" type="text" class="form-control" id="sport_name" ng-model="clubs.sport_name"  placeholder="Enter Sports Name">
+                      </div>
+                      <div class="form-group">
+                          <label for="officer">Officer Name</label>
+                          <input name="officer" type="text" class="form-control" id="officer" ng-model="clubs.officer"  placeholder="Enter Officer">
+                      </div>
+                      <div class="form-group">
+                          <label for="officer_position">Sports Name</label>
+                          <input name="officer_position" type="text" class="form-control" id="officer_position" ng-model="clubs.officer_position"  placeholder="Enter Officer Position">
+                      </div>
+                    </div>
+
+                    <!-- collateral -->
+                    <div class="tab-pane" id="collateral" role="tabpanel">
+                       <div class="form-group">
+                          <label for="logo">Club Logo</label>
+                          <input name="logo" type="file" class="form-control" id="logo" fileread="clubs.logo" />
+                          <img src="{{ clubs.logo }}" ng-if="clubs.logo" />
+                      </div>
+
+                      <div class="form-group">
+                          <label for="banner_image">Club Banner Image</label>
+                          <input name="banner_image" type="file" class="form-control" id="banner_image" fileread="clubs.banner_image" />
+                          <img src="{{ clubs.banner_image }}" ng-if="clubs.banner_image" width="20%" />
+                      </div>
+
+
+                      <div class="form-group">
+                          <label for="front_card_image">Club Front Card Image</label>
+                          <input name="front_card_image" type="file" class="form-control" id="front_card_image" fileread="clubs.front_card_image" />
+                          <img src="{{ clubs.front_card_image }}" ng-if="clubs.front_card_image" width="20%" />
+                      </div>
+
+                      <div class="form-group">
+                          <label for="email_header_image">Club Email Header</label>
+                          <input name="email_header_image" type="file" class="form-control" id="email_header_image" fileread="clubs.email_header_image" />
+                          <img src="{{ clubs.email_header_image }}" ng-if="clubs.email_header_image" width="20%" />
+                      </div>
+                    </div>
+
+                    <!-- banners -->
+                    <div class="tab-pane" id="banners" role="tabpanel">
+                      
+                    </div>
+
+                  </div>
+                  
                   <div class="row">
                       <div class="col-6">
                           <button type="submit" class="btn btn-primary px-4" >Save</button>

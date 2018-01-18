@@ -27,7 +27,7 @@
                             	<td>{{ clubs.id }}</td>
                                 <td>{{ clubs.name }} </td>
                                 <td>{{ clubs.club_prefix }}</td>
-                                <td><img src="https://placeimg.com/50/50/tech" /></td>
+                                <td><img src="{{ clubs.logo }}" /></td>
                                 <td>
                                     <span class="badge badge-success" ng-if="clubs.status == 1">Active</span>
                                     <span class="badge badge-danger" ng-if="clubs.status == 0">In Active</span>

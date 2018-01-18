@@ -1,6 +1,6 @@
 angular
 .module('app')
-.config(['$stateProvider', '$urlRouterProvider', '$ocLazyLoadProvider', '$breadcrumbProvider', function($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, $breadcrumbProvider) {
+.config(['$stateProvider', '$urlRouterProvider', '$ocLazyLoadProvider', '$breadcrumbProvider', '$locationProvider', function($stateProvider, $urlRouterProvider, $ocLazyLoadProvider, $breadcrumbProvider, $locationProvider) {
 
   $urlRouterProvider.otherwise('/login');
 
@@ -152,17 +152,62 @@ angular
    * @return Get All Banners
    */
   .state('app.banners', {
+    abstract: true,
     url: '/banners',
-    templateUrl: 'views/pages/banners/banners.html',
-    // controller: 'BannersController',
-    // controllerAs: 'banners',
+    defaultChild: 'app.banners.list',
+    template: '<ui-view></ui-view>',
 
     //page title goes here
     ncyBreadcrumb: {
       label: 'Banners'
+    },
+
+    params: {
+        subtitle: 'Banners'
     }
   })
-
+  .state('app.banners.list', {
+      url: '',
+      templateUrl: 'views/pages/banners/banners.html',
+      controller: 'BannersController',
+      controllerAs: 'banners',
+      //page title goes here
+      ncyBreadcrumb: {
+          label: 'List',
+      },
+      //page subtitle goes here
+      params: {
+          subtitle: 'Banners List'
+      },
+  })
+  .state('app.banners.create', {
+      url: '/create',
+      templateUrl: 'views/pages/banners/banners.create.html',
+      controller: 'BannersController',
+      controllerAs: 'banners',
+      //page title goes here
+      ncyBreadcrumb: {
+          label: 'Create',
+      },
+      //page subtitle goes here
+      params: {
+          subtitle: 'Banners Create'
+      },
+  })
+  .state('app.banners.edit', {
+      url: '/edit/{id}',
+      templateUrl: 'views/pages/banners/banners.edit.html',
+      controller: 'BannersController',
+      controllerAs: 'banners',
+      //page title goes here
+      ncyBreadcrumb: {
+          label: 'Edit',
+      },
+      //page subtitle goes here
+      params: {
+          subtitle: 'Banners Edit'
+      },
+  })
   /**
    * Category State
    * @return Get All Category

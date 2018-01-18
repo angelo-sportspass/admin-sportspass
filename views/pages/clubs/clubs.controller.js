@@ -6,8 +6,8 @@
     .controller('ClubsController', ClubsController);
 
   /** @ngInject */
-  ClubsController.$inject = ['ClubsService', '$rootScope', '$scope', '$http', '$window', '$state', '$location'];
-  function ClubsController(ClubsService, $rootScope, $scope, $http, $window, $state, $stateParams, $location, $route, $routeParams) {
+  ClubsController.$inject = ['ClubsService', '$rootScope', '$scope', '$http', '$window', '$state', 'Upload'];
+  function ClubsController(ClubsService, $rootScope, $scope, $http, $window, $state, $stateParams, Upload) {
 
   	var vm = this;
 
@@ -52,22 +52,33 @@
     $scope.saveClub = function(form) {
 
       var clubs = angular.copy($scope.clubs);
-      var blob  = $scope.dataImage($scope.clubs.logo);
-      var file  = new File([blob], 'fileName.jpeg', {type: "'image/jpeg"});
-      
+
+      var blobLogo  = $scope.dataImage($scope.clubs.logo);
+      var blobBi    = $scope.dataImage($scope.clubs.banner_image);
+      var blobFci   = $scope.dataImage($scope.clubs.front_card_image);
+      var blobEhi   = $scope.dataImage($scope.clubs.email_header_image);
+
+      var logo  = new File([blobLogo], 'logo.png', {type: "'image/png"});
+      var banner_image  = new File([blobBi], 'banner_image.png', {type: "'image/png"});
+      var front_card_image  = new File([blobFci], 'front_card_image.png', {type: "'image/png"});
+      var email_header_image  = new File([blobEhi], 'email_header_image.png', {type: "'image/png"});
+
       var data = {
-        logo : angular.fromJson(file),
+        logo : logo,
+        banner_image: banner_image,
+        front_card_image: front_card_image,
+        email_header_image: email_header_image,
         name: clubs.name,
         club_prefix: clubs.club_prefix,
         link: clubs.link,
         is_barcode: clubs.is_barcode,
-        expiry : clubs.expiry
+        expiry : clubs.expiry,
+        sport_name: clubs.sport_name,
+        officer: clubs.officer,
+        officer_position: clubs.officer
       };
-      // console.log(data);
-      // return false;
-      //var clubs = angular.copy($scope.clubs);
 
-      ClubsService.create(data).then(function(response) {
+      ClubsService.createClub(data).then(function(response) {
           console.log(response);
           $state.go('app.clubs.list');
       }, function(response) {
@@ -81,7 +92,32 @@
 
       var clubs = angular.copy($scope.clubs);
 
-      ClubsService.update(id, clubs).then(function(response) {
+      var blobLogo  = $scope.dataImage($scope.clubs.logo);
+      var blobBi    = $scope.dataImage($scope.clubs.banner_image);
+      var blobFci   = $scope.dataImage($scope.clubs.front_card_image);
+      var blobEhi   = $scope.dataImage($scope.clubs.email_header_image);
+
+      var logo  = new File([blobLogo], 'logo.png', {type: "'image/png"});
+      var banner_image  = new File([blobBi], 'banner_image.png', {type: "'image/png"});
+      var front_card_image  = new File([blobFci], 'front_card_image.png', {type: "'image/png"});
+      var email_header_image  = new File([blobEhi], 'email_header_image.png', {type: "'image/png"});
+
+      var data = {
+        logo : logo,
+        banner_image: banner_image,
+        front_card_image: front_card_image,
+        email_header_image: email_header_image,
+        name: clubs.name,
+        club_prefix: clubs.club_prefix,
+        link: clubs.link,
+        is_barcode: clubs.is_barcode,
+        expiry : clubs.expiry,
+        sport_name: clubs.sport_name,
+        officer: clubs.officer,
+        officer_position: clubs.officer
+      };
+
+      ClubsService.updateClub(id, data).then(function(response) {
 
         state.go($state.current, {}, {reload: true});
         console.log(response);
@@ -96,6 +132,7 @@
     $scope.dataImage = function(dataURI) {
 
       var byteString;
+
       if (dataURI.split(',')[0].indexOf('base64') >= 0)
           byteString = atob(dataURI.split(',')[1]);
       else
@@ -106,12 +143,14 @@
 
       // write the bytes of the string to a typed array
       var ia = new Uint8Array(byteString.length);
+
       for (var i = 0; i < byteString.length; i++) {
           ia[i] = byteString.charCodeAt(i);
       }
 
       return new Blob([ia], {type:mimeString});
     };
+
 
     // Bug in Club Checkbox
     // $scope.optionBarcode = function() {
