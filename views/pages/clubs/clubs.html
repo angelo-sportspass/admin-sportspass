@@ -10,24 +10,36 @@
                     <button type="button" class="btn btn-outline-success pull-right" ui-sref="app.clubs.create" ><i class="fa fa-plus"></i> Create</button>
                 </div>
                 <div class="card-block">
+                    <form class="search-form">
+                        <div class="row">
+                            <div class="col-4">
+                                <label for="search">Search :</label>
+                                <input type="text" name="search"  ng-model="search" placeholder="Name">
+                            </div>
+                        </div>
+                    </form>
                     <table class="table table-striped">
                         <thead>
                             <tr class="text-center">
                             	<th>ID</th>
                                 <th>Club Name</th>
                                 <th>Club Prefix</th>
-                                <th>Club Logo</th>
+                                <th width="20%">Club Logo</th>
                                 <th>Status</th>
                                 <th class="text-center" width="15%">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                            
-                            <tr ng-repeat = "clubs in clubList">
+                            <!-- <tr ng-repeat = "clubs in clubList"> -->
+                            <tr dir-paginate = "clubs in clubList | filter: search | itemsPerPage: pageSize" current-page="currentPage" pagination-id="clubPagination">
                             	<td>{{ clubs.id }}</td>
                                 <td>{{ clubs.name }} </td>
                                 <td>{{ clubs.club_prefix }}</td>
-                                <td><img src="{{ clubs.logo }}" /></td>
+                                <td>
+                                     <img width="50%" src="{{ clubs.logo }}" class="img-responsive" style="" ng-if="clubs.logo != 'null'">
+                                    <img width="50%" src="http://ipsumimage.appspot.com/100?l=30px&s=30" class="img-responsive" ng-if="clubs.logo == 'null'">
+                                </td>
                                 <td>
                                     <span class="badge badge-success" ng-if="clubs.status == 1">Active</span>
                                     <span class="badge badge-danger" ng-if="clubs.status == 0">In Active</span>
@@ -50,7 +62,8 @@
                             
                         </tbody>
                     </table>
-                    <ul class="pagination">
+                    <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="../../bower_components/angularUtils-pagination/dirPagination.tpl.html" pagination-id="clubPagination"></dir-pagination-controls>
+                    <!-- <ul class="pagination">
                         <li class="page-item"><a class="page-link" href="#">Prev</a>
                         </li>
                         <li class="page-item active">
@@ -64,7 +77,7 @@
                         </li>
                         <li class="page-item"><a class="page-link" href="#">Next</a>
                         </li>
-                    </ul>
+                    </ul> -->
                 </div>
             </div>
         </div>

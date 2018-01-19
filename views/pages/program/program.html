@@ -9,6 +9,14 @@
                     <button type="button" class="btn btn-outline-success pull-right" ui-sref="app.program.create" ><i class="fa fa-plus"></i> Create</button>
                 </div>
                 <div class="card-block">
+                    <form class="search-form">
+                        <div class="row">
+                            <div class="col-4">
+                                <label for="search">Search :</label>
+                                <input type="text" name="search"  ng-model="search" placeholder="ID, Name, Email..">
+                            </div>
+                        </div>
+                    </form>
                     <table class="table table-striped">
                         <thead>
                             <tr class="text-center">
@@ -22,7 +30,7 @@
                         </thead>
                         <tbody>
                             <!-- <tr ng-repeat = "programs in programList"> -->
-                            <tr  dir-paginate = "programs in programList | filter: search | filter: date | itemsPerPage: pageSize" current-page="currentPage" pagination-id="programPagination">
+                            <tr  dir-paginate = "programs in programList | filter: search | itemsPerPage: pageSize" current-page="currentPage" pagination-id="programPagination">
                             	<td>{{ programs.id }}</td>
                                 <td>{{ programs.name }} </td>
                                 <td>{{ programs.short_name }}</td>

@@ -10,28 +10,171 @@
               <div class="card-block">
                 <form name="form" ng-submit="saveBanner(form)" role="form" enctype="multipart/form-data">
 
-                  <div class="form-group">
-                    <label for="type">Select Banner Type</label>
+                  <ul class="nav nav-tabs" role="tablist">
+                    <li class="nav-item">
+                      <a target="_self" class="nav-link active" data-toggle="tab" href="#details" role="tab" aria-controls="details"><i class="fa fa-group fa-lg"></i> Banner Details</a>
+                    </li>
+                    <li class="nav-item">
+                      <a target="_self" class="nav-link" data-toggle="tab" href="#options" role="tab" aria-controls="options"><i class="fa fa-envelope-o fa-lg"></i> Banner Options </a>
+                    </li>
+                  </ul>
 
-                    <select class="form-control" id="type" name="type" ng-init="banners.type=''" ng-model="banners.type">
-                      <option value="">Banner Type..</option>
-                      <option value="all_pages">In All Pages</option>
-                      <option value="home_page">Only In Home Page</option>
-                      <option value="shop_in_store">Only In Shop in Store</option>
-                      <option value="shop_experiences">Only In Shop Experiences</option>
-                      <option value="shop_local">Only In Shop Local</option>                    
-                    </select>
+                  <div class="tab-content">
+                    <!-- details -->
+                    <div class="tab-pane active" id="details" role="tabpanel">
+                      <div class="form-group">
+                        <label for="type">Select Banner Type</label>
+
+                        <select class="form-control" id="type" name="type" ng-init="banners.type=''" ng-model="banners.type">
+                          <option value="">Banner Type..</option>
+                          <option value="all_pages">In All Pages</option>
+                          <option value="home_page">Only In Home Page</option>
+                          <option value="shop_in_store">Only In Shop in Store</option>
+                          <option value="shop_experiences">Only In Shop Experiences</option>
+                          <option value="shop_local">Only In Shop Local</option>                    
+                        </select>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="program_id">Select Program</label>
+
+                        <select class="form-control" id="program_id" name="program_id" ng-init="program_id=''" ng-model="program_id">
+                          <option value="">Select Program..</option>
+                          <option ng-repeat="programs in programList" value="{{programs.id}}">{{programs.name}}</option>
+                        </select>
+                      </div>
+
+                      <div class="form-group">
+                          <label for="image">Banner Logo</label>
+                          <input name="image" type="file" class="form-control" id="image" fileread="banners.image" />
+                          <img src="{{ banners.image }}" ng-if="banners.image" />
+                      </div>
+
+                      <div class="form-group">
+                        <label for="program_id">Select Categories</label>
+                        <multiple-autocomplete 
+                           ng-model="categories"
+                           suggestions-arr="categoryList"
+                           object-property="name"
+                           >
+                        </multiple-autocomplete>
+                      </div>
+
+                      <div class="form-group">
+                          <label for="banner_retailer">Add Retailer Name</label>
+                          <select class="form-control" id="banner_retailer" name="banner_retailer" ng-init="banner_retailer=''" ng-model="banner_retailer">
+                            <option ng-repeat="retailers in retailerList" value="{{ retailers.id }}">{{ retailers.name }}</option>
+                          </select>
+                      </div>
+
+                      <div class="form-group">
+                          <label for="name">Banner Name</label>
+                          <input name="name" type="text" class="form-control" id="name" ng-model="banners.name"  placeholder="Enter organisation">
+                      </div>
+
+                      <div class="form-group">
+                          <label for="url">Banner Url</label>
+                          <input name="url" type="text" class="form-control" id="url" ng-model="banners.url"  placeholder="Enter Url">
+                      </div>
+
+                      <div class="form-group">
+                        <ul class="list list-inline">
+                          <li class="list-inline-item">Status</li>
+                          <li class="list-inline-item">
+                            <label class="switch switch-text switch-pill switch-primary">
+                              <input type="checkbox" class="switch-input" ng-model="banners.status">
+                              <span class="switch-label" data-on="On" data-off="Off"></span>
+                              <span class="switch-handle"></span>
+                            </label>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+
+                    <!-- options -->
+                    <div class="tab-pane" id="options" role="tabpanel">
+
+                      <div class="form-group">
+                        <ul class="list list-inline">
+                          <li class="list-inline-item">Open in new tab</li>
+                          <li class="list-inline-item">
+                            <label class="switch switch-text switch-pill switch-primary">
+                              <input type="checkbox" class="switch-input" ng-model="banners.is_new_tab">
+                              <span class="switch-label" data-on="On" data-off="Off"></span>
+                              <span class="switch-handle"></span>
+                            </label>
+                          </li>
+                        </ul>
+                      </div>
+
+                      <div class="form-group">
+                        <ul class="list list-inline">
+                          <li class="list-inline-item">Show Banner in Hot Offers</li>
+                          <li class="list-inline-item">
+                            <label class="switch switch-text switch-pill switch-primary">
+                              <input type="checkbox" class="switch-input" ng-model="banners.is_hot_offer">
+                              <span class="switch-label" data-on="On" data-off="Off"></span>
+                              <span class="switch-handle"></span>
+                            </label>
+                          </li>
+                        </ul>
+                      </div>
+
+                      <div class="form-group">
+                        <ul class="list list-inline">
+                          <li class="list-inline-item">Show Banner in Home Page</li>
+                          <li class="list-inline-item">
+                            <label class="switch switch-text switch-pill switch-primary">
+                              <input type="checkbox" class="switch-input" ng-model="banners.is_home_page">
+                              <span class="switch-label" data-on="On" data-off="Off"></span>
+                              <span class="switch-handle"></span>
+                            </label>
+                          </li>
+                        </ul>
+                      </div>
+
+                      <div class="form-group">
+                        <ul class="list list-inline">
+                          <li class="list-inline-item">Show Banner in Home Page Trending Offers</li>
+                          <li class="list-inline-item">
+                            <label class="switch switch-text switch-pill switch-primary">
+                              <input type="checkbox" class="switch-input" ng-model="banners.is_trending_offers">
+                              <span class="switch-label" data-on="On" data-off="Off"></span>
+                              <span class="switch-handle"></span>
+                            </label>
+                          </li>
+                        </ul>
+                      </div>
+
+                      <div class="form-group">
+                        <ul class="list list-inline">
+                          <li class="list-inline-item">Show Banner in Home Page Trending Experiences</li>
+                          <li class="list-inline-item">
+                            <label class="switch switch-text switch-pill switch-primary">
+                              <input type="checkbox" class="switch-input" ng-model="banners.is_trending_experiences">
+                              <span class="switch-label" data-on="On" data-off="Off"></span>
+                              <span class="switch-handle"></span>
+                            </label>
+                          </li>
+                        </ul>
+                      </div>
+
+                      <div class="form-group">
+                        <ul class="list list-inline">
+                          <li class="list-inline-item">Set Banner Default</li>
+                          <li class="list-inline-item">
+                            <label class="switch switch-text switch-pill switch-primary">
+                              <input type="checkbox" class="switch-input" ng-model="banners.is_default">
+                              <span class="switch-label" data-on="On" data-off="Off"></span>
+                              <span class="switch-handle"></span>
+                            </label>
+                          </li>
+                        </ul>
+                      </div>
+
+                    </div>
+
                   </div>
-
-                  <div class="form-group">
-                    <label for="program_id">Select Program</label>
-
-                    <select class="form-control" id="program_id" name="program_id" ng-init="program_id=''" ng-model="program_id">
-                      <option value="">Select Program..</option>
-                      <option ng-repeat="programs in programList" value="{{programs.id}}">{{programs.name}}</option>
-                    </select>
-                  </div>
-
                   
                   <div class="row">
                       <div class="col-6">

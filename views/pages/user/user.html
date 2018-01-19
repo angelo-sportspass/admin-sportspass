@@ -9,6 +9,14 @@
                     <button type="button" class="btn btn-outline-success pull-right" ui-sref="app.user.create"><i class="fa fa-plus"></i> Create</button>
                 </div>
                 <div class="card-block">
+                     <form class="search-form">
+                        <div class="row">
+                            <div class="col-4">
+                                <label for="search">Search :</label>
+                                <input type="text" name="search"  ng-model="search" placeholder="ID, Name, Email..">
+                            </div>
+                        </div>
+                    </form>
                     <table class="table table-striped">
                         <thead>
                             <tr>
@@ -20,7 +28,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr dir-paginate = "users in userList | filter: search | filter: date | itemsPerPage: pageSize" current-page="currentPage" pagination-id="usersPagination">
+                            <tr dir-paginate = "users in userList | filter: search | itemsPerPage: pageSize" current-page="currentPage" pagination-id="usersPagination">
                                 <td>{{ users.first_name + ' ' + users.last_name }}</td>
                                 <td>{{ users.created_at }}</td>
                                 <td>Member</td>

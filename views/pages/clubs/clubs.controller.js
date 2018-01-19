@@ -14,6 +14,10 @@
     // Show All Clubs
   	vm.clubs = function() {
       ClubsService.getAll().then(function(response) {
+
+        $scope.currentPage = 1;
+        $scope.pageSize    = 10;
+        
         $scope.clubList = response.data.clubs;
         $scope.count    = response.data.count;
       });

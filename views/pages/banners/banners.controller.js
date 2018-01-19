@@ -6,11 +6,11 @@
     .controller('BannersController', BannersController);
 
   /** @ngInject */
-  BannersController.$inject = ['BannerService', 'ProgramService', '$rootScope', '$scope', '$http', '$window', '$state', 'Upload'];
-  function BannersController(BannerService, ProgramService, $rootScope, $scope, $http, $window, $state, $stateParams, Upload) {
+  BannersController.$inject = ['BannerService', 'ProgramService', 'CategoryService', 'RetailerService', '$rootScope', '$scope', '$http', '$window', '$state', 'Upload'];
+  function BannersController(BannerService, ProgramService, CategoryService, RetailerService, $rootScope, $scope, $http, $window, $state, $stateParams, Upload) {
 
   	var vm = this;
-
+    $scope.categoryList = [];
     // $scope.bannerOptions = ['all_pages', 'home_page', 'shop_in_store', 'shop_experience', 'shop_local'];
 
     // Show All Clubs
@@ -51,17 +51,17 @@
       BannerService.delete(id);
       $state.go($state.current, {}, {reload: true});
 
-      vm.clubs();
+      vm.banners();
       //@todo remove element from the table
     };
 
     $scope.saveBanner = function(form) {
-
+      
     };
 
-    $scope.editBanner = function(form) {
+    // $scope.editBanner = function(form) {
 
-    };
+    // };
 
     $scope.dataImage = function(dataURI) {
 
@@ -89,12 +89,34 @@
       ProgramService.getAll().then(function(response) {
         $scope.programList = response.data.programs;
       });
-    }
+    };
+
+    $scope.getAllCategories = function() {
+      CategoryService.getAll().then(function(response) {
+      
+        angular.forEach(response.data.categories, function(value, key){
+          $scope.categoryList.push({
+            id: value.id,
+            name: value.name
+          });
+        });
+        
+      });
+    };
+
+    $scope.getAllRetailers = function() {
+      RetailerService.getAll().then(function(response) {
+      
+        $scope.retailerList = response.data;
+      });
+    };
 
     if ($state.params.id) {
-       $scope.getClub($state.params.id);
+       $scope.getBanner($state.params.id);
     }
 
+    $scope.getAllRetailers();
+    $scope.getAllCategories();
     $scope.getAllProgram();
     vm.banners();
 

@@ -9,6 +9,14 @@
                     <button type="button" class="btn btn-outline-success pull-right" ui-sref="app.banners.create" ><i class="fa fa-plus"></i> Create</button>
                 </div>
                 <div class="card-block">
+                    <form class="search-form">
+                        <div class="row">
+                            <div class="col-4">
+                                <label for="search">Search :</label>
+                                <input type="text" name="search"  ng-model="search" placeholder="Name..">
+                            </div>
+                        </div>
+                    </form>
                     <table class="table table-striped">
                         <thead>
                             <tr>
@@ -21,175 +29,48 @@
                             </tr>
                         </thead>
                         <tbody class="text-center">
-                            <tr>
-                                <td>All Page</td>
-                                <td><img width="30%" src="https://s3-ap-southeast-2.amazonaws.com/cashrewardglobal/assets/uploads/CustomBanner/1508305137_mcdonald%27s-coffee-300x250.png" class="img-responsive" style=""></td>
+                            <tr dir-paginate = "banners in bannerList | filter: search | itemsPerPage: pageSize" current-page="currentPage" pagination-id="bannerPagination">
+                                <!-- Banner Show Options -->
+                                <td ng-if="banners.type == 'all_pages'">All Page</td>
+                                <td ng-if="banners.type == 'home_page'">Home Page</td>
+                                <td ng-if="banners.type == 'shop_in_store'">Shop In Store</td>
+                                <td ng-if="banners.type == 'shop_experiences'">Shop Experience</td>
+                                <td ng-if="banners.type == 'shop_local'">Shop Local</td>
+                                <!-- End -->
+
+                                <td>
+                                    <img width="30%" src="{{ banners.image }}" class="img-responsive" style="" ng-if="banners.image">
+                                    <img width="30%" src="http://ipsumimage.appspot.com/100?l=30px&s=30" class="img-responsive" style="" ng-if="banners.image == null">
+                                </td>
                                 <td>
                                   <label class="switch switch-text switch-pill switch-success">
-						            <input type="checkbox" class="switch-input" checked="">
+						            <input type="checkbox" class="switch-input" checked="" ng-if="banners.is_hot_offer">
+                                    <input type="checkbox" class="switch-input" ng-if="!banners.is_hot_offer">
 						            <span class="switch-label" data-on="On" data-off="Off"></span>
 						            <span class="switch-handle"></span>
-						            </label>
+						          </label>
     							</td>
 						        <td>
                                   <label class="switch switch-text switch-pill switch-success">
-    					            <input type="checkbox" class="switch-input" checked="">
-    					            <span class="switch-label" data-on="On" data-off="Off"></span>
-    					            <span class="switch-handle"></span>
-    					          </label>
+                                    <input type="checkbox" class="switch-input" checked="" ng-if="banners.is_home_page">
+                                    <input type="checkbox" class="switch-input" ng-if="!banners.is_home_page">
+                                    <span class="switch-label" data-on="On" data-off="Off"></span>
+                                    <span class="switch-handle"></span>
+                                  </label>
     							</td>
                                 <td>
-                                    <span class="badge badge-success">Active</span>
+                                    <span class="badge badge-success" ng-if="banners.status == 1">Active</span>
+                                    <span class="badge badge-danger" ng-if="banners.status == 0">In Active</span>
                                 </td>
                                 <td>
                                 	<ul class="list-inline">
                                 		<li class="list-inline-item">
-		                                	<a class="nav-link" href="javascript:;" >
+		                                	<a class="nav-link" href="javascript:;" ng-click="editBanner(banners.id)">
 		                                		<i class="icon-note"></i>  
 		                                	</a>
 	                                	</li>
 	                                	<li class="list-inline-item">
-		                                	<a class="nav-link" href="javascript:;" >
-		                                		<i class="icon-trash"></i>  
-		                                	</a>
-	                                	</li>
-                                	</ul>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>All Page</td>
-                                <td><img width="30%" src="https://s3-ap-southeast-2.amazonaws.com/cashrewardglobal/assets/uploads/CustomBanner/1508305797_amf-bowling-%281%29--300x250.jpg" class="img-responsive" style=""></td>
-                                <td>
-                                  <label class="switch switch-text switch-pill switch-success">
-						            <input type="checkbox" class="switch-input" checked="">
-						            <span class="switch-label" data-on="On" data-off="Off"></span>
-						            <span class="switch-handle"></span>
-						          </label>
-      							</td>
-      							<td>
-                                  <label class="switch switch-text switch-pill switch-success">
-						            <input type="checkbox" class="switch-input" checked="">
-						            <span class="switch-label" data-on="On" data-off="Off"></span>
-						            <span class="switch-handle"></span>
-						          </label>
-      							</td>
-                                <td>
-                                    <span class="badge badge-danger">Banned</span>
-                                </td>
-                                <td>
-                                	<ul class="list-inline">
-                                		<li class="list-inline-item">
-		                                	<a class="nav-link" href="javascript:;" >
-		                                		<i class="icon-note"></i>  
-		                                	</a>
-	                                	</li>
-	                                	<li class="list-inline-item">
-		                                	<a class="nav-link" href="javascript:;" >
-		                                		<i class="icon-trash"></i>  
-		                                	</a>
-	                                	</li>
-                                	</ul>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>All Page</td>
-                                <td><img width="30%" src="https://s3-ap-southeast-2.amazonaws.com/cashrewardglobal/assets/uploads/CustomBanner/1508373544_experience-oz-300x250.jpg" class="img-responsive" style=""></td>
-                                <td>
-                                  <label class="switch switch-text switch-pill switch-success">
-						            <input type="checkbox" class="switch-input" checked="">
-						            <span class="switch-label" data-on="On" data-off="Off"></span>
-						            <span class="switch-handle"></span>
-						          </label>
-      							</td>
-      							<td>
-                                  <label class="switch switch-text switch-pill switch-success">
-						            <input type="checkbox" class="switch-input" checked="">
-						            <span class="switch-label" data-on="On" data-off="Off"></span>
-						            <span class="switch-handle"></span>
-						          </label>
-      							</td>
-                                <td>
-                                    <span class="badge badge-default">Inactive</span>
-                                </td>
-                                <td>
-                                	<ul class="list-inline">
-                                		<li class="list-inline-item">
-		                                	<a class="nav-link" href="javascript:;" >
-		                                		<i class="icon-note"></i>  
-		                                	</a>
-	                                	</li>
-	                                	<li class="list-inline-item">
-		                                	<a class="nav-link" href="javascript:;" >
-		                                		<i class="icon-trash"></i>  
-		                                	</a>
-	                                	</li>
-                                	</ul>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>All Page</td>
-                                <td><img width="30%" src="https://s3-ap-southeast-2.amazonaws.com/cashrewardglobal/assets/uploads/CustomBanner/1508306445_mcdonalds-sundae-300x250.png" class="img-responsive" style=""></td>
-                                <td>
-                                  <label class="switch switch-text switch-pill switch-success">
-						            <input type="checkbox" class="switch-input" checked="">
-						            <span class="switch-label" data-on="On" data-off="Off"></span>
-						            <span class="switch-handle"></span>
-						          </label>
-      							</td>
-      							<td>
-                                  <label class="switch switch-text switch-pill switch-success">
-						            <input type="checkbox" class="switch-input" checked="">
-						            <span class="switch-label" data-on="On" data-off="Off"></span>
-						            <span class="switch-handle"></span>
-						          </label>
-      							</td>
-                                <td>
-                                    <span class="badge badge-warning">Pending</span>
-                                </td>
-                                <td>
-                                	<ul class="list-inline">
-                                		<li class="list-inline-item">
-		                                	<a class="nav-link" href="javascript:;" >
-		                                		<i class="icon-note"></i>  
-		                                	</a>
-	                                	</li>
-	                                	<li class="list-inline-item">
-		                                	<a class="nav-link" href="javascript:;" >
-		                                		<i class="icon-trash"></i>  
-		                                	</a>
-	                                	</li>
-                                	</ul>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>All Page</td>
-                                <td><img width="30%" src="https://s3-ap-southeast-2.amazonaws.com/cashrewardglobal/assets/uploads/CustomBanner/1508305137_mcdonald%27s-coffee-300x250.png" class="img-responsive" style=""></td>
-                                <td>
-                                  <label class="switch switch-text switch-pill switch-success">
-						            <input type="checkbox" class="switch-input" checked="">
-						            <span class="switch-label" data-on="On" data-off="Off"></span>
-						            <span class="switch-handle"></span>
-						          </label>
-      							</td>
-      							<td>
-                                  <label class="switch switch-text switch-pill switch-success">
-						            <input type="checkbox" class="switch-input" checked="">
-						            <span class="switch-label" data-on="On" data-off="Off"></span>
-						            <span class="switch-handle"></span>
-						          </label>
-      							</td>
-                                <td>
-                                    <span class="badge badge-success">Active</span>
-                                </td>
-                                <td>
-                                	<ul class="list-inline">
-                                		<li class="list-inline-item">
-		                                	<a class="nav-link" href="javascript:;" >
-		                                		<i class="icon-note"></i>  
-		                                	</a>
-	                                	</li>
-	                                	<li class="list-inline-item">
-		                                	<a class="nav-link" href="javascript:;" >
+		                                	<a class="nav-link" href="javascript:;" ng-click="deleteBanner(banners.id)">
 		                                		<i class="icon-trash"></i>  
 		                                	</a>
 	                                	</li>
@@ -198,7 +79,8 @@
                             </tr>
                         </tbody>
                     </table>
-                    <ul class="pagination">
+                    <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="../../bower_components/angularUtils-pagination/dirPagination.tpl.html" pagination-id="bannerPagination"></dir-pagination-controls>
+                    <!-- <ul class="pagination">
                         <li class="page-item"><a class="page-link" href="#">Prev</a>
                         </li>
                         <li class="page-item active">
@@ -212,7 +94,7 @@
                         </li>
                         <li class="page-item"><a class="page-link" href="#">Next</a>
                         </li>
-                    </ul>
+                    </ul> -->
                 </div>
             </div>
         </div>
