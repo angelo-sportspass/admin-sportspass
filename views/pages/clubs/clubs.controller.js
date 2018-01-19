@@ -6,8 +6,8 @@
     .controller('ClubsController', ClubsController);
 
   /** @ngInject */
-  ClubsController.$inject = ['ClubsService', '$rootScope', '$scope', '$http', '$window', '$state', 'Upload'];
-  function ClubsController(ClubsService, $rootScope, $scope, $http, $window, $state, $stateParams, Upload) {
+  ClubsController.$inject = ['ClubsService', '$rootScope', '$scope', '$http', '$window', '$state'];
+  function ClubsController(ClubsService, $rootScope, $scope, $http, $window, $state, $stateParams) {
 
   	var vm = this;
 
@@ -17,7 +17,7 @@
 
         $scope.currentPage = 1;
         $scope.pageSize    = 10;
-        
+
         $scope.clubList = response.data.clubs;
         $scope.count    = response.data.count;
       });
