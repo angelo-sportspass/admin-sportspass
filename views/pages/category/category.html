@@ -1,6 +1,79 @@
 <div class="animated fadeIn">
 
      <div class="row">
-        <h1>Categories</h1>
+        <div class="col-lg-12">
+        	<h3>Categories</h3>
+            <div class="card">
+                <div class="card-header">
+                    <i class="fa fa-align-justify"></i> Categories List
+
+                    <button type="button" class="btn btn-outline-success pull-right" ui-sref="app.category.create"><i class="fa fa-plus"></i> Create</button>
+                </div>
+                <div class="card-block">
+
+                    <form class="search-form">
+                        <div class="row">
+                            <div class="col-4">
+                                <label for="search">Search :</label>
+                                <input type="text" name="search"  ng-model="search" placeholder="ID, Name">
+                            </div>
+                        </div>
+                    </form>
+        
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th class="text-center" width="15%">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr  >
+                              <!--   <td>{{accounts.id}}</td>
+                                <td>{{ accounts.first_name + ' ' + accounts.last_name }}</td>
+                                <td>{{ accounts.email }}</td>
+                                <td>{{ accounts.created_at }}</td>
+                                <td>
+                                    <span class="badge badge-success" ng-if="accounts.status == 1">Active</span>
+                                    <span class="badge badge-danger" ng-if="accounts.status == 0">In Active</span>
+                                </td>
+                                <td>
+                                    <ul class="list-inline">
+                                        <li class="list-inline-item">
+                                            <a class="nav-link" href="javascript:;" ng-click="editAccount(accounts.id)" >
+                                                <i class="icon-note"></i>  
+                                            </a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a class="nav-link" href="javascript:;" ng-click="deleteAccount(accounts.id)">
+                                                <i class="icon-trash"></i>  
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </td> -->
+                            </tr>
+                        </tbody>
+                    </table>
+                    <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="../../bower_components/angularUtils-pagination/dirPagination.tpl.html" pagination-id="accountPagination"></dir-pagination-controls>
+                    <!-- <ul class="pagination">
+                        <li class="page-item"><a class="page-link" href="#">Prev</a>
+                        </li>
+                        <li class="page-item active">
+                            <a class="page-link" href="#">1</a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">2</a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">3</a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">4</a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">Next</a>
+                        </li>
+                    </ul> -->
+                </div>
+            </div>
+        </div>
+        <!--/.col-->
     </div>
 </div>

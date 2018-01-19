@@ -213,15 +213,61 @@ angular
    * @return Get All Category
    */
   .state('app.category', {
+    abstract: true,
     url: '/category',
-    templateUrl: 'views/pages/category/category.html',
-    // controller: 'CategoryController',
-    // controllerAs: 'category',
+    defaultChild: 'app.category.list',
+    template: '<ui-view></ui-view>',
 
     //page title goes here
     ncyBreadcrumb: {
       label: 'Category'
+    },
+
+    params: {
+        subtitle: 'Category'
     }
+  })
+  .state('app.category.list', {
+      url: '',
+      templateUrl: 'views/pages/category/category.html',
+      controller: 'CategoryController',
+      controllerAs: 'category',
+      //page title goes here
+      ncyBreadcrumb: {
+          label: 'List',
+      },
+      //page subtitle goes here
+      params: {
+          subtitle: 'Category List'
+      },
+  })
+  .state('app.category.create', {
+      url: '/create',
+      templateUrl: 'views/pages/category/category.create.html',
+      controller: 'CategoryController',
+      controllerAs: 'category',
+      //page title goes here
+      ncyBreadcrumb: {
+          label: 'Create',
+      },
+      //page subtitle goes here
+      params: {
+          subtitle: 'Category Create'
+      },
+  })
+  .state('app.category.edit', {
+      url: '/edit/{id}',
+      templateUrl: 'views/pages/category/category.edit.html',
+      controller: 'CategoryController',
+      controllerAs: 'category',
+      //page title goes here
+      ncyBreadcrumb: {
+          label: 'Edit',
+      },
+      //page subtitle goes here
+      params: {
+          subtitle: 'Category Edit'
+      },
   })
 
   /**
@@ -290,15 +336,61 @@ angular
    * @return Get All Deals
    */
   .state('app.deals', {
+    abstract: true,
     url: '/deals',
-    templateUrl: 'views/pages/deals/deals.html',
-    // controller: 'DealsController',
-    // controllerAs: 'deals',
+    defaultChild: 'app.deals.list',
+    template: '<ui-view></ui-view>',
 
     //page title goes here
     ncyBreadcrumb: {
       label: 'Deals'
+    },
+
+    params: {
+        subtitle: 'Deals'
     }
+  })
+  .state('app.deals.list', {
+      url: '',
+      templateUrl: 'views/pages/deals/deals.html',
+      controller: 'DealsController',
+      controllerAs: 'deals',
+      //page title goes here
+      ncyBreadcrumb: {
+          label: 'List',
+      },
+      //page subtitle goes here
+      params: {
+          subtitle: 'Deals List'
+      },
+  })
+  .state('app.deals.create', {
+      url: '/create',
+      templateUrl: 'views/pages/deals/deals.create.html',
+      controller: 'DealsController',
+      controllerAs: 'deals',
+      //page title goes here
+      ncyBreadcrumb: {
+          label: 'Create',
+      },
+      //page subtitle goes here
+      params: {
+          subtitle: 'Deals Create'
+      },
+  })
+  .state('app.deals.edit', {
+      url: '/edit/{id}',
+      templateUrl: 'views/pages/deals/deals.edit.html',
+      controller: 'DealsController',
+      controllerAs: 'deals',
+      //page title goes here
+      ncyBreadcrumb: {
+          label: 'Edit',
+      },
+      //page subtitle goes here
+      params: {
+          subtitle: 'Deals Edit'
+      },
   })
 
   /**
@@ -306,17 +398,62 @@ angular
    * @return Get All Members
    */
   .state('app.members', {
+    abstract: true,
     url: '/members',
-    templateUrl: 'views/pages/members/members.html',
-    // controller: 'MembersController',
-    // controllerAs: 'members',
+    defaultChild: 'app.members.list',
+    template: '<ui-view></ui-view>',
 
     //page title goes here
     ncyBreadcrumb: {
       label: 'Members'
+    },
+
+    params: {
+        subtitle: 'Members'
     }
   })
-
+  .state('app.members.list', {
+      url: '',
+      templateUrl: 'views/pages/members/members.html',
+      controller: 'MembersController',
+      controllerAs: 'members',
+      //page title goes here
+      ncyBreadcrumb: {
+          label: 'List',
+      },
+      //page subtitle goes here
+      params: {
+          subtitle: 'Members List'
+      },
+  })
+  .state('app.members.create', {
+      url: '/create',
+      templateUrl: 'views/pages/members/members.create.html',
+      controller: 'MembersController',
+      controllerAs: 'members',
+      //page title goes here
+      ncyBreadcrumb: {
+          label: 'Create',
+      },
+      //page subtitle goes here
+      params: {
+          subtitle: 'Members Create'
+      },
+  })
+  .state('app.members.edit', {
+      url: '/edit/{id}',
+      templateUrl: 'views/pages/members/members.edit.html',
+      controller: 'MembersController',
+      controllerAs: 'members',
+      //page title goes here
+      ncyBreadcrumb: {
+          label: 'Edit',
+      },
+      //page subtitle goes here
+      params: {
+          subtitle: 'Members Edit'
+      },
+  })
   /**
    * Program State
    * @return Get All Program
