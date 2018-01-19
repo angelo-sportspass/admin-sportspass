@@ -6,7 +6,7 @@
     .controller('AccountController', AccountController);
 
   /** @ngInject */
-  AccountController.$inject = ['AccountService', 'ProgramService', '$rootScope', '$scope', '$http', '$window', '$state', '$location'];
+  AccountController.$inject = ['AccountService', 'ProgramService', '$rootScope', '$scope', '$http', '$window', '$state', '$location', '$stateParams'];
   function AccountController(AccountService, ProgramService, $rootScope, $scope, $http, $window, $state, $stateParams, $location) {
 
   	var vm = this;
