@@ -6,7 +6,7 @@
     .controller('UserController', UserController);
 
   /** @ngInject */
-  UserController.$inject = ['UserService', '$rootScope', '$scope', '$http', '$window', '$state', '$location'];
+  UserController.$inject = ['UserService', '$rootScope', '$scope', '$http', '$window', '$state', '$stateParams', '$location'];
   function UserController(UserService, $rootScope, $scope, $http, $window, $state, $stateParams, $location, $route, $routeParams) {
 
   	var vm = this;

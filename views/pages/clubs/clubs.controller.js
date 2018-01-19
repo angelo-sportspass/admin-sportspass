@@ -6,7 +6,7 @@
     .controller('ClubsController', ClubsController);
 
   /** @ngInject */
-  ClubsController.$inject = ['ClubsService', '$rootScope', '$scope', '$http', '$window', '$state'];
+  ClubsController.$inject = ['ClubsService', '$rootScope', '$scope', '$http', '$window', '$state', '$stateParams'];
   function ClubsController(ClubsService, $rootScope, $scope, $http, $window, $state, $stateParams) {
 
   	var vm = this;

@@ -6,7 +6,7 @@
     .controller('DealsController', DealsController);
 
   /** @ngInject */
-  DealsController.$inject = ['$rootScope', '$scope', '$http', '$window', '$state'];
+  DealsController.$inject = ['$rootScope', '$scope', '$http', '$window', '$state', '$stateParams'];
   function DealsController($rootScope, $scope, $http, $window, $state, $stateParams) {
 
   	var vm = this;

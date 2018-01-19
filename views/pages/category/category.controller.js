@@ -6,7 +6,7 @@
     .controller('CategoryController', CategoryController);
 
   /** @ngInject */
-  CategoryController.$inject = ['$rootScope', '$scope', '$http', '$window', '$state'];
+  CategoryController.$inject = ['$rootScope', '$scope', '$http', '$window', '$state', '$stateParams'];
   function CategoryController($rootScope, $scope, $http, $window, $state, $stateParams) {
 
   	var vm = this;
