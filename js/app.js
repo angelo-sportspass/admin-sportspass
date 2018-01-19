@@ -17,17 +17,17 @@ angular
   'oc.lazyLoad',
   'ncy-angular-breadcrumb',
   'angular-loading-bar',
-  'ui.bootstrap'
-  // '720kb.datepicker',
-  // 'angularUtils.directives.dirPagination',
-  // 'ngFileUpload',
-  // 'multipleSelect'
+  'ui.bootstrap',
+  '720kb.datepicker',
+  'angularUtils.directives.dirPagination',
+  'ngFileUpload',
+  'multipleSelect'
 ])
-.config(['cfpLoadingBarProvider', '$qProvider', '$httpProvider', function(cfpLoadingBarProvider, $qProvider, $httpProvider) {
+.config(['cfpLoadingBarProvider', '$httpProvider', function(cfpLoadingBarProvider, $httpProvider) {
 
   cfpLoadingBarProvider.includeSpinner = false;
   cfpLoadingBarProvider.latencyThreshold = 1;
-  $qProvider.errorOnUnhandledRejections(false);
+  //$qProvider.errorOnUnhandledRejections(false);
 
   $httpProvider.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
   $httpProvider.defaults.headers.put["Content-Type"] = "application/x-www-form-urlencoded";
