@@ -7,7 +7,7 @@
 
   /** @ngInject */
   ProgramController.$inject = ['ProgramService', '$rootScope', '$scope', '$http', '$window', '$state', '$stateParams', '$location'];
-  function ProgramController(ProgramService, $rootScope, $scope, $http, $window, $state, $stateParams, $location, $route, $routeParams) {
+  function ProgramController(ProgramService, $rootScope, $scope, $http, $window, $state, $stateParams, $location) {
 
   	var vm = this;
 
