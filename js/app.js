@@ -17,11 +17,11 @@ angular
   'oc.lazyLoad',
   'ncy-angular-breadcrumb',
   'angular-loading-bar',
-  'ui.bootstrap',
-  '720kb.datepicker',
-  'angularUtils.directives.dirPagination',
-  'ngFileUpload',
-  'multipleSelect'
+  'ui.bootstrap'
+  // '720kb.datepicker',
+  // 'angularUtils.directives.dirPagination',
+  // 'ngFileUpload',
+  // 'multipleSelect'
 ])
 .config(['cfpLoadingBarProvider', '$qProvider', '$httpProvider', function(cfpLoadingBarProvider, $qProvider, $httpProvider) {
 
