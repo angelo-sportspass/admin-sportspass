@@ -118,7 +118,10 @@
     $scope.getAllRetailers();
     $scope.getAllCategories();
     $scope.getAllProgram();
-    vm.banners();
+
+    if ($state.current.url === '') {
+      vm.banners();
+    }
 
   }
 

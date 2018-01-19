@@ -174,7 +174,9 @@
        $scope.getClub($state.params.id);
     }
 
-    vm.clubs();
+    if ($state.current.url === '') {
+      vm.clubs();
+    }
     //$scope.optionBarcode();
   }
 

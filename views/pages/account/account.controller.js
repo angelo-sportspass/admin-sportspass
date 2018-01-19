@@ -94,7 +94,10 @@
     }
 
     $scope.getAllProgram();
-    vm.account();
+
+    if ($state.current.url === '') {
+      vm.account();
+    }
   }
 
 })();

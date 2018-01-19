@@ -81,7 +81,10 @@
        $scope.getUser($state.params.id);
     }
 
-    vm.users();
+    if ($state.current.url === '') {
+      vm.users();
+    }
+    
 
   }
 

@@ -85,7 +85,9 @@
        $scope.getProgram($state.params.id);
     }
 
-    vm.programs();
+    if ($state.current.url === '') {
+      vm.programs();
+    }
   }
 
 })();

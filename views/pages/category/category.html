@@ -25,37 +25,33 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Name</th>
+                                <th>Order</th>
                                 <th class="text-center" width="15%">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr  >
-                              <!--   <td>{{accounts.id}}</td>
-                                <td>{{ accounts.first_name + ' ' + accounts.last_name }}</td>
-                                <td>{{ accounts.email }}</td>
-                                <td>{{ accounts.created_at }}</td>
-                                <td>
-                                    <span class="badge badge-success" ng-if="accounts.status == 1">Active</span>
-                                    <span class="badge badge-danger" ng-if="accounts.status == 0">In Active</span>
-                                </td>
+                            <tr dir-paginate = "categories in categoryList | filter: search | itemsPerPage: pageSize" current-page="currentPage" pagination-id="categoryPagination" >
+                                <td>{{ categories.id }}</td>
+                                <td>{{ categories.name }}</td>
+                                <td>{{ categories.sort_order }}</td>
                                 <td>
                                     <ul class="list-inline">
                                         <li class="list-inline-item">
-                                            <a class="nav-link" href="javascript:;" ng-click="editAccount(accounts.id)" >
+                                            <a class="nav-link" href="javascript:;" ng-click="editCategory(categories.id)" >
                                                 <i class="icon-note"></i>  
                                             </a>
                                         </li>
                                         <li class="list-inline-item">
-                                            <a class="nav-link" href="javascript:;" ng-click="deleteAccount(accounts.id)">
+                                            <a class="nav-link" href="javascript:;" ng-click="deleteCategory(categories.id)">
                                                 <i class="icon-trash"></i>  
                                             </a>
                                         </li>
                                     </ul>
-                                </td> -->
+                                </td>
                             </tr>
                         </tbody>
                     </table>
-                    <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="../../bower_components/angularUtils-pagination/dirPagination.tpl.html" pagination-id="accountPagination"></dir-pagination-controls>
+                    <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="../../bower_components/angularUtils-pagination/dirPagination.tpl.html" pagination-id="categoryPagination"></dir-pagination-controls>
                     <!-- <ul class="pagination">
                         <li class="page-item"><a class="page-link" href="#">Prev</a>
                         </li>

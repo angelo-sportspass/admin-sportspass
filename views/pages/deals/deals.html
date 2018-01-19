@@ -34,33 +34,38 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr  >
-                              <!--   <td>{{accounts.id}}</td>
-                                <td>{{ accounts.first_name + ' ' + accounts.last_name }}</td>
-                                <td>{{ accounts.email }}</td>
-                                <td>{{ accounts.created_at }}</td>
+                            <tr  dir-paginate = "deals in dealList | filter: search | itemsPerPage: pageSize" current-page="currentPage" pagination-id="clubPagination" >
+                                <td>{{deals.id}}</td>
+                                <td>{{ deals.name }}</td>
                                 <td>
-                                    <span class="badge badge-success" ng-if="accounts.status == 1">Active</span>
-                                    <span class="badge badge-danger" ng-if="accounts.status == 0">In Active</span>
+                                    <img width="50%" ng-if="deals.image != 'null'" src="{{ deals.image }}" />
+                                    <img width="50%" ng-if="deals.image == 'null'" src="http://ipsumimage.appspot.com/100?l=30px&s=30" />
+                                </td>
+                                <td>{{ deals.day + 'days, ' + deals.hours + ' hours, ' + deals.minutes  + ' minutes' }}</td>
+                                <td>test.com</td>
+                                <td>123 times</td>
+                                <td>
+                                    <span class="badge badge-success" ng-if="deals.status == 1">Active</span>
+                                    <span class="badge badge-danger" ng-if="deals.status == 0">In Active</span>
                                 </td>
                                 <td>
                                     <ul class="list-inline">
                                         <li class="list-inline-item">
-                                            <a class="nav-link" href="javascript:;" ng-click="editAccount(accounts.id)" >
+                                            <a class="nav-link" href="javascript:;" ng-click="editDeal(deals.id)" >
                                                 <i class="icon-note"></i>  
                                             </a>
                                         </li>
                                         <li class="list-inline-item">
-                                            <a class="nav-link" href="javascript:;" ng-click="deleteAccount(accounts.id)">
+                                            <a class="nav-link" href="javascript:;" ng-click="deleteDeal(deals.id)">
                                                 <i class="icon-trash"></i>  
                                             </a>
                                         </li>
                                     </ul>
-                                </td> -->
+                                </td>
                             </tr>
                         </tbody>
                     </table>
-                    <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="../../bower_components/angularUtils-pagination/dirPagination.tpl.html" pagination-id="accountPagination"></dir-pagination-controls>
+                    <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="../../bower_components/angularUtils-pagination/dirPagination.tpl.html" pagination-id="dealsPagination"></dir-pagination-controls>
                     <!-- <ul class="pagination">
                         <li class="page-item"><a class="page-link" href="#">Prev</a>
                         </li>
