@@ -9,9 +9,7 @@
               </div>
               <div class="card-block">
                 <form name="form" ng-submit="updateBanner(form, banners.id)" role="form" enctype="multipart/form-data">
-
-                 
-                  <ul class="nav nav-tabs" role="tablist">
+<ul class="nav nav-tabs" role="tablist">
                     <li class="nav-item">
                       <a target="_self" class="nav-link active" data-toggle="tab" href="#details" role="tab" aria-controls="details"><i class="fa fa-group fa-lg"></i> Banner Details</a>
                     </li>
@@ -46,17 +44,15 @@
                       </div>
 
                       <div class="form-group">
-                          <label for="image">Banner Logo</label>
-
+                          <label for="image">Banner Image</label>
                           <input name="image" type="file" class="form-control" id="image" fileread="banners.image" />
-                          <br/>
-                          <img src="{{ banners.image }}" ng-if="banners.image" width="25%" />
+                          <img src="{{ banners.image }}" ng-if="banners.image" />
                       </div>
 
                       <div class="form-group">
                         <label for="program_id">Select Categories</label>
                         <multiple-autocomplete 
-                           ng-model="categories"
+                           ng-model="selectedList"
                            suggestions-arr="categoryList"
                            object-property="name"
                            >

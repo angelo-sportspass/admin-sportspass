@@ -11,6 +11,7 @@
 
   	var vm = this;
     $scope.categoryList = [];
+
     // $scope.bannerOptions = ['all_pages', 'home_page', 'shop_in_store', 'shop_experience', 'shop_local'];
 
     // Show All Clubs
@@ -57,11 +58,39 @@
 
     $scope.saveBanner = function(form) {
       
+      var banners = angular.copy($scope.banners);
+
+      var blob  = $scope.dataImage($scope.banners.image);
+      var image  = new File([blob], 'banner'+Math.random().toString(36).substring(7)+'.png', {type: "'image/png"});
+
+      var data = {
+        image : image,
+        type: banners.type,
+        // banner_categories: selectedList,
+        banner_retailer: banner_retailer,
+        name: banners.name,
+        url: banners.url,
+        is_new_tab: banners.is_new_tab,
+        is_hot_offer: banners.is_hot_offer,
+        is_home_page: banners.is_home_page,
+        is_trending_offers: banners.is_trending_offers,
+        is_trending_experiences: banners.is_trending_experiences,
+        is_default: banners.is_default
+      };
+
+
+      BannerService.createBanner(data).then(function(response) {
+          console.log(response);
+          $state.go('app.banners.list');
+      }, function(response) {
+
+         console.log(response);
+      });
     };
 
-    // $scope.editBanner = function(form) {
+    $scope.updateBanner = function(form) {
 
-    // };
+    };
 
     $scope.dataImage = function(dataURI) {
 

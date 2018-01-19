@@ -25,6 +25,30 @@
           return $http.post( sportspass.baseUrl + '/banner', data);
          }
 
+        service.createBanner = function(data) {
+
+          var config = {
+              method: 'POST',
+              url: sportspass.baseUrl + '/banner', // /api/upload
+              headers: {
+                'Content-Type': undefined
+              },
+              data: data,
+              transformRequest: function(data) {
+
+                  var formData = new FormData();
+
+                  angular.forEach(data, function(value, key) {
+                    formData.append(key, value);
+                  });
+                  
+                  return formData;  
+              }
+          };
+          
+          return $http(config);
+         }
+
          service.delete = function(id) {
           return $http.delete(sportspass.baseUrl + '/banner/' + id);
          }
