@@ -39,7 +39,7 @@
                                 <td>{{ members.first_name + ' ' + members.last_name }}</td>
                                 <td>{{ members.email }}</td>
                                 <td>Sportspass</td>
-                                <td>{{ members.member_numer }}</td>
+                                <td>{{ members.member_number }}</td>
                                 <td>{{ members.created_at }}</td>
                                 <td>
                                     <span class="badge badge-success" ng-if="members.status == 1">Active</span>
@@ -48,12 +48,12 @@
                                 <td>
                                     <ul class="list-inline">
                                         <li class="list-inline-item">
-                                            <a class="nav-link" href="javascript:;" ng-click="editAccount(members.id)" >
+                                            <a class="nav-link" href="javascript:;" ng-click="editMember(members.id)" >
                                                 <i class="icon-note"></i>  
                                             </a>
                                         </li>
                                         <li class="list-inline-item">
-                                            <a class="nav-link" href="javascript:;" ng-click="deleteAccount(members.id)">
+                                            <a class="nav-link" href="javascript:;" ng-click="deleteMember(members.id)">
                                                 <i class="icon-trash"></i>  
                                             </a>
                                         </li>

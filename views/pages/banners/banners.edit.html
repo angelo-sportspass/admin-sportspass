@@ -24,7 +24,7 @@
                       <div class="form-group">
                         <label for="type">Select Banner Type</label>
 
-                        <select class="form-control" id="type" name="type" ng-init="banners.type=''" ng-model="banners.type">
+                        <select class="form-control" id="type" name="type" ng-model="banners.type">
                           <option value="">Banner Type..</option>
                           <option value="all_pages">In All Pages</option>
                           <option value="home_page">Only In Home Page</option>
@@ -45,9 +45,25 @@
 
                       <div class="form-group">
                           <label for="image">Banner Image</label>
-                          <input name="image" type="file" class="form-control" id="image" fileread="banners.image" />
-                          <img src="{{ banners.image }}" ng-if="banners.image" />
+                          <div ng-if="file" class="clearfix banner-image-wrapper" >
+                            <img ngf-thumbnail="file" />
+                          </div>
+                          <!-- <input name="image" type="file" class="form-control" id="image" fileread="banners.image" /> -->
+                          <input type="file" ngf-select ng-model="file" name="file"    
+             accept="image/*" ngf-max-size="256MB">
+
                       </div>
+
+                      <!-- <div class="form-group">
+                          <label for="image">Banner Test</label>
+                          <div ng-if="file1" class="clearfix banner-image-wrapper" >
+                            <img ngf-thumbnail="file1" />
+                          </div> -->
+                          <!-- <input name="image" type="file" class="form-control" id="image" fileread="banners.image" /> -->
+                         <!--  <input type="file" ngf-select ng-model="file1" name="file1"    
+             accept="image/*" ngf-max-size="256MB">
+
+                      </div> -->
 
                       <div class="form-group">
                         <label for="program_id">Select Categories</label>
@@ -81,7 +97,10 @@
                           <li class="list-inline-item">Status</li>
                           <li class="list-inline-item">
                             <label class="switch switch-text switch-pill switch-primary">
-                              <input type="checkbox" class="switch-input" ng-model="banners.status">
+
+                              <input type="checkbox" class="switch-input" ng-true-value="1" ng-if="banners.status == 1" ng-model="banners.status" />
+                              <input type="checkbox" class="switch-input" ng-false-value="1" ng-if="banners.status == 0" ng-model="banners.status" />
+
                               <span class="switch-label" data-on="On" data-off="Off"></span>
                               <span class="switch-handle"></span>
                             </label>
@@ -98,7 +117,10 @@
                           <li class="list-inline-item">Open in new tab</li>
                           <li class="list-inline-item">
                             <label class="switch switch-text switch-pill switch-primary">
-                              <input type="checkbox" class="switch-input" ng-model="banners.is_new_tab">
+
+                              <input type="checkbox" class="switch-input" ng-true-value="1" ng-if="banners.is_new_tab == 1" ng-model="banners.is_new_tab" />
+                              <input type="checkbox" class="switch-input" ng-false-value="1" ng-if="banners.is_new_tab == 0" ng-model="banners.is_new_tab" />
+                              
                               <span class="switch-label" data-on="On" data-off="Off"></span>
                               <span class="switch-handle"></span>
                             </label>
@@ -111,7 +133,10 @@
                           <li class="list-inline-item">Show Banner in Hot Offers</li>
                           <li class="list-inline-item">
                             <label class="switch switch-text switch-pill switch-primary">
-                              <input type="checkbox" class="switch-input" ng-model="banners.is_hot_offer">
+                           
+                              <input type="checkbox" class="switch-input" ng-true-value="1" ng-if="banners.is_hot_offer == 1" ng-model="banners.is_hot_offer" />
+                              <input type="checkbox" class="switch-input" ng-false-value="1" ng-if="banners.is_hot_offer == 0" ng-model="banners.is_hot_offer" />
+
                               <span class="switch-label" data-on="On" data-off="Off"></span>
                               <span class="switch-handle"></span>
                             </label>
@@ -124,7 +149,10 @@
                           <li class="list-inline-item">Show Banner in Home Page</li>
                           <li class="list-inline-item">
                             <label class="switch switch-text switch-pill switch-primary">
-                              <input type="checkbox" class="switch-input" ng-model="banners.is_home_page">
+                            
+                              <input type="checkbox" class="switch-input" ng-true-value="1" ng-if="banners.is_home_page == 1" ng-model="banners.is_home_page" />
+                              <input type="checkbox" class="switch-input" ng-false-value="1" ng-if="banners.is_home_page == 0" ng-model="banners.is_home_page" />
+
                               <span class="switch-label" data-on="On" data-off="Off"></span>
                               <span class="switch-handle"></span>
                             </label>
@@ -137,7 +165,10 @@
                           <li class="list-inline-item">Show Banner in Home Page Trending Offers</li>
                           <li class="list-inline-item">
                             <label class="switch switch-text switch-pill switch-primary">
-                              <input type="checkbox" class="switch-input" ng-model="banners.is_trending_offers">
+                              
+                              <input type="checkbox" class="switch-input" ng-true-value="1" ng-if="banners.is_trending_offers == 1" ng-model="banners.is_trending_offers" />
+                              <input type="checkbox" class="switch-input" ng-false-value="1" ng-if="banners.is_trending_offers == 0" ng-model="banners.is_trending_offers" />
+
                               <span class="switch-label" data-on="On" data-off="Off"></span>
                               <span class="switch-handle"></span>
                             </label>
@@ -150,7 +181,10 @@
                           <li class="list-inline-item">Show Banner in Home Page Trending Experiences</li>
                           <li class="list-inline-item">
                             <label class="switch switch-text switch-pill switch-primary">
-                              <input type="checkbox" class="switch-input" ng-model="banners.is_trending_experiences">
+                              
+                              <input type="checkbox" class="switch-input" ng-true-value="1" ng-if="banners.is_trending_experiences == 1" ng-model="banners.is_trending_experiences" />
+                              <input type="checkbox" class="switch-input" ng-false-value="1" ng-if="banners.is_trending_experiences == 0" ng-model="banners.is_trending_experiences" />
+
                               <span class="switch-label" data-on="On" data-off="Off"></span>
                               <span class="switch-handle"></span>
                             </label>
@@ -163,7 +197,10 @@
                           <li class="list-inline-item">Set Banner Default</li>
                           <li class="list-inline-item">
                             <label class="switch switch-text switch-pill switch-primary">
-                              <input type="checkbox" class="switch-input" ng-model="banners.is_default">
+                          
+                              <input type="checkbox" class="switch-input" ng-true-value="1" ng-if="banners.is_default == 1" ng-model="banners.is_default" />
+                              <input type="checkbox" class="switch-input" ng-false-value="1" ng-if="banners.is_default == 0" ng-model="banners.is_default" />
+
                               <span class="switch-label" data-on="On" data-off="Off"></span>
                               <span class="switch-handle"></span>
                             </label>
@@ -176,7 +213,7 @@
                   </div>
                   <div class="row">
                       <div class="col-6">
-                          <button type="submit" class="btn btn-primary px-4" >Save</button>
+                          <button type="submit" class="btn btn-primary px-4" >Update</button>
                       </div>
                   </div>
                 </form>

@@ -8,8 +8,17 @@
                   <small>detail</small>
               </div>
               <div class="card-block">
-                <form name="form" ng-submit="" role="form">
+                <form name="form" ng-submit="updateCategory(form, category.id)" role="form">
 
+                   <div class="form-group">
+                      <label for="name">Category Name</label>
+                      <input name="name" type="text" class="form-control" id="name" ng-model="category.name"  placeholder="Enter your category name">
+                  </div>
+
+                  <div class="form-group">
+                      <label for="sort_order">Sort Number:</label>
+                      <input name="sort_order" type="sort_order" class="form-control" id="sort_order" ng-model="category.sort_order" placeholder="Sort Order">
+                  </div>
                  
                   <div class="row">
                       <div class="col-6">

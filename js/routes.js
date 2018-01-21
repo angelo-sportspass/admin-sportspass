@@ -97,11 +97,11 @@ angular
 
     //page title goes here
     ncyBreadcrumb: {
-      label: 'Program'
+      label: 'Account'
     },
 
     params: {
-        subtitle: 'Programs'
+        subtitle: 'Account'
     }
   })
   .state('app.account.list', {

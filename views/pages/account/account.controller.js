@@ -16,7 +16,7 @@
       AccountService.getAll().then(function(response) {
 
         $scope.currentPage = 1;
-        $scope.pageSize    = 10;
+        $scope.pageSize    = 50;
         $scope.accountList = response.data.accounts;
         $scope.count       = response.data.count;
 
@@ -26,20 +26,18 @@
     $scope.getAccount = function(id) {
 
       AccountService.getOne(id).then(function(response){
-
         $scope.account = response.data;
-
       }, function(response) {
-
+         $state.go('app.account.list');
          console.log(response);
       });
+
     };
 
     $scope.editAccount = function(id) {
 
       $scope.account = {};
       $state.go('app.account.edit', {id: id});
-
       $scope.getAccount(id);
 
     };
@@ -48,7 +46,6 @@
 
       AccountService.delete(id);
       $state.go($state.current, {}, {reload: true});
-
       vm.account();
       //@todo remove element from the table
     };
@@ -58,12 +55,25 @@
 
       var account = angular.copy($scope.account);
 
-      AccountService.create(account).then(function(response) {
-        
+      var data = {
+        program_id: account.program_id,
+        user_name: account.user_name,
+        password: account.password,
+        email: account.email,
+        first_name: account.first_name,
+        last_name: account.last_name,
+        dob: (account.dob === null) ? '' : account.dob,
+        mobile: (account.mobile === null) ? '' : account.mobile,
+        address: (account.address === null) ? '' : account.address,
+        suburb: (account.suburb === null) ? '' : account.suburb,
+        state: (account.state === null) ? '' : account.state,
+        post_code: (account.post_code === null) ? '' : account.post_code,
+        country: (account.country === null) ? '' : account.country
+      };
+
+      AccountService.create(data).then(function(response) {
           $state.go('app.account.list');
-
       }, function(response) {
-
          console.log(response);
       });
       
@@ -72,13 +82,28 @@
     $scope.updateAccount = function(form, id) {
 
       var account = angular.copy($scope.account);
+     
+      var data = {
+        program_id: account.program_id,
+        user_name: account.user_name,
+        password: account.password,
+        email: account.email,
+        first_name: account.first_name,
+        last_name: account.last_name,
+        dob: (account.dob === null) ? '' : account.dob,
+        mobile: (account.mobile === null) ? '' : account.mobile,
+        address: (account.address === null) ? '' : account.address,
+        suburb: (account.suburb === null) ? '' : account.suburb,
+        state: (account.state === null) ? '' : account.state,
+        post_code: (account.post_code === null) ? '' : account.post_code,
+        country: (account.country === null) ? '' : account.country
+      };
 
-      AccountService.update(id, account).then(function(response) {
-          console.log(response);
-
-      }, function(response) {
-
+      AccountService.update(id, data).then(function(response) {
+         
          console.log(response);
+      }, function(response) {
+         $state.go('app.account.edit', {id: id});
       });
 
     };
