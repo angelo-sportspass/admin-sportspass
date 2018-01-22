@@ -46,9 +46,27 @@ angular
   });
 
 }])
-.run(['$rootScope', '$state', '$stateParams', function($rootScope, $state, $stateParams) {
-  $rootScope.$on('$stateChangeSuccess',function(){
-    document.body.scrollTop = document.documentElement.scrollTop = 0;
+.run(['$rootScope', '$state', '$stateParams', '$transitions', '$location', function($rootScope, $state, $stateParams, $transitions, $location) {
+  $transitions.onSuccess({} ,function(){
+      
+      var currentUser = JSON.parse(localStorage.getItem('user'));
+      
+      if(currentUser) {
+          $rootScope.authenticated = true;
+          $rootScope.currentUser = currentUser;
+
+          if($location.path() == '/login' || $location.path() == '/register')
+              $state.go('app.main');
+
+      } else {
+
+          $rootScope.authenticated = false;
+
+          if($location.path().split('/')[1] != 'login')
+              $state.go('appFullWidth.login');
+
+      }
+
   });
   $rootScope.$state = $state;
   return $rootScope.$stateParams = $stateParams;

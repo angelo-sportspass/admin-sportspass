@@ -19,7 +19,11 @@
   		};
 
   		var res = LoginService.login(data).then(function (response) {
-          console.log(response);
+
+          var user = JSON.stringify(response.data);
+          localStorage.setItem('user', user);
+          console.log(user);
+          
           $state.go('app.main');
       });
   	}
