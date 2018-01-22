@@ -44,16 +44,19 @@
                                 </td>
                                 <td>
                                   <label class="switch switch-text switch-pill switch-success">
-						            <input type="checkbox" class="switch-input" checked="" ng-if="banners.is_hot_offer">
-                                    <input type="checkbox" class="switch-input" ng-if="!banners.is_hot_offer">
+
+
+						           <input type="checkbox" class="switch-input" ng-true-value="1" ng-if="banners.is_hot_offer == 1" ng-model="banners.is_hot_offer" />
+                                    <input type="checkbox" class="switch-input" ng-false-value="1" ng-if="banners.is_hot_offer == 0" ng-model="banners.is_hot_offer" />
+
 						            <span class="switch-label" data-on="On" data-off="Off"></span>
 						            <span class="switch-handle"></span>
 						          </label>
     							</td>
 						        <td>
                                   <label class="switch switch-text switch-pill switch-success">
-                                    <input type="checkbox" class="switch-input" checked="" ng-if="banners.is_home_page">
-                                    <input type="checkbox" class="switch-input" ng-if="!banners.is_home_page">
+                                   <input type="checkbox" class="switch-input" ng-true-value="1" ng-if="banners.is_home_page == 1" ng-model="banners.is_home_page" />
+                                    <input type="checkbox" class="switch-input" ng-false-value="1" ng-if="banners.is_home_page == 0" ng-model="banners.is_home_page" />
                                     <span class="switch-label" data-on="On" data-off="Off"></span>
                                     <span class="switch-handle"></span>
                                   </label>

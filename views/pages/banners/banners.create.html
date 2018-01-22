@@ -35,14 +35,14 @@
                         </select>
                       </div>
 
-                      <div class="form-group">
+                      <!-- <div class="form-group">
                         <label for="program_id">Select Program</label>
 
                         <select class="form-control" id="program_id" name="program_id" ng-init="program_id=''" ng-model="program_id">
                           <option value="">Select Program..</option>
                           <option ng-repeat="programs in programList" value="{{programs.id}}">{{programs.name}}</option>
                         </select>
-                      </div>
+                      </div> -->
 
                       <div class="form-group">
                           <label for="image">Banner Image</label>
@@ -50,19 +50,10 @@
                             <img ngf-thumbnail="file" />
                           </div>
                           <!-- <input name="image" type="file" class="form-control" id="image" fileread="banners.image" /> -->
-                          <input type="file" ngf-select ng-model="file" name="file"    
-             accept="image/*" ngf-max-size="256MB">
+                          <!-- <input type="file" ngf-select ng-model="file" name="file"    
+             accept="image/*" ngf-max-size="256MB"> -->
 
-                      </div>
-
-                      <div class="form-group">
-                          <label for="image">Banner Test</label>
-                          <div ng-if="file1" class="clearfix banner-image-wrapper" >
-                            <img ngf-thumbnail="file1" />
-                          </div>
-                          <!-- <input name="image" type="file" class="form-control" id="image" fileread="banners.image" /> -->
-                          <input type="file" ngf-select ng-model="file1" name="file1"    
-             accept="image/*" ngf-max-size="256MB">
+                          <input class="form-control" type="file" ng-model="file" name="file" file></input>
 
                       </div>
 

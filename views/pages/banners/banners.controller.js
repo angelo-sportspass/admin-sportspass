@@ -6,14 +6,16 @@
     .controller('BannersController', BannersController);
 
   /** @ngInject */
-  BannersController.$inject = ['BannerService', 'ProgramService', 'CategoryService', 'RetailerService', '$rootScope', '$scope', '$http', '$window', '$state', '$stateParams', 'Upload', 'sportspass'];
-  function BannersController(BannerService, ProgramService, CategoryService, RetailerService, $rootScope, $scope, $http, $window, $state, $stateParams, Upload, sportspass) {
+  BannersController.$inject = ['BannerService', 'ProgramService', 'CategoryService', 'RetailerService', '$rootScope', '$scope', '$http', '$window', '$state', '$stateParams', 'Upload', 'sportspass', 'aws'];
+  function BannersController(BannerService, ProgramService, CategoryService, RetailerService, $rootScope, $scope, $http, $window, $state, $stateParams, Upload, sportspass, aws) {
 
   	var vm = this;
     $scope.category_list = [];
+    $scope.category_selected = "";
     $scope.selected_list = [];
     $scope.banner_retailer = "";
-
+    $scope.isChanged = 0;
+    $scope.file = "";
     // $scope.bannerOptions = ['all_pages', 'home_page', 'shop_in_store', 'shop_experience', 'shop_local'];
 
     // Show All Clubs
@@ -33,9 +35,32 @@
 
       BannerService.getOne(id).then(function(response){
         $scope.banners = response.data;
+
+        if ($scope.banners) {
+
+          BannerService.getBannerCategories(id).then(function(response) {
+            if (response.data.bannerCategories) {
+               $scope.selected_list = response.data.bannerCategories;
+            }
+           
+          });
+
+          BannerService.getBannerRetailer(id).then(function(response) {
+
+              if (response.data.bannerRetailer) {
+                $scope.banner_retailer = response.data.bannerRetailer.id;
+              }
+              
+          });
+
+          $scope.file = $scope.banners.image;
+
+        }
       }, function(response) {
         $scope.go('app.banners.list');
       });
+
+
     };
 
     $scope.editBanner = function(id) {
@@ -58,16 +83,20 @@
 
     $scope.saveBanner = function(form) {
       
+      var arry = [];
+
+      angular.forEach($scope.selected_list, function(value, key){
+        arry.push(value.id);
+      });
+
       var banners = angular.copy($scope.banners);
-
-      // var blob  = $scope.dataImage($scope.banners.image);
-      // var image  = new File([blob], 'banner'+Math.random().toString(36).substring(7)+'.png', {type: "'image/png"});
-
+      var  image  = $scope.upload($scope.file, 'create');
+    
       var data = {
-        image : $scope.file,
+        image : image,
         type: banners.type,
-        banner_categories: $scope.selected_list,
-        banner_retailer: $scope.banner_retailer,
+        banner_categories: arry,
+        banner_retailer: ($scope.banner_retailer === null) ? '' : $scope.banner_retailer,
         name: banners.name,
         url: banners.url,
         is_new_tab: (banners.is_new_tab) ? 1: 0,
@@ -78,20 +107,36 @@
         is_default: (banners.is_default) ? 1: 0
       };
 
-      $scope.uploadAction(data);
+      BannerService.create(data).then(function(response) {
+          $state.go('app.banners.list');
+          console.log(response);
+      }, function(response) {
+         console.log(response);
+      });
 
     };
 
     $scope.updateBanner = function(form, id) {
       
+      var data = [];
+      var arry = [];
+      var image = null;
+
+      if ($scope.selected_list) {
+        angular.forEach($scope.selected_list, function(value, key){
+          arry.push(value.id);
+        });
+      }
+
       var banners = angular.copy($scope.banners);
 
-      var data = {
-        id : id,
-        image : $scope.file,
+      image = $scope.upload($scope.file, 'update');
+
+      data = {
+        image: image,
         type: banners.type,
-        banner_categories: $scope.selected_list,
-        banner_retailer: $scope.banner_retailer,
+        banner_categories: arry,
+        banner_retailer: ($scope.banner_retailer === null) ? '' : $scope.banner_retailer,
         name: banners.name,
         url: banners.url,
         is_new_tab: (banners.is_new_tab) ? 1: 0,
@@ -103,7 +148,18 @@
         status: (banners.status) ? 1: 0
       };
 
-       $scope.uploadAction(data);
+      if ($scope.isChanged == 0) {
+        delete data['image'];
+      }
+
+      BannerService.update(id, data).then(function(response) {
+         $state.go('app.banners.edit', {id: id});
+         console.log(response);
+      }, function(response) {
+          alert('Error, editing data.');
+         $state.go('app.banners.edit', {id: id});
+      });
+       
     };
 
     $scope.dataImage = function(dataURI) {
@@ -153,24 +209,51 @@
       });
     };
 
-    /**
-     * working file upload
-     * @function Upload File
-     */
-    $scope.uploadAction = function (data) {
-       console.log(data);
-        Upload.upload({
-            method: 'POST',
-            url: sportspass.baseUrl + '/banner/update-model',
-            data: data,
-            
-        }).then(function (resp) {
-            console.log(resp);
-            
-        }, function (resp) {
-            console.log('Error status: ' + resp.status);
-        });
+    $scope.changeImage = function(element) {
+      $scope.isChanged = 1;
+      var elem = angular.element(document.querySelector(".pre.banner-image-wrapper"));
+      elem.remove();
     };
+
+    $scope.upload = function(file, type) {
+
+      $scope.awsImageLink = "";
+
+      AWS.config.update({ accessKeyId: aws.access_key, secretAccessKey: aws.secret_key });
+      AWS.config.region = 'ap-southeast-2';
+
+      var bucket = new AWS.S3({ params: { Bucket: aws.bucket } });
+
+      if(file) {
+        // Prepend Unique String To Prevent Overwrites
+        var uniqueFileName = $scope.uniqueString() + '-' + file.name;
+
+        var params = { Key: 'Staging/' + uniqueFileName, ContentType: file.type, Body: file, ServerSideEncryption: 'AES256' };
+
+        bucket.putObject(params, function(err, data) {
+
+          if(err) {
+            console.log(error);
+          }
+        });
+
+        return (file) ? $scope.awsImageLink = aws.s3StagingLink + '/' + uniqueFileName : '';
+      }
+      else {
+        // No File Selected
+        toastr.error('Please select a file to upload');
+      }
+    };
+
+    $scope.uniqueString = function() {
+      var text     = "";
+      var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+      for( var i=0; i < 8; i++ ) {
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+      }
+      return text;
+    }
 
     if ($state.params.id) {
        $scope.getBanner($state.params.id);

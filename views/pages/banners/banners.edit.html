@@ -34,51 +34,43 @@
                         </select>
                       </div>
 
-                      <div class="form-group">
+                      <!-- <div class="form-group">
                         <label for="program_id">Select Program</label>
 
-                        <select class="form-control" id="program_id" name="program_id" ng-init="program_id=''" ng-model="program_id">
+                        <select class="form-control" id="program_id" name="program_id" ng-model="program_id">
                           <option value="">Select Program..</option>
                           <option ng-repeat="programs in programList" value="{{programs.id}}">{{programs.name}}</option>
                         </select>
-                      </div>
+                      </div> -->
 
                       <div class="form-group">
                           <label for="image">Banner Image</label>
                           <div ng-if="file" class="clearfix banner-image-wrapper" >
                             <img ngf-thumbnail="file" />
                           </div>
-                          <!-- <input name="image" type="file" class="form-control" id="image" fileread="banners.image" /> -->
-                          <input type="file" ngf-select ng-model="file" name="file"    
-             accept="image/*" ngf-max-size="256MB">
+                          <!-- <div ng-if="banners.image" class="pre banner-image-wrapper">
+                             <img src="{{ banners.image }}" class="img-responsive" />
+                          </div> -->
+                          <!-- {{ banners.image }} -->
+                          <!-- <input name="image" type="file" class="form-control" id="image" fileread="banners.image" /> -->  
+                          <input class="form-control" type="file" ng-model="file" onchange="angular.element(this).scope().changeImage()" name="image" file></input>
 
                       </div>
-
-                      <!-- <div class="form-group">
-                          <label for="image">Banner Test</label>
-                          <div ng-if="file1" class="clearfix banner-image-wrapper" >
-                            <img ngf-thumbnail="file1" />
-                          </div> -->
-                          <!-- <input name="image" type="file" class="form-control" id="image" fileread="banners.image" /> -->
-                         <!--  <input type="file" ngf-select ng-model="file1" name="file1"    
-             accept="image/*" ngf-max-size="256MB">
-
-                      </div> -->
 
                       <div class="form-group">
                         <label for="program_id">Select Categories</label>
                         <multiple-autocomplete 
-                           ng-model="selectedList"
-                           suggestions-arr="categoryList"
+                           ng-model="selected_list"
+                           suggestions-arr="category_list"
                            object-property="name"
                            >
                         </multiple-autocomplete>
                       </div>
 
                       <div class="form-group">
-                          <label for="banner_retailer">Add Retailer Name</label>
-                          <select class="form-control" id="banner_retailer" name="banner_retailer" ng-init="banner_retailer=''" ng-model="banner_retailer">
-                            <option ng-repeat="retailers in retailerList" value="{{ retailers.id }}">{{ retailers.name }}</option>
+                          <label for="banner_retailer">Add Retailer Name {{ banner_retailer }}</label>
+                          <select class="form-control" id="banner_retailer" name="banner_retailer" ng-model="banner_retailer" ng-init="banner_retailer" ng-options="value.id as value.name for value in retailerList track by value.id"  >
+                            <!-- <option ng-repeat="retailers in retailerList" value="{{ retailers.id }}" >{{ retailers.name }}</option> -->
                           </select>
                       </div>
 
