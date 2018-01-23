@@ -1,7 +1,7 @@
 <div class="animated fadeIn">
 
      <div class="row">
-        <h1>DASHBOARD</h1> {{ user.aws }}
+        <h1>DASHBOARD</h1>
     </div>
     
     <div class="row">
@@ -18,7 +18,7 @@
                             <a class="dropdown-item" href="#">Something else here</a>
                         </div>
                     </div>
-                    <h4 class="mb-0">9.823</h4>
+                    <h4 class="mb-0">{{ totalAccounts }}</h4>
                     <p>Active Members</p>
                 </div>
                 <div class="chart-wrapper px-3" style="height:70px;">
@@ -34,7 +34,7 @@
                     <button type="button" class="btn btn-transparent p-0 float-right">
                         <i class="icon-location-pin"></i>
                     </button>
-                    <h4 class="mb-0">9.823</h4>
+                    <h4 class="mb-0">{{ totalClubMembers }}</h4>
                     <p>Club Members</p>
                 </div>
                 <div class="chart-wrapper px-3" style="height:70px;">
@@ -57,7 +57,7 @@
                             <a class="dropdown-item" href="#">Something else here</a>
                         </div>
                     </div>
-                    <h4 class="mb-0">9.823</h4>
+                    <h4 class="mb-0">{{ totalCardsCreated }}</h4>
                     <p>Cards Created</p>
                 </div>
                 <div class="chart-wrapper" style="height:70px;">
@@ -80,7 +80,7 @@
                             <a class="dropdown-item" href="#">Something else here</a>
                         </div>
                     </div>
-                    <h4 class="mb-0">9.823</h4>
+                    <h4 class="mb-0">{{ totalMembersOnline }}</h4>
                     <p>Members online</p>
                 </div>
                 <div class="chart-wrapper px-3" style="height:70px;">

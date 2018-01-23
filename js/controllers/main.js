@@ -29,7 +29,7 @@ function cardChartCtrl1($scope) {
 
   $scope.labels = ['January','February','March','April','May','June','July'];
   $scope.data = [
-    [65, 59, 84, 84, 51, 55, 40]
+    [0, 0, 0, 0, 0, 0, 0]
   ];
   $scope.colors = [{
     backgroundColor: brandPrimary,
@@ -76,7 +76,7 @@ function cardChartCtrl2($scope) {
 
   $scope.labels = ['January','February','March','April','May','June','July'];
   $scope.data = [
-    [1, 18, 9, 17, 34, 22, 11]
+    [0, 0, 0, 0, 0, 0, 0]
   ];
   $scope.colors = [{
     backgroundColor: brandInfo,
@@ -125,10 +125,10 @@ function cardChartCtrl3($scope) {
 
   $scope.labels = ['January','February','March','April','May','June','July'];
   $scope.data = [
-    [78, 81, 80, 45, 34, 12, 40]
+    [0, 0, 0, 0, 0, 0, 0]
   ];
   $scope.data4 = [
-    [35, 23, 56, 22, 97, 23, 64]
+    [0, 0, 0, 0, 0, 0, 0]
   ];
   $scope.colors = [{
     backgroundColor: 'rgba(255,255,255,.2)',
@@ -170,7 +170,8 @@ function cardChartCtrl4($scope) {
   //
   for (var i = 2000; i <= 2000 + elements; i++) {
     labels.push(i);
-    data.push(random(40,100));
+    // data.push(random(40,100));
+    data.push(1);
   }
 
   $scope.labels = labels;
