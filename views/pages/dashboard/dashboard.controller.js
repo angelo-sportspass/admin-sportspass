@@ -10,7 +10,8 @@
   function DashboardController($rootScope, $scope, $http, $window, $state, $stateParams, $location) {
     var vm = this;
 
- 	$scope.user = $rootScope.currentUser;
+ 	  $scope.user = JSON.parse(localStorage.getItem('user'));
+
     // vm.labels = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
   }
 

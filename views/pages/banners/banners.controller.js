@@ -9,7 +9,9 @@
   BannersController.$inject = ['BannerService', 'ProgramService', 'CategoryService', 'RetailerService', '$rootScope', '$scope', '$http', '$window', '$state', '$stateParams', 'Upload', 'sportspass', 'aws'];
   function BannersController(BannerService, ProgramService, CategoryService, RetailerService, $rootScope, $scope, $http, $window, $state, $stateParams, Upload, sportspass, aws) {
 
-  	var vm = this;
+  	var vm      = this;
+    $scope.user = JSON.parse(localStorage.getItem('user'));
+
     $scope.category_list = [];
     $scope.category_selected = "";
     $scope.selected_list = [];
@@ -219,10 +221,10 @@
 
       $scope.awsImageLink = "";
 
-      AWS.config.update({ accessKeyId: aws.access_key, secretAccessKey: aws.secret_key });
-      AWS.config.region = 'ap-southeast-2';
+      AWS.config.update({ accessKeyId: $scope.user.aws.access_key, secretAccessKey: $scope.user.aws.secrete_key });
+      AWS.config.region = $scope.user.aws.region;
 
-      var bucket = new AWS.S3({ params: { Bucket: aws.bucket } });
+      var bucket = new AWS.S3({ params: { Bucket: $scope.user.aws.bucket } });
 
       if(file) {
         // Prepend Unique String To Prevent Overwrites

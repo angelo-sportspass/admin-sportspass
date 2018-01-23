@@ -85,33 +85,54 @@
                     <div class="tab-pane" id="collateral" role="tabpanel">
                        <div class="form-group">
                           <label for="logo">Club Logo</label>
-                          <input name="logo" type="file" class="form-control" id="logo" fileread="clubs.logo" />
-                          <img src="{{ clubs.logo }}" ng-if="clubs.logo" />
-                      </div>
+                          <div ng-if="filelogo" class="clearfix banner-image-wrapper" >
+                            <img ngf-thumbnail="filelogo" />
+                          </div>
+                          <!-- <input name="logo" type="file" class="form-control" id="logo" fileread="clubs.logo" />
+                          <img src="{{ clubs.logo }}" ng-if="clubs.logo" /> -->
 
-                      <div class="form-group">
-                          <label for="banner_image">Club Banner Image</label>
-                          <input name="banner_image" type="file" class="form-control" id="banner_image" fileread="clubs.banner_image" />
-                          <img src="{{ clubs.banner_image }}" ng-if="clubs.banner_image" width="20%" />
-                      </div>
+                          <input class="form-control" type="file" ng-model="filelogo" name="filelogo" filelogo></input>
+                        </div>
 
+                        <div class="form-group">
+                            <label for="banner_image">Club Banner Image</label>
+                            <div ng-if="filebanner" class="clearfix banner-image-wrapper" >
+                              <img ngf-thumbnail="filebanner" />
+                            </div>
+                            <!-- <input name="banner_image" type="file" class="form-control" id="banner_image" fileread="clubs.banner_image" />
+                            <img src="{{ clubs.banner_image }}" ng-if="clubs.banner_image" width="20%" /> -->
+                            <input class="form-control" type="file" ng-model="filebanner" name="filebanner" filebanner></input>
+                        </div>
 
-                      <div class="form-group">
-                          <label for="front_card_image">Club Front Card Image</label>
-                          <input name="front_card_image" type="file" class="form-control" id="front_card_image" fileread="clubs.front_card_image" />
-                          <img src="{{ clubs.front_card_image }}" ng-if="clubs.front_card_image" width="20%" />
-                      </div>
+                        <div class="form-group">
+                            <label for="front_card_image">Club Front Card Image</label>
+                            <div ng-if="filefront" class="clearfix banner-image-wrapper" >
+                              <img ngf-thumbnail="filefront" />
+                            </div>
+                            <!-- <input name="front_card_image" type="file" class="form-control" id="front_card_image" fileread="clubs.front_card_image" />
+                            <img src="{{ clubs.front_card_image }}" ng-if="clubs.front_card_image" width="20%" /> -->
+                            <input class="form-control" type="file" ng-model="filefront" name="filefront" filefront></input>
+                        </div>
 
-                      <div class="form-group">
-                          <label for="email_header_image">Club Email Header</label>
-                          <input name="email_header_image" type="file" class="form-control" id="email_header_image" fileread="clubs.email_header_image" />
-                          <img src="{{ clubs.email_header_image }}" ng-if="clubs.email_header_image" width="20%" />
+                        <div class="form-group">
+                            <label for="email_header_image">Club Email Header</label>
+                            <div ng-if="fileemail" class="clearfix banner-image-wrapper" >
+                              <img ngf-thumbnail="fileemail" />
+                            </div>
+                            <!-- <input name="email_header_image" type="file" class="form-control" id="email_header_image" fileread="clubs.email_header_image" />
+                            <img src="{{ clubs.email_header_image }}" ng-if="clubs.email_header_image" width="20%" /> -->
+                            <input class="form-control" type="file" ng-model="fileemail" name="fileemail" fileemail></input>
+                        </div>
+                      
                       </div>
-                    </div>
 
                     <!-- banners -->
                     <div class="tab-pane" id="banners" role="tabpanel">
-                      
+                       <!-- <ul class="list list-inline">
+                         <li class="list-inline-item" ng-repeat="banners in bannerList" style="width:20%">
+                           <img src="{{ banners.image }}" class="img-responsive" style="width: 100%" />
+                         </li>
+                       </ul> -->
                     </div>
 
                   </div>

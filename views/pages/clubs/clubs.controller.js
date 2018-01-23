@@ -6,10 +6,22 @@
     .controller('ClubsController', ClubsController);
 
   /** @ngInject */
-  ClubsController.$inject = ['ClubsService', '$rootScope', '$scope', '$http', '$window', '$state', '$stateParams'];
-  function ClubsController(ClubsService, $rootScope, $scope, $http, $window, $state, $stateParams) {
+  ClubsController.$inject = ['ClubsService', 'BannerService', '$rootScope', '$scope', '$http', '$window', '$state', '$stateParams', 'aws'];
+  function ClubsController(ClubsService, BannerService, $rootScope, $scope, $http, $window, $state, $stateParams, aws) {
 
   	var vm = this;
+
+    $scope.filelogo   = '';
+    $scope.filebanner = '';
+    $scope.filefront  = '';
+    $scope.fileemail  = '';
+
+    $scope.isLogoChange = 0;
+    $scope.isBannerChange = 0;
+    $scope.isFrontChange = 0;
+    $scope.isEmailChange = 0;
+
+    $scope.user = JSON.parse(localStorage.getItem('user'));
 
     // Show All Clubs
   	vm.clubs = function() {
@@ -29,8 +41,12 @@
 
         $scope.clubs = response.data;
 
-      }, function(response) {
+        $scope.filelogo   = $scope.clubs.logo;
+        $scope.filebanner = $scope.clubs.banner_image;
+        $scope.filefront  = $scope.clubs.front_card_image;
+        $scope.fileemail  = $scope.clubs.email_header_image;
 
+      }, function(response) {
          console.log(response);
       });
     };
@@ -57,21 +73,16 @@
 
       var clubs = angular.copy($scope.clubs);
 
-      var blobLogo  = $scope.dataImage($scope.clubs.logo);
-      var blobBi    = $scope.dataImage($scope.clubs.banner_image);
-      var blobFci   = $scope.dataImage($scope.clubs.front_card_image);
-      var blobEhi   = $scope.dataImage($scope.clubs.email_header_image);
-
-      var logo  = new File([blobLogo], 'logo.png', {type: "'image/png"});
-      var banner_image  = new File([blobBi], 'banner_image.png', {type: "'image/png"});
-      var front_card_image  = new File([blobFci], 'front_card_image.png', {type: "'image/png"});
-      var email_header_image  = new File([blobEhi], 'email_header_image.png', {type: "'image/png"});
+      var filelogo   = $scope.upload($scope.filelogo, 'create');
+      var filebanner = $scope.upload($scope.filebanner, 'create');
+      var filefront  = $scope.upload($scope.filefront, 'create');
+      var fileemail  = $scope.upload($scope.fileemail, 'create');
 
       var data = {
-        logo : logo,
-        banner_image: banner_image,
-        front_card_image: front_card_image,
-        email_header_image: email_header_image,
+        logo : filelogo,
+        banner_image: filebanner,
+        front_card_image: filefront,
+        email_header_image: fileemail,
         name: clubs.name,
         club_prefix: clubs.club_prefix,
         link: clubs.link,
@@ -96,21 +107,27 @@
 
       var clubs = angular.copy($scope.clubs);
 
-      var blobLogo  = $scope.dataImage($scope.clubs.logo);
-      var blobBi    = $scope.dataImage($scope.clubs.banner_image);
-      var blobFci   = $scope.dataImage($scope.clubs.front_card_image);
-      var blobEhi   = $scope.dataImage($scope.clubs.email_header_image);
+      if ($scope.isLogoChange == 1) {
+        var filelogo   = $scope.upload($scope.filelogo, 'create');
+      }
+      
+      if ($scope.isBannerChange == 1) {
+        var filebanner = $scope.upload($scope.filebanner, 'create');
+      }
 
-      var logo  = new File([blobLogo], 'logo.png', {type: "'image/png"});
-      var banner_image  = new File([blobBi], 'banner_image.png', {type: "'image/png"});
-      var front_card_image  = new File([blobFci], 'front_card_image.png', {type: "'image/png"});
-      var email_header_image  = new File([blobEhi], 'email_header_image.png', {type: "'image/png"});
-
+      if ($scope.isFrontChange == 1) {
+        var filefront  = $scope.upload($scope.filefront, 'create');
+      }
+      
+      if ($scope.isEmailChange == 1) {
+        var fileemail  = $scope.upload($scope.fileemail, 'create');
+      }
+      
       var data = {
-        logo : logo,
-        banner_image: banner_image,
-        front_card_image: front_card_image,
-        email_header_image: email_header_image,
+        logo : filelogo,
+        banner_image: filebanner,
+        front_card_image: filefront,
+        email_header_image: fileemail,
         name: clubs.name,
         club_prefix: clubs.club_prefix,
         link: clubs.link,
@@ -121,7 +138,23 @@
         officer_position: clubs.officer
       };
 
-      ClubsService.updateClub(id, data).then(function(response) {
+      if ($scope.isLogoChange == 0) {
+        delete data['logo'];
+      }
+      
+      if ($scope.isBannerChange == 0) {
+        delete data['banner_image'];
+      }
+
+      if ($scope.isFrontChange == 0) {
+        delete data['front_card_image'];
+      }
+      
+      if ($scope.isEmailChange == 0) {
+        delete data['email_header_image'];
+      }
+
+      ClubsService.update(id, data).then(function(response) {
 
         state.go($state.current, {}, {reload: true});
         console.log(response);
@@ -156,23 +189,74 @@
     };
 
 
-    // Bug in Club Checkbox
-    // $scope.optionBarcode = function() {
-    //   var barcode = angular.element( document.querySelector( '#is_barcode' ) );
+    $scope.upload = function(file, type) {
 
-    //   if (barcode.is(':checked')) {
-        
-    //     barcode.attr('ng-model', 'clubs.is_barcode');
-    //   } else {
+      $scope.awsImageLink = "";
 
-    //     barcode.removeAttr('ng-model');
-    //   }
+      AWS.config.update({ accessKeyId: $scope.user.aws.access_key, secretAccessKey: $scope.user.aws.secrete_key });
+      AWS.config.region = $scope.user.aws.region;
 
-    // }
+      var bucket = new AWS.S3({ params: { Bucket: $scope.user.aws.bucket } });
+
+      if(file) {
+        // Prepend Unique String To Prevent Overwrites
+        var uniqueFileName = $scope.uniqueString() + '-' + file.name;
+
+        var params = { Key: 'Staging/' + uniqueFileName, ContentType: file.type, Body: file, ServerSideEncryption: 'AES256' };
+
+        bucket.putObject(params, function(err, data) {
+
+          if(err) {
+            console.log(error);
+          }
+        });
+
+        return (file) ? $scope.awsImageLink = aws.s3StagingLink + '/' + uniqueFileName : '';
+      }
+      else {
+        // No File Selected
+        toastr.error('Please select a file to upload');
+      }
+    };
+
+    vm.getAllBanners = function() {
+      BannerService.getAll().then(function(response){
+        $scope.bannerList = response.data.banners;
+        $scope.count      = response.data.count;
+      });
+    }
+
+    $scope.uniqueString = function() {
+      var text     = "";
+      var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+      for( var i=0; i < 8; i++ ) {
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+      }
+      return text;
+    }
+
+    $scope.logochange = function() {
+      $scope.isLogoChange = 1;
+    }
+
+    $scope.bannerchange = function() {
+      $scope.isBannerChange = 1;
+    }
+
+    $scope.frontchange = function() {
+      $scope.isFrontChange = 1;
+    }
+
+    $scope.emailchange = function() {
+      $scope.isEmailChange = 1;
+    }
 
     if ($state.params.id) {
        $scope.getClub($state.params.id);
     }
+
+    vm.getAllBanners();
 
     if ($state.current.url === '') {
       vm.clubs();

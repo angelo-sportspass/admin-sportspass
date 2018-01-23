@@ -12,6 +12,10 @@ angular
 .directive('button', cardCollapseDirective)
 .directive('fileread', fileRead)
 .directive('file', file)
+.directive('filelogo', filelogo)
+.directive('filebanner', filebanner)
+.directive('filefront', filefront)
+.directive('fileemail', fileemail)
 
 //Prevent click if href="#"
 function preventClickDirective() {
@@ -258,6 +262,78 @@ function file() {
         var file = files[0];
         scope.file = file;
         scope.$parent.file = file;
+        scope.$apply();
+      });
+    }
+  };
+}
+
+function filelogo() {
+  return {
+    restrict: 'AE',
+    scope: {
+      filelogo: '@'
+    },
+    link: function(scope, el, attrs){
+      el.bind('change', function(event){
+        var files = event.target.files;
+        var file = files[0];
+        scope.filelogo = file;
+        scope.$parent.filelogo = file;
+        scope.$apply();
+      });
+    }
+  };
+}
+
+function filebanner() {
+  return {
+    restrict: 'AE',
+    scope: {
+      filebanner: '@'
+    },
+    link: function(scope, el, attrs){
+      el.bind('change', function(event){
+        var files = event.target.files;
+        var file = files[0];
+        scope.filebanner = file;
+        scope.$parent.filebanner = file;
+        scope.$apply();
+      });
+    }
+  };
+}
+
+function filefront() {
+  return {
+    restrict: 'AE',
+    scope: {
+      filefront: '@'
+    },
+    link: function(scope, el, attrs){
+      el.bind('change', function(event){
+        var files = event.target.files;
+        var file = files[0];
+        scope.filefront = file;
+        scope.$parent.filefront = file;
+        scope.$apply();
+      });
+    }
+  };
+}
+
+function fileemail() {
+  return {
+    restrict: 'AE',
+    scope: {
+      fileemail: '@'
+    },
+    link: function(scope, el, attrs){
+      el.bind('change', function(event){
+        var files = event.target.files;
+        var file = files[0];
+        scope.fileemail = file;
+        scope.$parent.fileemail = file;
         scope.$apply();
       });
     }

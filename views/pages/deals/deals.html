@@ -34,7 +34,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr  dir-paginate = "deals in dealList | filter: search | itemsPerPage: pageSize" current-page="currentPage" pagination-id="clubPagination" >
+                            <tr  dir-paginate = "deals in dealList | filter: search | itemsPerPage: pageSize" current-page="currentPage" pagination-id="dealsPagination" >
                                 <td>{{deals.id}}</td>
                                 <td>{{ deals.name }}</td>
                                 <td>
@@ -51,12 +51,12 @@
                                 <td>
                                     <ul class="list-inline">
                                         <li class="list-inline-item">
-                                            <a class="nav-link" href="javascript:;" ng-click="editDeal(deals.id)" >
+                                            <a class="nav-link" href="javascript:;" ng-click="editDeals(deals.id)" >
                                                 <i class="icon-note"></i>  
                                             </a>
                                         </li>
                                         <li class="list-inline-item">
-                                            <a class="nav-link" href="javascript:;" ng-click="deleteDeal(deals.id)">
+                                            <a class="nav-link" href="javascript:;" ng-click="deleteDeals(deals.id)">
                                                 <i class="icon-trash"></i>  
                                             </a>
                                         </li>

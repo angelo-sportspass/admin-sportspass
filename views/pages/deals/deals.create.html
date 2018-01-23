@@ -22,12 +22,14 @@
 
                   <div class="form-group">
                       <label for="image">Deals Image</label>
-                      <div ng-if="file" class="clearfix banner-image-wrapper" >
-                        <img ngf-thumbnail="file" />
-                      </div>
-                      <!-- <input name="image" type="file" class="form-control" id="image" fileread="banners.image" /> -->
-                      <input type="file" ngf-select ng-model="file" name="file"    
-         accept="image/*" ngf-max-size="256MB">
+                       <div ng-if="file" class="clearfix banner-image-wrapper" >
+                          <img ngf-thumbnail="file" />
+                        </div>
+                          <!-- <input name="image" type="file" class="form-control" id="image" fileread="banners.image" /> -->
+                          <!-- <input type="file" ngf-select ng-model="file" name="file"    
+             accept="image/*" ngf-max-size="256MB"> -->
+
+                        <input class="form-control" type="file" ng-model="file" name="file" file></input>
 
                   </div>
 

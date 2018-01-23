@@ -47,8 +47,8 @@ angular
 
 }])
 .run(['$rootScope', '$state', '$stateParams', '$transitions', '$location', function($rootScope, $state, $stateParams, $transitions, $location) {
-  $transitions.onSuccess({} ,function(){
-      
+  $transitions.onSuccess({} ,function(){  
+    
       var currentUser = JSON.parse(localStorage.getItem('user'));
       
       if(currentUser) {

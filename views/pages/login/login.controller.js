@@ -21,7 +21,9 @@
   		var res = LoginService.login(data).then(function (response) {
 
           var user = JSON.stringify(response.data);
+
           localStorage.setItem('user', user);
+
           console.log(user);
           
           $state.go('app.main');
