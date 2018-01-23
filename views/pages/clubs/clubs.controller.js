@@ -11,6 +11,9 @@
 
   	var vm = this;
 
+    $scope.imgbanner = [];
+    $scope.clubBanners = "";
+
     $scope.filelogo   = '';
     $scope.filebanner = '';
     $scope.filefront  = '';
@@ -49,6 +52,10 @@
       }, function(response) {
          console.log(response);
       });
+
+      ClubsService.getClubBanners(id).then(function(response){
+        $scope.clubBanners = response.data.clubBanners;
+      });
     };
 
     $scope.editClub = function(id) {
@@ -83,6 +90,7 @@
         banner_image: filebanner,
         front_card_image: filefront,
         email_header_image: fileemail,
+        club_banners: $scope.imgbanner,
         name: clubs.name,
         club_prefix: clubs.club_prefix,
         link: clubs.link,
@@ -93,7 +101,7 @@
         officer_position: clubs.officer
       };
 
-      ClubsService.createClub(data).then(function(response) {
+      ClubsService.create(data).then(function(response) {
           console.log(response);
           $state.go('app.clubs.list');
       }, function(response) {

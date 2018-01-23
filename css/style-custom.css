@@ -48,6 +48,16 @@
   width: 100%;
 }
 
+.table .thead-light th {
+    color: #3e515b;
+    background-color: #c2cfd6;
+    border-color: #a4b7c1;
+}
+
+.table-outline {
+    border: 1px solid #a4b7c1;
+}
+
 
 @font-face {
   font-family: 'Glyphicons Halflings';

@@ -16,6 +16,7 @@ angular
 .directive('filebanner', filebanner)
 .directive('filefront', filefront)
 .directive('fileemail', fileemail)
+.directive('imageSelected', imageSelected)
 
 //Prevent click if href="#"
 function preventClickDirective() {
@@ -338,4 +339,43 @@ function fileemail() {
       });
     }
   };
+}
+
+/**
+ * @return banner id
+ */
+function imageSelected() {
+
+  var directive = {
+    restrict: 'A',
+    link: link,
+    scope: true,
+  }
+
+  return directive;
+
+  function link(scope, element, attrs) {
+    element.click(function(e) {
+
+      if (angular.element(element).hasClass('selected')) {
+
+        angular.element(element).removeClass('selected');
+        angular.element(element).prev().prop('checked', false);
+        angular.element(element).prev().attr('ng-false-value', 1);
+        angular.element(element).prev().removeAttr('ng-true-value');
+
+        scope.imgbanner.splice(angular.element(element).prev().data('index'), 1);
+
+      } else {
+
+        angular.element(element).addClass('selected');
+        angular.element(element).prev().prop('checked', true);
+        angular.element(element).prev().attr('ng-true-value', 1);
+        angular.element(element).prev().removeAttr('ng-false-value');
+
+        scope.imgbanner.push(angular.element(element).prev().val());
+      }
+      
+    });
+  }
 }

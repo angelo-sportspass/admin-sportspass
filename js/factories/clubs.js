@@ -29,6 +29,10 @@
           return $http.delete(sportspass.baseUrl + '/club/' + id);
          }
 
+         service.getClubBanners = function(id) {
+          return $http.get( sportspass.baseUrl + '/club/get-club-banners/' + id);
+         }
+
          service.createClub = function(data) {
 
           var config = {
