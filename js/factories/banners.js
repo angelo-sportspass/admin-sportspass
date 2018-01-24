@@ -33,6 +33,10 @@
           return $http.get( sportspass.baseUrl + '/banner/get-banner-retailer/' + id); 
          }
 
+         service.getBannerFilter = function() {
+          return $http.get(sportspass.baseUrl + '/banner/get-banner-filter');
+         }
+         
         // service.createBanner = function(data) {
 
         //   var config = {

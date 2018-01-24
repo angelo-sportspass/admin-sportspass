@@ -11,6 +11,9 @@
 
   	var vm = this;
 
+    $scope.newField = {};
+    $scope.fields = [ ];
+
     $scope.imgbanner = [];
     $scope.clubBanners = "";
 
@@ -23,6 +26,8 @@
     $scope.isBannerChange = 0;
     $scope.isFrontChange = 0;
     $scope.isEmailChange = 0;
+
+    $scope.preFormFields = {};
 
     $scope.user = JSON.parse(localStorage.getItem('user'));
 
@@ -48,6 +53,9 @@
         $scope.filebanner = $scope.clubs.banner_image;
         $scope.filefront  = $scope.clubs.front_card_image;
         $scope.fileemail  = $scope.clubs.email_header_image;
+
+
+        $scope.fields = JSON.parse($scope.clubs.form);
 
       }, function(response) {
          console.log(response);
@@ -98,7 +106,8 @@
         expiry : clubs.expiry,
         sport_name: clubs.sport_name,
         officer: clubs.officer,
-        officer_position: clubs.officer
+        officer_position: clubs.officer,
+        form: JSON.stringify($scope.fields)
       };
 
       ClubsService.create(data).then(function(response) {
@@ -114,6 +123,10 @@
     $scope.updateClub = function(form, id) {
 
       var clubs = angular.copy($scope.clubs);
+
+      angular.forEach($scope.clubBanners, function(value, key) {
+        $scope.imgbanner.push(value.id);
+      });
 
       if ($scope.isLogoChange == 1) {
         var filelogo   = $scope.upload($scope.filelogo, 'create');
@@ -137,13 +150,15 @@
         front_card_image: filefront,
         email_header_image: fileemail,
         name: clubs.name,
+        club_banners: $scope.imgbanner,
         club_prefix: clubs.club_prefix,
         link: clubs.link,
         is_barcode: clubs.is_barcode,
         expiry : clubs.expiry,
         sport_name: clubs.sport_name,
         officer: clubs.officer,
-        officer_position: clubs.officer
+        officer_position: clubs.officer,
+        form: JSON.stringify($scope.fields)
       };
 
       if ($scope.isLogoChange == 0) {
@@ -164,7 +179,7 @@
 
       ClubsService.update(id, data).then(function(response) {
 
-        state.go($state.current, {}, {reload: true});
+        $state.go($state.current, {}, {reload: true});
         console.log(response);
 
       }, function(response) {
@@ -227,6 +242,13 @@
       }
     };
 
+    vm.getAllBannersFiltered = function() {
+      BannerService.getBannerFilter().then(function(response){
+        $scope.bannerList = response.data.banners;
+        $scope.count      = response.data.count;
+      });
+    }
+
     vm.getAllBanners = function() {
       BannerService.getAll().then(function(response){
         $scope.bannerList = response.data.banners;
@@ -260,11 +282,68 @@
       $scope.isEmailChange = 1;
     }
 
-    if ($state.params.id) {
+     if ($state.params.id) {
        $scope.getClub($state.params.id);
+       vm.getAllBannersFiltered();
+    } else {
+      vm.getAllBanners();
     }
 
-    vm.getAllBanners();
+    /******** Dynamic Form ****/
+    $scope.editing = false;
+    $scope.tokenize = function(slug1, slug2) {
+      var result = slug1;
+      result = result.replace(/[^-a-zA-Z0-9,&\s]+/ig, '');
+      result = result.replace(/-/gi, "_");
+      result = result.replace(/\s/gi, "-");
+      if (slug2) {
+        result += '-' + $scope.token(slug2);
+      }
+      return result;
+    };
+
+    $scope.saveField = function() {
+      console.log("entered save");
+      if ($scope.newField.type == 'checkboxes') {
+        $scope.newField.value = {};
+      }
+      if ($scope.editing !== false) {
+        $scope.fields[$scope.editing] = $scope.newField;
+        $scope.editing = false;
+      } else {
+        $scope.fields.push($scope.newField);
+      }
+      $scope.newField = {
+        order : 0
+      };
+    };
+    $scope.editField = function(field) {
+      $scope.editing = $scope.fields.indexOf(field);
+      $scope.newField = field;
+    };
+    $scope.splice = function(field, fields) {
+      fields.splice(fields.indexOf(field), 1);
+    };
+    $scope.addOption = function() {
+      if ($scope.newField.options === undefined) {
+        $scope.newField.options = [];
+      }
+      $scope.newField.options.push({
+        order : 0
+      });
+    };
+    $scope.typeSwitch = function(type) {
+      /*if (angular.Array.indexOf(['checkboxes','select','radio'], type) === -1)
+        return type;*/
+      if (type == 'checkboxes')
+        return 'multiple';
+      if (type == 'select')
+        return 'multiple';
+      if (type == 'radio')
+        return 'multiple';
+
+      return type;
+    }
 
     if ($state.current.url === '') {
       vm.clubs();

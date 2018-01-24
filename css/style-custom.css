@@ -58,6 +58,22 @@
     border: 1px solid #a4b7c1;
 }
 
+.add-field-button {
+  cursor: pointer;
+}
+
+.highlight {
+    padding: 1.5rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    background-color: #f7f7f9;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+
+input[type="file"].form-control {
+  border: none;
+  padding: 0.5rem 0rem;
+}
 
 @font-face {
   font-family: 'Glyphicons Halflings';

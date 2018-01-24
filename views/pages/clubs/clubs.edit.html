@@ -11,7 +11,7 @@
                 <form name="form" ng-submit="updateClub(form, clubs.id)" role="form">
                  <ul class="nav nav-tabs" role="tablist">
                     <li class="nav-item">
-                      <a target="_self" class="nav-link active" data-toggle="tab" href="#details" role="tab" aria-controls="details"><i class="fa fa-group fa-lg"></i> Oraganisation Details</a>
+                      <a target="_self" class="nav-link active" data-toggle="tab" href="#details" role="tab" aria-controls="details"><i class="fa fa-group fa-lg"></i> Organisation Details</a>
                     </li>
                     <li class="nav-item">
                       <a target="_self" class="nav-link" data-toggle="tab" href="#email" role="tab" aria-controls="email"><i class="fa fa-envelope-o fa-lg"></i> Email</a>
@@ -64,6 +64,10 @@
                         <datepicker date-format="yyyy-MM-dd" selector="form-control">
                           <input ng-model="clubs.expiry" type="text" class="form-control" name="expiry" id="expiry" placeholder="Enter expiry date"/>
                         </datepicker>
+                      </div>
+
+                      <div class="form-group">
+                        <div dynamic-form />
                       </div>
                     </div>
 

@@ -17,6 +17,7 @@ angular
 .directive('filefront', filefront)
 .directive('fileemail', fileemail)
 .directive('imageSelected', imageSelected)
+.directive('dynamicForm', dynamicForm)
 
 //Prevent click if href="#"
 function preventClickDirective() {
@@ -378,4 +379,17 @@ function imageSelected() {
       
     });
   }
+}
+
+function dynamicForm() {
+  return { 
+        // We limit this directive to attributes only.
+         restrict : 'A',
+
+        // We will not replace the original element code
+        replace : false,
+        
+        // We must supply at least one element in the code 
+        templateUrl : '../views/pages/clubs/club.dynamic-form.html'
+    } 
 }

@@ -279,7 +279,16 @@ angular
     url: '/clubs',
     defaultChild: 'app.clubs.list',
     template: '<ui-view></ui-view>',
-
+    resolve: {
+      loadCSS: ['$ocLazyLoad', function($ocLazyLoad) {
+        // you can lazy load CSS files
+        return $ocLazyLoad.load([{
+          serie: true,
+          name: 'Dynamic Form',
+          files: ['css/dynamic-form.css']
+        }]);
+      }],
+    },
     //page title goes here
     ncyBreadcrumb: {
       label: 'Clubs'

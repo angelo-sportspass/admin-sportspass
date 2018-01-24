@@ -8,15 +8,18 @@
                             <h3>SPORTSPASS</h3>
                             <form name="vm.form" ng-submit="login.login()" role="form">
                                 <p class="text-muted">Login In to your Sportspass Admin account.</p>
+                                <div class="input-group" ng-if="login.errorMessage">
+                                    <div class="col-12 alert alert-danger">{{ login.errorMessage }}</div>
+                                </div>
                                 <div class="input-group mb-3">
                                     <span class="input-group-addon"><i class="icon-user"></i>
                                     </span>
-                                    <input name="user_name" type="text" ng-model="login.user_name" class="form-control" placeholder="Username">
+                                    <input name="user_name" type="text" ng-model="login.user_name" class="form-control" placeholder="Username" required>
                                 </div>
                                 <div class="input-group mb-4">
                                     <span class="input-group-addon"><i class="icon-lock"></i>
                                     </span>
-                                    <input name="password" type="password" ng-model="login.password" class="form-control" placeholder="Password">
+                                    <input name="password" type="password" ng-model="login.password" class="form-control" placeholder="Password" required>
                                 </div>
                                 <div class="row">
                                     <div class="col-6">
