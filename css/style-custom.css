@@ -75,6 +75,80 @@ input[type="file"].form-control {
   padding: 0.5rem 0rem;
 }
 
+/* ************************************** */
+/* Mandatory CSS required for ng-sortable */
+/* ************************************** */
+
+.as-sortable-item, .as-sortable-placeholder {
+    display: block;
+}
+
+.as-sortable-item {
+    -ms-touch-action: none;
+    touch-action: none;
+}
+
+.as-sortable-item-handle {
+    cursor: move;
+}
+
+.as-sortable-placeholder {
+}
+
+.as-sortable-drag {
+    position: absolute;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+.as-sortable-hidden {
+    display: none !important;
+}
+
+/* ******************************************* */
+/* Optional CSS, default style for ng-sortable */
+/* ******************************************* */
+
+div[as-sortable] {
+  position: relative;  
+}
+
+.as-sortable-item, .as-sortable-placeholder {
+    min-height: 20px;
+    margin: 1px 2px 5px 1px;
+    //border-radius: 10px;
+}
+
+.as-sortable-item {
+    //border: solid 1px darkgrey;
+}
+
+.as-sortable-item-handle {
+}
+
+.as-sortable-placeholder {
+    border: 1px dashed darkgrey;
+    box-sizing: border-box;
+    background-color: #dbdbdb;
+}
+
+.as-sortable-drag {
+    opacity: .8;
+}
+
+.as-sortable-hidden {
+}
+
+.as-sortable-item,
+.as-sortable-placeholder {
+    display: inline-block;
+    width: 250px;
+    height: 300px;
+    float: left;
+}
+
+
+
 @font-face {
   font-family: 'Glyphicons Halflings';
 

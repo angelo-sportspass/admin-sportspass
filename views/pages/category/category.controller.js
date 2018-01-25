@@ -11,8 +11,9 @@
 
   	var vm = this;
     // $scope.bannerOptions = ['all_pages', 'home_page', 'shop_in_store', 'shop_experience', 'shop_local'];
-
+    $scope.items = ["One", "Two", "Three"];
     vm.categories = function() {
+    
       CategoryService.getAll().then(function(response) {
 
         $scope.currentPage = 1;
@@ -38,7 +39,7 @@
 
       $scope.category = {};
       $state.go('app.category.edit', {id: id});
-      $scope.getAccount(id);
+      $scope.getCategory(id);
 
     };
 
@@ -56,7 +57,8 @@
 
       CategoryService.create(category).then(function(response) {
           console.log(response);
-           $state.go('app.category.list');
+           // $state.go('app.category.list');
+           $state.go($state.current, {}, {reload: true});
       }, function(response) {
 
          console.log(response);
@@ -78,6 +80,26 @@
          console.log(response);
       });
 
+    };
+
+    $scope.sortableOptions = {
+      update: function(e, ui) {
+       
+      },
+      stop: function(e, ui) {
+        // this callback has the changed model
+        var data = [];
+        $scope.categoryList.map(function(i, index){
+
+          data.push({id: i.id, sort_order: index});
+          // console.log(i.id + '-' + i.name + '-' + index);
+        });
+        // console.log(JSON.stringify(data));
+        // return false;
+        CategoryService.categorySort(JSON.stringify(data)).then(function(response){
+          console.log(response);
+        });
+      }
     };
 
     if ($state.params.id) {

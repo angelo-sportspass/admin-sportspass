@@ -7,10 +7,10 @@
                 <div class="card-header">
                     <i class="fa fa-align-justify"></i> Categories List
 
-                    <button type="button" class="btn btn-outline-success pull-right" ui-sref="app.category.create"><i class="fa fa-plus"></i> Create</button>
+                    <!-- <button type="button" class="btn btn-primary pull-right" ui-sref="app.category.create"><i class="fa fa-plus-square-o"></i> Create</button> -->
                 </div>
                 <div class="card-block">
-
+<!-- 
                     <form class="search-form">
                         <div class="row">
                             <div class="col-4">
@@ -19,8 +19,8 @@
                             </div>
                         </div>
                     </form>
-        
-                    <table class="table table-striped">
+         -->
+                    <!-- <table class="table table-striped">
                         <thead>
                             <tr>
                                 <th>ID</th>
@@ -28,9 +28,10 @@
                                 <th>Order</th>
                                 <th class="text-center" width="15%">Action</th>
                             </tr>
-                        </thead>
-                        <tbody>
-                            <tr dir-paginate = "categories in categoryList | filter: search | itemsPerPage: pageSize" current-page="currentPage" pagination-id="categoryPagination" >
+                        </thead> -->
+                        <!-- <tbody  ng-model="categoryList"> -->
+                           <!--  <tr dir-paginate = "categories in categoryList | filter: search | itemsPerPage: pageSize" current-page="currentPage" pagination-id="categoryPagination" > -->
+                           <!--  <tr ng-repeat="categories in categoryList">
                                 <td>{{ categories.id }}</td>
                                 <td>{{ categories.name }}</td>
                                 <td>{{ categories.sort_order }}</td>
@@ -50,8 +51,8 @@
                                 </td>
                             </tr>
                         </tbody>
-                    </table>
-                    <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="../../bower_components/angularUtils-pagination/dirPagination.tpl.html" pagination-id="categoryPagination"></dir-pagination-controls>
+                    </table> -->
+                    <!-- <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="../../bower_components/angularUtils-pagination/dirPagination.tpl.html" pagination-id="categoryPagination"></dir-pagination-controls> -->
                     <!-- <ul class="pagination">
                         <li class="page-item"><a class="page-link" href="#">Prev</a>
                         </li>
@@ -67,6 +68,47 @@
                         <li class="page-item"><a class="page-link" href="#">Next</a>
                         </li>
                     </ul> -->
+
+                    <div class="row">
+                        <div class="col-6">
+                            <ul class="list-group" ui-sortable="sortableOptions" ng-model="categoryList">
+                              <li class="list-group-item" ng-repeat="categories in categoryList" data-index="{{ $index }}">
+                                <span class="pull-left">{{ categories.name }}</span>
+                                <ul class="list-inline pull-right">
+                                    <li class="list-inline-item">
+                                        <a class="nav-link" href="javascript:;" ng-click="editCategory(categories.id)" >
+                                            <i class="icon-note"></i>  
+                                        </a>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <a class="nav-link" href="javascript:;" ng-click="deleteCategory(categories.id)">
+                                            <i class="icon-trash"></i>  
+                                        </a>
+                                    </li>
+                                </ul>
+                              </li>
+                            </ul>
+                        </div>
+                        <div class="col-6">
+                            <form name="form" ng-submit="saveCategory(form)" role="form">
+                              <div class="form-group">
+                                  <label for="name">Category Name</label>
+                                  <input name="name" type="text" class="form-control" id="name" ng-model="category.name"  placeholder="Enter your category name">
+                              </div>
+
+                              <!-- <div class="form-group">
+                                  <label for="sort_order">Sort Number:</label>
+                                  <input name="sort_order" type="sort_order" class="form-control" id="sort_order" ng-model="category.sort_order" placeholder="Sort Order">
+                              </div> -->
+                             
+                              <div class="row">
+                                  <div class="col-6">
+                                      <button type="submit" class="btn btn-primary px-4" > <i class="icon-lock icons"></i>&nbsp; Create</button>
+                                  </div>
+                              </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

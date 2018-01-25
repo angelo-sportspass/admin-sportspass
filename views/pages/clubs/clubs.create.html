@@ -142,17 +142,20 @@
 
                     <!-- banners -->
                     <div class="tab-pane" id="banners" role="tabpanel">
+
                        <ul class="list list-inline">
-                         <li selected class="list-inline-item" ng-repeat="banners in bannerList" style="width:20%">
+                         <!-- <li selected class="list-inline-item" ng-repeat="banners in bannerList" style="width:20%"> -->
+                          <li selected class="list-inline-item"  style="width:20%" dir-paginate = "banners in bannerList | filter: search | itemsPerPage: pageSize" current-page="currentPage" pagination-id="bannerPagination">
                            <input type="checkbox" ng-model="imgbanner" value="{{ banners.id }}" data-index="{{ $index }}" />
                            <img image-selected src="{{ banners.image }}"  class="img-responsive" style="width: 100%" />
                          </li>
                        </ul>
-                  
+                      
+                        <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="../../bower_components/angularUtils-pagination/dirPagination.tpl.html" pagination-id="bannerPagination"></dir-pagination-controls>
                     </div>
                   <div class="row">
                       <div class="col-6">
-                          <button type="submit" class="btn btn-primary px-4" >Save</button>
+                          <button type="submit" class="btn btn-primary px-4" ><i class="icon-lock icons"></i>&nbsp;Save</button>
                       </div>
                   </div>
                 </form>

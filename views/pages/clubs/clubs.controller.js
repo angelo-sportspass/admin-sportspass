@@ -14,6 +14,7 @@
     $scope.newField = {};
     $scope.fields = [ ];
 
+    $scope.sortBanner = [];
     $scope.imgbanner = [];
     $scope.clubBanners = "";
 
@@ -27,6 +28,9 @@
     $scope.isFrontChange = 0;
     $scope.isEmailChange = 0;
 
+    $scope.currentPage = 1;
+    $scope.pageSize    = 30;
+
     $scope.preFormFields = {};
 
     $scope.user = JSON.parse(localStorage.getItem('user'));
@@ -35,8 +39,7 @@
   	vm.clubs = function() {
       ClubsService.getAll().then(function(response) {
 
-        $scope.currentPage = 1;
-        $scope.pageSize    = 10;
+        
 
         $scope.clubList = response.data.clubs;
         $scope.count    = response.data.count;
@@ -343,6 +346,11 @@
         return 'multiple';
 
       return type;
+    }
+
+    $scope.bannersSort = function() {
+      
+      console.log($scope.sortBanner);
     }
 
     if ($state.current.url === '') {

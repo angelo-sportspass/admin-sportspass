@@ -23,16 +23,16 @@
                     <!-- details -->
                     <div class="tab-pane active" id="details" role="tabpanel">
                       <div class="form-group">
-                        <label for="type">Select Banner Type</label>
-
-                        <select class="form-control" id="type" name="type" ng-init="banners.type=''" ng-model="banners.type">
+                        <label for="type">Banner Name</label>
+                        <input name="type" type="text" class="form-control" id="type" ng-model="banners.type"  placeholder="Enter Name For Search..">
+                        <!-- <select class="form-control" id="type" name="type" ng-init="banners.type=''" ng-model="banners.type">
                           <option value="">Banner Type..</option>
                           <option value="all_pages">In All Pages</option>
                           <option value="home_page">Only In Home Page</option>
                           <option value="shop_in_store">Only In Shop in Store</option>
                           <option value="shop_experiences">Only In Shop Experiences</option>
                           <option value="shop_local">Only In Shop Local</option>                    
-                        </select>
+                        </select> -->
                       </div>
 
                       <!-- <div class="form-group">
@@ -77,8 +77,8 @@
                       </div>
 
                       <div class="form-group">
-                          <label for="name">Banner Name</label>
-                          <input name="name" type="text" class="form-control" id="name" ng-model="banners.name"  placeholder="Enter organisation">
+                          <label for="name">Banner CTA</label>
+                          <input name="name" type="text" class="form-control" id="name" ng-model="banners.name"  placeholder="Eneter CTA">
                       </div>
 
                       <div class="form-group">
@@ -187,7 +187,7 @@
                   
                   <div class="row">
                       <div class="col-6">
-                          <button type="submit" class="btn btn-primary px-4" >Save</button>
+                          <button type="submit" class="btn btn-primary px-4" ><i class="icon-lock icons"></i>&nbsp; Save</button>
                       </div>
                   </div>
                 </form>

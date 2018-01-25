@@ -21,7 +21,8 @@ angular
   '720kb.datepicker',
   'angularUtils.directives.dirPagination',
   'ngFileUpload',
-  'multipleSelect'
+  'multipleSelect',
+  'ui.sortable'
 ])
 .config(['cfpLoadingBarProvider', '$httpProvider', function(cfpLoadingBarProvider, $httpProvider) {
 

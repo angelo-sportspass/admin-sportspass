@@ -11,7 +11,7 @@
 
   	var vm      = this;
     $scope.user = JSON.parse(localStorage.getItem('user'));
-
+     
     $scope.category_list = [];
     $scope.category_selected = "";
     $scope.selected_list = [];

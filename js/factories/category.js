@@ -29,6 +29,21 @@
           return $http.delete(sportspass.baseUrl + '/category/' + id);
          }
 
+         service.categorySort = function(data) {
+
+          // var config = {
+          //     method: 'POST',
+          //     url: sportspass.baseUrl + '/category/category-sort', // /api/upload
+          //     headers: {
+          //       'Content-Type': "application/json"
+          //     },
+          //     data: data
+          // };
+
+          // return $http(config);
+          return $http.post( sportspass.baseUrl + '/category/category-sort', data);
+         }
+
       	 return service;
       }
   })();
