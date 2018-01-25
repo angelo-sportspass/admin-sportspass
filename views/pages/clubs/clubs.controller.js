@@ -58,7 +58,7 @@
         $scope.fileemail  = $scope.clubs.email_header_image;
 
 
-        $scope.fields = JSON.parse($scope.clubs.form);
+        $scope.fields = ($scope.clubs.form) ? JSON.parse($scope.clubs.form) : [];
 
       }, function(response) {
          console.log(response);
