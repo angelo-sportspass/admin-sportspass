@@ -269,6 +269,69 @@ angular
           subtitle: 'Category Edit'
       },
   })
+//
+
+  /**
+   * Retailer State
+   * @return Get All Retailer
+   */
+  .state('app.retailer', {
+    abstract: true,
+    url: '/retailer',
+    defaultChild: 'app.retailer.list',
+    template: '<ui-view></ui-view>',
+
+    //page title goes here
+    ncyBreadcrumb: {
+      label: 'Retailer'
+    },
+
+    params: {
+        subtitle: 'Retailer'
+    }
+  })
+  .state('app.retailer.list', {
+      url: '',
+      templateUrl: 'views/pages/retailer/retailer.html',
+      controller: 'RetailerController',
+      controllerAs: 'retailer',
+      //page title goes here
+      ncyBreadcrumb: {
+          label: 'List',
+      },
+      //page subtitle goes here
+      params: {
+          subtitle: 'Retailer List'
+      },
+  })
+  .state('app.retailer.create', {
+      url: '/create',
+      templateUrl: 'views/pages/retailer/retailer.create.html',
+      controller: 'RetailerController',
+      controllerAs: 'retailer',
+      //page title goes here
+      ncyBreadcrumb: {
+          label: 'Create',
+      },
+      //page subtitle goes here
+      params: {
+          subtitle: 'Retailer Create'
+      },
+  })
+  .state('app.retailer.edit', {
+      url: '/edit/{id}',
+      templateUrl: 'views/pages/retailer/retailer.edit.html',
+      controller: 'RetailerController',
+      controllerAs: 'retailer',
+      //page title goes here
+      ncyBreadcrumb: {
+          label: 'Edit',
+      },
+      //page subtitle goes here
+      params: {
+          subtitle: 'Retailer Edit'
+      },
+  })
 
   /**
    * Clubs State

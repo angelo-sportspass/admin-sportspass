@@ -1,0 +1,53 @@
+<div class="animated fadeIn">
+
+     <div class="row">
+        <div class="col-lg-12">
+        	<h3>Retailers</h3>
+            <div class="card">
+                <div class="card-header">
+                    <i class="fa fa-align-justify"></i> Retailers List
+
+                </div>
+                <div class="card-block">
+
+                    <div class="row">
+                        <div class="col-6">
+                            <ul class="list-group" >
+                              <li class="list-group-item" ng-repeat="retailers in retailersList">
+                                <span class="pull-left">{{ retailers.name }}</span>
+                                <ul class="list-inline pull-right">
+                                    <li class="list-inline-item">
+                                        <a class="nav-link" href="javascript:;" ng-click="editRetailer(retailers.id)" >
+                                            <i class="icon-note"></i>  
+                                        </a>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <a class="nav-link" href="javascript:;" ng-click="deleteRetailer(retailers.id)">
+                                            <i class="icon-trash"></i>  
+                                        </a>
+                                    </li>
+                                </ul>
+                              </li>
+                            </ul>
+                        </div>
+                        <div class="col-6">
+                            <form name="form" ng-submit="saveRetailer(form)" role="form">
+                              <div class="form-group">
+                                  <label for="name">Retailer Name</label>
+                                  <input name="name" type="text" class="form-control" id="name" ng-model="retailer.name"  placeholder="Enter your retailer name">
+                              </div>
+
+                              <div class="row">
+                                  <div class="col-6">
+                                      <button type="submit" class="btn btn-primary px-4" > <i class="icon-lock icons"></i>&nbsp; Create</button>
+                                  </div>
+                              </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--/.col-->
+    </div>
+</div>

@@ -25,7 +25,7 @@
 
       BannerService.getAll().then(function(response) {
         $scope.currentPage = 1;
-        $scope.pageSize    = 50;
+        $scope.pageSize    = 20;
 
         $scope.bannerList = response.data.banners;
         $scope.count      = response.data.count;
@@ -207,7 +207,7 @@
 
     $scope.getAllRetailers = function() {
       RetailerService.getAll().then(function(response) {
-        $scope.retailerList = response.data;
+        $scope.retailerList = response.data.retailers;
       });
     };
 

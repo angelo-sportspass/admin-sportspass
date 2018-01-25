@@ -19,7 +19,8 @@
                             </div>
                         </div>
                     </form>
-                    <table class="table table-striped">
+                    <hr/>
+                    <!-- <table class="table table-striped">
                         <thead>
                             <tr>
                                 <th class="text-center" width="10%">Banner</th>
@@ -31,16 +32,16 @@
                             </tr>
                         </thead>
                         <tbody class="text-center">
-                            <tr dir-paginate = "banners in bannerList | filter: search | itemsPerPage: pageSize" current-page="currentPage" pagination-id="bannerPagination">
+                            <tr dir-paginate = "banners in bannerList | filter: search | itemsPerPage: pageSize" current-page="currentPage" pagination-id="bannerPagination"> -->
                                 <!-- Banner Show Options -->
-                                <td ng-if="banners.type == 'all_pages'">All Page</td>
+                                <!-- <td ng-if="banners.type == 'all_pages'">All Page</td>
                                 <td ng-if="banners.type == 'home_page'">Home Page</td>
                                 <td ng-if="banners.type == 'shop_in_store'">Shop In Store</td>
                                 <td ng-if="banners.type == 'shop_experiences'">Shop Experience</td>
-                                <td ng-if="banners.type == 'shop_local'">Shop Local</td>
+                                <td ng-if="banners.type == 'shop_local'">Shop Local</td> -->
                                 <!-- End -->
 
-                                <td>
+                                <!-- <td>
                                     <img width="30%" src="{{ banners.image }}" class="img-responsive" style="" ng-if="banners.image">
                                     <img width="30%" src="http://ipsumimage.appspot.com/100?l=30px&s=30" class="img-responsive" style="" ng-if="banners.image == ''">
                                 </td>
@@ -83,8 +84,8 @@
                                 </td>
                             </tr>
                         </tbody>
-                    </table>
-                    <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="../../bower_components/angularUtils-pagination/dirPagination.tpl.html" pagination-id="bannerPagination"></dir-pagination-controls>
+                    </table> -->
+                    <!-- <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="../../bower_components/angularUtils-pagination/dirPagination.tpl.html" pagination-id="bannerPagination"></dir-pagination-controls> -->
                     <!-- <ul class="pagination">
                         <li class="page-item"><a class="page-link" href="#">Prev</a>
                         </li>
@@ -100,6 +101,66 @@
                         <li class="page-item"><a class="page-link" href="#">Next</a>
                         </li>
                     </ul> -->
+                    <div class="row">
+                        <div class="col-3 mt-2" dir-paginate = "banners in bannerList | filter: search | itemsPerPage: pageSize" current-page="currentPage" pagination-id="bannerPagination">
+                            <div class="list-wrap text-center clearfix">
+
+                                <span class="badge badge-success pull-left" ng-if="banners.status == 1">Active</span>
+                                <span class="badge badge-danger pull-left" ng-if="banners.status == 0">In Active</span>
+
+                                <ul class="list-inline pull-right">
+                                    <li class="list-inline-item">
+                                        <a class="nav-link" href="javascript:;" ng-click="editBanner(banners.id)">
+                                            <i class="icon-note"></i>  
+                                        </a>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <a class="nav-link" href="javascript:;" ng-click="deleteBanner(banners.id)">
+                                            <i class="icon-trash"></i>  
+                                        </a>
+                                    </li>
+                                </ul>
+                                
+                                <div class="img-wrapper">
+                                    <img src="{{ banners.image }}" width="100%" />
+                                </div>
+
+                                <div class="text-left mt-2">
+                                    Name :
+                                    <p>{{ banners.type }}</p>
+                                </div>
+
+                                <div class="clearfix">
+                                    <span class="pull-left">Show Hot Offer </span>
+                                    <label class="switch switch-text switch-pill switch-success pull-right">
+                                       
+                                       <input type="checkbox" class="switch-input" ng-true-value="1" ng-if="banners.is_hot_offer == 1" ng-model="banners.is_hot_offer" />
+                                        <input type="checkbox" class="switch-input" ng-false-value="1" ng-if="banners.is_hot_offer == 0" ng-model="banners.is_hot_offer" />
+                             
+                                        <span class="switch-label" data-on="On" data-off="Off"></span>
+                                        <span class="switch-handle"></span>
+                                    </label>
+                                </div>
+
+                                <div class="clearfix">
+                                    <span class="pull-left">Show Home Page </span>
+                                    <label class="switch switch-text switch-pill switch-success pull-right">
+
+                                       <input type="checkbox" class="switch-input" ng-true-value="1" ng-if="banners.is_home_page == 1" ng-model="banners.is_home_page" />
+                                        <input type="checkbox" class="switch-input" ng-false-value="1" ng-if="banners.is_home_page == 0" ng-model="banners.is_home_page" />
+                             
+                                        <span class="switch-label" data-on="On" data-off="Off"></span>
+                                        <span class="switch-handle"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 mt-3">
+                            <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="../../bower_components/angularUtils-pagination/dirPagination.tpl.html" pagination-id="bannerPagination"></dir-pagination-controls>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

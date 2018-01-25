@@ -10,7 +10,7 @@
       	 var service = {};
 
       	 service.getAll = function() {
-      	 	return $http.get( sportspass.baseUrl + '/retailer');
+      	 	return $http.get( sportspass.baseUrl + '/retailer/get-retailers');
       	 },
 
          service.getOne = function(id) {

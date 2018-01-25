@@ -21,83 +21,59 @@
                   <div class="tab-content">
                     <!-- details -->
                     <div class="tab-pane active" id="details" role="tabpanel">
-                      <div class="form-group">
-                        <label for="type">Select Banner Type</label>
-                        <input name="type" type="text" class="form-control" id="type" ng-model="banners.type"  placeholder="Enter Name For Search..">
-                       <!--  <select class="form-control" id="type" name="type" ng-model="banners.type">
-                          <option value="">Banner Type..</option>
-                          <option value="all_pages">In All Pages</option>
-                          <option value="home_page">Only In Home Page</option>
-                          <option value="shop_in_store">Only In Shop in Store</option>
-                          <option value="shop_experiences">Only In Shop Experiences</option>
-                          <option value="shop_local">Only In Shop Local</option>                    
-                        </select> -->
-                      </div>
+                      <div class="row">
+                        <div class="col-3">
+                          <div class="form-group">
+                            <label for="image">Banner Image</label>
+                            <div ng-if="file" class="clearfix banner-image-wrapper" >
+                              <img ngf-thumbnail="file" />
+                            </div>
+                            <!-- <input name="image" type="file" class="form-control" id="image" fileread="banners.image" /> -->
+                            <!-- <input type="file" ngf-select ng-model="file" name="file"    
+               accept="image/*" ngf-max-size="256MB"> -->
 
-                      <!-- <div class="form-group">
-                        <label for="program_id">Select Program</label>
+                            <input class="form-control" type="file" ng-model="file" name="file" file></input>
 
-                        <select class="form-control" id="program_id" name="program_id" ng-model="program_id">
-                          <option value="">Select Program..</option>
-                          <option ng-repeat="programs in programList" value="{{programs.id}}">{{programs.name}}</option>
-                        </select>
-                      </div> -->
-
-                      <div class="form-group">
-                          <label for="image">Banner Image</label>
-                          <div ng-if="file" class="clearfix banner-image-wrapper" >
-                            <img ngf-thumbnail="file" />
                           </div>
-                          <!-- <div ng-if="banners.image" class="pre banner-image-wrapper">
-                             <img src="{{ banners.image }}" class="img-responsive" />
-                          </div> -->
-                          <!-- {{ banners.image }} -->
-                          <!-- <input name="image" type="file" class="form-control" id="image" fileread="banners.image" /> -->  
-                          <input class="form-control" type="file" ng-model="file" onchange="angular.element(this).scope().changeImage()" name="image" file></input>
+                        </div>
 
-                      </div>
+                        <div class="col-9">
+                          <div class="form-group">
+                            <label for="type">Banner Name</label>
+                            <input name="type" type="text" class="form-control" id="type" ng-model="banners.type"  placeholder="Enter Name For Search..">
+                           
+                          </div>
 
-                      <div class="form-group">
-                        <label for="program_id">Select Categories</label>
-                        <multiple-autocomplete 
-                           ng-model="selected_list"
-                           suggestions-arr="category_list"
-                           object-property="name"
-                           >
-                        </multiple-autocomplete>
-                      </div>
+                          <div class="form-group">
+                            <label for="name">Banner CTA</label>
+                            <input name="name" type="text" class="form-control" id="name" ng-model="banners.name"  placeholder="Eneter CTA">
+                          </div>
 
-                      <div class="form-group">
-                          <label for="banner_retailer">Add Retailer Name {{ banner_retailer }}</label>
-                          <select class="form-control" id="banner_retailer" name="banner_retailer" ng-model="banner_retailer" ng-init="banner_retailer" ng-options="value.id as value.name for value in retailerList track by value.id"  >
-                            <!-- <option ng-repeat="retailers in retailerList" value="{{ retailers.id }}" >{{ retailers.name }}</option> -->
-                          </select>
-                      </div>
+                          <div class="form-group">
+                            <label for="banner_retailer">Add Retailer Name</label>
+                            <select class="form-control" id="banner_retailer" name="banner_retailer" ng-init="banner_retailer=''" ng-model="banner_retailer">
+                              <option value="">Select Retailer</option>
+                              <option ng-repeat="retailers in retailerList" value="{{ retailers.id }}">{{ retailers.name }}</option>
+                            </select>
+                          </div>
 
-                      <div class="form-group">
-                          <label for="name">Banner CTA</label>
-                          <input name="name" type="text" class="form-control" id="name" ng-model="banners.name"  placeholder="Enter CTA">
-                      </div>
+                          <div class="form-group">
+                            <label for="url">Banner Url</label>
+                            <input name="url" type="text" class="form-control" id="url" ng-model="banners.url"  placeholder="Enter Url">
+                          </div>
 
-                      <div class="form-group">
-                          <label for="url">Banner Url</label>
-                          <input name="url" type="text" class="form-control" id="url" ng-model="banners.url"  placeholder="Enter Url">
-                      </div>
+                          <div class="form-group">
+                            <label for="program_id">Select Categories</label>
+                            <multiple-autocomplete 
+                               ng-model="selected_list"
+                               suggestions-arr="category_list"
+                               object-property="name"
+                               >
+                            </multiple-autocomplete>
+                          
+                          </div>
 
-                      <div class="form-group">
-                        <ul class="list list-inline">
-                          <li class="list-inline-item">Status</li>
-                          <li class="list-inline-item">
-                            <label class="switch switch-text switch-pill switch-primary">
-
-                              <input type="checkbox" class="switch-input" ng-true-value="1" ng-if="banners.status == 1" ng-model="banners.status" />
-                              <input type="checkbox" class="switch-input" ng-false-value="1" ng-if="banners.status == 0" ng-model="banners.status" />
-
-                              <span class="switch-label" data-on="On" data-off="Off"></span>
-                              <span class="switch-handle"></span>
-                            </label>
-                          </li>
-                        </ul>
+                        </div> 
                       </div>
                     </div>
 

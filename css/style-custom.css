@@ -37,7 +37,7 @@
 }
 
 .banner-image-wrapper {
-  width: 20%;
+  /*width: 20%;*/
   padding: 10px;
   clear: both;
   border: 1px solid #ccc;
@@ -46,6 +46,10 @@
 
 .banner-image-wrapper img {
   width: 100%;
+}
+
+#options ul li:first-child {
+  width: 35%;
 }
 
 .table .thead-light th {
@@ -966,6 +970,7 @@ div[as-sortable] {
     background: #fff;
     border-color: #cfd8dc;
     border-bottom-color: #fff;
+    color: #263238; 
 }
 .card-block .nav-tabs .nav-item {
     margin-bottom: -1px;
@@ -998,3 +1003,39 @@ div[as-sortable] {
 .card-block .tiles-list input{
     display:none;
 }
+
+.list-wrap {
+  border:1px solid #E4E5E2;
+  padding: 1rem 0.5rem;
+
+}
+
+.list-wrap span {
+  /*margin-left: 5px;
+  margin-top: 3px;*/
+}
+
+.list-wrap ul {
+  margin-bottom: 0px;
+}
+
+.list-wrap ul li {
+  padding-left: 2px;
+    padding-right: 7px;
+}
+
+.list-wrap ul .list-inline-item:not(:last-child) {
+  margin-right: 0px;
+}
+
+.list-wrap ul li a {
+  padding: 0 0;
+}
+
+.list-wrap img {
+  margin: 0.5rem 0;
+}
+
+
+
+
