@@ -30,23 +30,25 @@
                     <div class="tab-pane active" id="details" role="tabpanel">
                      
                       <div class="row">
-                        <div class="col-6">
-                          <div class="form-group">
-                              <label for="name">Organisation Name</label>
-                              <input name="name" type="text" class="form-control" id="name" ng-model="clubs.name"  placeholder="Enter organisation">
-                          </div>
+                        <div class="col-12">
+                          <div class = "row">
+                            <div class="form-group col-7">
+                                <label for="name">Organisation Name</label>
+                                <input name="name" type="text" class="form-control" id="name" ng-model="clubs.name"  placeholder="Enter organisation">
+                            </div>
 
-                          <div class="form-group">
-                              <label for="club_prefix">Organisation Prefix</label>
-                              <input name="club_prefix" type="text" class="form-control" id="club_prefix" ng-model="clubs.club_prefix"  placeholder="Enter club prefix">
-                          </div>
+                            <div class="form-group col-5">
+                                <label for="club_prefix">Organisation Prefix</label>
+                                <input name="club_prefix" type="text" class="form-control" id="club_prefix" ng-model="clubs.club_prefix"  placeholder="Enter club prefix">
+                            </div>
 
-                          <div class="form-group">
-                              <label for="link">Organisation URL</label>
-                              <input name="link" type="text" class="form-control" id="link" ng-model="clubs.link"  placeholder="Auto Generated.." disabled="">
+                            <div class="form-group col-12">
+                                <label for="link">Organisation URL</label>
+                                <input name="link" type="text" class="form-control" id="link" ng-model="clubs.link"  placeholder="Auto Generated.." disabled="">
+                            </div>
                           </div>
                         </div>
-                        <div class="col-6">
+                        <div class="col-7">
                           <div class="form-group mt-3">
                               <ul class="list list-inline">
                                 <li class="list-inline-item">Show Barcode</li>
@@ -143,11 +145,12 @@
                     <!-- banners -->
                     <div class="tab-pane" id="banners" role="tabpanel">
 
-                       <ul class="list list-inline">
+                       <ul class="list list-inline tiles-list">
                          <!-- <li selected class="list-inline-item" ng-repeat="banners in bannerList" style="width:20%"> -->
-                          <li selected class="list-inline-item"  style="width:20%" dir-paginate = "banners in bannerList | filter: search | itemsPerPage: pageSize" current-page="currentPage" pagination-id="bannerPagination">
-                           <input type="checkbox" ng-model="imgbanner" value="{{ banners.id }}" data-index="{{ $index }}" />
+                          <li selected class="list-inline-item"  style="width:20%;margin-bottom: 10px;" dir-paginate = "banners in bannerList | filter: search | itemsPerPage: pageSize" current-page="currentPage" pagination-id="bannerPagination">
+                           <input class type="checkbox" ng-model="imgbanner" value="{{ banners.id }}" data-index="{{ $index }}" />
                            <img image-selected src="{{ banners.image }}"  class="img-responsive" style="width: 100%" />
+                           <span image-selected>x</span>
                          </li>
                        </ul>
                       

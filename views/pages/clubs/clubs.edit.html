@@ -145,16 +145,18 @@
                          <button type="button" class="btn btn-primary" ng-click="bannersSort()">Sort Banners</button>
                       </div>
 
+                      <hr class="mt-10" />
                       <div class="row">
                         <h4>Banners</h4>
 
-                        <ul class="list list-inline">
+                        <ul class="list list-inline tiles-list">
                          <!-- <li selected class="list-inline-item" ng-repeat="banners in bannerList" style="width:20%"> -->
-                          <li selected class="list-inline-item"  style="width:20%" dir-paginate = "banners in bannerList | filter: search | itemsPerPage: pageSize" current-page="currentPage" pagination-id="bannerPagination">
-                           <input type="checkbox" ng-model="imgbanner" value="{{ banners.id }}" data-index="{{ $index }}" />
+                          <li selected class="list-inline-item"  style="width:20%;margin-bottom: 10px;" dir-paginate = "banners in bannerList | filter: search | itemsPerPage: pageSize" current-page="currentPage" pagination-id="bannerPagination">
+                           <input class type="checkbox" ng-model="imgbanner" value="{{ banners.id }}" data-index="{{ $index }}" />
                            <img image-selected src="{{ banners.image }}"  class="img-responsive" style="width: 100%" />
-                          </li>
-                        </ul>
+                           <span image-selected>x</span>
+                         </li>
+                       </ul>
                       
                         <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="../../bower_components/angularUtils-pagination/dirPagination.tpl.html" pagination-id="bannerPagination"></dir-pagination-controls>
 

@@ -360,10 +360,12 @@ function imageSelected() {
 
       if (angular.element(element).hasClass('selected')) {
 
+
         angular.element(element).removeClass('selected');
         angular.element(element).prev().prop('checked', false);
         angular.element(element).prev().attr('ng-false-value', 1);
         angular.element(element).prev().removeAttr('ng-true-value');
+        angular.element(element).next().removeClass('appear');
 
         scope.imgbanner.splice(angular.element(element).prev().data('index'), 1);
 
@@ -373,6 +375,7 @@ function imageSelected() {
         angular.element(element).prev().prop('checked', true);
         angular.element(element).prev().attr('ng-true-value', 1);
         angular.element(element).prev().removeAttr('ng-false-value');
+        angular.element(element).next().addClass('appear');
 
         scope.imgbanner.push(angular.element(element).prev().val());
       }

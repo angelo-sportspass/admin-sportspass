@@ -958,3 +958,43 @@ div[as-sortable] {
 .glyphicon-menu-up:before {
   content: "\e260";
 }
+.card-block .nav-tabs .nav-link {
+    color: #fff;
+    background-color: #5CCBF4; 
+}
+.card-block .nav-tabs .nav-link.active{
+    background: #fff;
+    border-color: #cfd8dc;
+    border-bottom-color: #fff;
+}
+.card-block .nav-tabs .nav-item {
+    margin-bottom: -1px;
+    margin-left: 2px;
+    margin-right: 2px;
+}
+.card-block .tiles-list li{
+    position: relative;
+}
+.card-block .tiles-list li span {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    color: #fff;
+    background-color: #5CCBF4;
+    padding: 0px 9px 2px;
+    border-radius: 100%;
+    font-size: 18px;
+    font-weight: bold;
+    display:none;
+}
+.card-block .tiles-list li span.appear {
+    display:block;
+}
+.card-block .tiles-list img.selected {
+    border: 5px solid #5CCBF4;
+    border-radius:5px;
+}
+
+.card-block .tiles-list input{
+    display:none;
+}
