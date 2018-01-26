@@ -6,13 +6,13 @@
     .controller('ClubsController', ClubsController);
 
   /** @ngInject */
-  ClubsController.$inject = ['ClubsService', 'BannerService', '$rootScope', '$scope', '$http', '$window', '$state', '$stateParams', 'aws'];
-  function ClubsController(ClubsService, BannerService, $rootScope, $scope, $http, $window, $state, $stateParams, aws) {
+  ClubsController.$inject = ['ClubsService', 'BannerService', '$rootScope', '$scope', '$http', '$window', '$state', '$stateParams', 'aws', 'fields'];
+  function ClubsController(ClubsService, BannerService, $rootScope, $scope, $http, $window, $state, $stateParams, aws, fields) {
 
   	var vm = this;
 
     $scope.newField = {};
-    $scope.fields = [ ];
+    $scope.fields = fields.default;
 
     $scope.sortBanner = [];
     $scope.imgbanner = [];
@@ -58,7 +58,7 @@
         $scope.fileemail  = $scope.clubs.email_header_image;
 
 
-        $scope.fields = ($scope.clubs.form) ? JSON.parse($scope.clubs.form) : [];
+        $scope.fields = ($scope.clubs.form != 'null') ? JSON.parse($scope.clubs.form) : [];
 
       }, function(response) {
          console.log(response);
@@ -88,13 +88,30 @@
     };
 
     $scope.saveClub = function(form) {
-
+      
       var clubs = angular.copy($scope.clubs);
+      var filelogo = '';
+      var filebanner = '';
+      var filefront = '';
+      var fileemail = '';
 
-      var filelogo   = $scope.upload($scope.filelogo, 'create');
-      var filebanner = $scope.upload($scope.filebanner, 'create');
-      var filefront  = $scope.upload($scope.filefront, 'create');
-      var fileemail  = $scope.upload($scope.fileemail, 'create');
+      if ($scope.filelogo) {
+        filelogo   = $scope.upload($scope.filelogo, 'create');
+      }
+
+      if ($scope.filebanner) {
+        filebanner = $scope.upload($scope.filebanner, 'create');
+      }
+
+      if ($scope.filefront) {
+        filefront  = $scope.upload($scope.filefront, 'create');
+      }
+      
+      if ($scope.fileemail) {
+        fileemail  = $scope.upload($scope.fileemail, 'create');
+      }
+
+      var formFields =  Object.keys($scope.fields).length > 0 ? JSON.stringify($scope.fields) : '';
 
       var data = {
         logo : filelogo,
@@ -110,7 +127,7 @@
         sport_name: clubs.sport_name,
         officer: clubs.officer,
         officer_position: clubs.officer,
-        form: JSON.stringify($scope.fields)
+        form: formFields
       };
 
       ClubsService.create(data).then(function(response) {
@@ -146,6 +163,8 @@
       if ($scope.isEmailChange == 1) {
         var fileemail  = $scope.upload($scope.fileemail, 'create');
       }
+
+      var formFields =  Object.keys($scope.fields).length > 0 ? JSON.stringify($scope.fields) : '';
       
       var data = {
         logo : filelogo,
@@ -161,7 +180,7 @@
         sport_name: clubs.sport_name,
         officer: clubs.officer,
         officer_position: clubs.officer,
-        form: JSON.stringify($scope.fields)
+        form: formFields
       };
 
       if ($scope.isLogoChange == 0) {
@@ -347,6 +366,27 @@
 
       return type;
     }
+
+    $scope.sortableOptions = {
+      update: function(e, ui) {
+       
+      },
+      stop: function(e, ui) {
+        // this callback has the changed model
+        var data = [];
+        $scope.clubBanners.map(function(i, index){
+
+           data.push({club_id: $state.params.id, banner_id: i.id, sort_order: index});
+           // console.log(i.id + '-' + $state.params.id + '-' + index);
+        });
+        
+        // console.log(data);
+        // return false;
+        ClubsService.clubBannersSort(JSON.stringify(data)).then(function(response){
+          console.log(response);
+        });
+      }
+    };
 
     $scope.bannersSort = function() {
       

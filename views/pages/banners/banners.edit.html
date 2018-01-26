@@ -86,8 +86,12 @@
                           <li class="list-inline-item">
                             <label class="switch switch-text switch-pill switch-primary">
 
-                              <input type="checkbox" class="switch-input" ng-true-value="1" ng-if="banners.is_new_tab == 1" ng-model="banners.is_new_tab" />
-                              <input type="checkbox" class="switch-input" ng-false-value="1" ng-if="banners.is_new_tab == 0" ng-model="banners.is_new_tab" />
+                             <!--  <input type="checkbox" class="switch-input" ng-true-value="1" ng-if="banners.is_new_tab == 1" ng-model="banners.is_new_tab" />
+                              <input type="checkbox" class="switch-input" ng-false-value="1" ng-if="banners.is_new_tab == 0" ng-model="banners.is_new_tab" /> -->
+
+                              <input type="checkbox" class="switch-input" ng-if="banners.is_new_tab == 1"  ng-model="banners.is_new_tab"  ng-true-value="true" ng-false-value="false" ng-init='banners.is_new_tab=true' ng-checked='true'  />
+
+                              <input type="checkbox" class="switch-input" ng-if="banners.is_new_tab == 0" ng-model="banners.is_new_tab"  ng-true-value="true" ng-false-value="false" ng-init='banners.is_new_tab=false' ng-checked='false' />
                               
                               <span class="switch-label" data-on="On" data-off="Off"></span>
                               <span class="switch-handle"></span>
@@ -102,8 +106,12 @@
                           <li class="list-inline-item">
                             <label class="switch switch-text switch-pill switch-primary">
                            
-                              <input type="checkbox" class="switch-input" ng-true-value="1" ng-if="banners.is_hot_offer == 1" ng-model="banners.is_hot_offer" />
-                              <input type="checkbox" class="switch-input" ng-false-value="1" ng-if="banners.is_hot_offer == 0" ng-model="banners.is_hot_offer" />
+                              <!-- <input type="checkbox" class="switch-input" ng-true-value="1" ng-if="banners.is_hot_offer == 1" ng-model="banners.is_hot_offer" />
+                              <input type="checkbox" class="switch-input" ng-false-value="1" ng-if="banners.is_hot_offer == 0" ng-model="banners.is_hot_offer" /> -->
+
+                              <input type="checkbox" class="switch-input" ng-if="banners.is_hot_offer == 1"  ng-model="banners.is_hot_offer"  ng-true-value="true" ng-false-value="false" ng-init='banners.is_hot_offer=true' ng-checked='true'  />
+
+                              <input type="checkbox" class="switch-input" ng-if="banners.is_hot_offer == 0" ng-model="banners.is_hot_offer"  ng-true-value="true" ng-false-value="false" ng-init='banners.is_hot_offer=false' ng-checked='false' />
 
                               <span class="switch-label" data-on="On" data-off="Off"></span>
                               <span class="switch-handle"></span>
@@ -118,8 +126,12 @@
                           <li class="list-inline-item">
                             <label class="switch switch-text switch-pill switch-primary">
                             
-                              <input type="checkbox" class="switch-input" ng-true-value="1" ng-if="banners.is_home_page == 1" ng-model="banners.is_home_page" />
-                              <input type="checkbox" class="switch-input" ng-false-value="1" ng-if="banners.is_home_page == 0" ng-model="banners.is_home_page" />
+                              <!-- <input type="checkbox" class="switch-input" ng-true-value="1" ng-if="banners.is_home_page == 1" ng-model="banners.is_home_page" />
+                              <input type="checkbox" class="switch-input" ng-false-value="1" ng-if="banners.is_home_page == 0" ng-model="banners.is_home_page" /> -->
+
+                              <input type="checkbox" class="switch-input" ng-if="banners.is_home_page == 1"  ng-model="banners.is_home_page"  ng-true-value="true" ng-false-value="false" ng-init='banners.is_home_page=true' ng-checked='true'  />
+
+                              <input type="checkbox" class="switch-input" ng-if="banners.is_home_page == 0" ng-model="banners.is_home_page"  ng-true-value="true" ng-false-value="false" ng-init='banners.is_home_page=false' ng-checked='false' />
 
                               <span class="switch-label" data-on="On" data-off="Off"></span>
                               <span class="switch-handle"></span>
@@ -134,8 +146,12 @@
                           <li class="list-inline-item">
                             <label class="switch switch-text switch-pill switch-primary">
                               
-                              <input type="checkbox" class="switch-input" ng-true-value="1" ng-if="banners.is_trending_offers == 1" ng-model="banners.is_trending_offers" />
-                              <input type="checkbox" class="switch-input" ng-false-value="1" ng-if="banners.is_trending_offers == 0" ng-model="banners.is_trending_offers" />
+                              <!-- <input type="checkbox" class="switch-input" ng-true-value="1" ng-if="banners.is_trending_offers == 1" ng-model="banners.is_trending_offers" />
+                              <input type="checkbox" class="switch-input" ng-false-value="1" ng-if="banners.is_trending_offers == 0" ng-model="banners.is_trending_offers" /> -->
+
+                              <input type="checkbox" class="switch-input" ng-if="banners.is_trending_offers == 1"  ng-model="banners.is_trending_offers"  ng-true-value="true" ng-false-value="false" ng-init='banners.is_trending_offers=true' ng-checked='true'  />
+
+                              <input type="checkbox" class="switch-input" ng-if="banners.is_trending_offers == 0" ng-model="banners.is_trending_offers"  ng-true-value="true" ng-false-value="false" ng-init='banners.is_trending_offers=false' ng-checked='false' />
 
                               <span class="switch-label" data-on="On" data-off="Off"></span>
                               <span class="switch-handle"></span>
@@ -150,8 +166,13 @@
                           <li class="list-inline-item">
                             <label class="switch switch-text switch-pill switch-primary">
                               
-                              <input type="checkbox" class="switch-input" ng-true-value="1" ng-if="banners.is_trending_experiences == 1" ng-model="banners.is_trending_experiences" />
-                              <input type="checkbox" class="switch-input" ng-false-value="1" ng-if="banners.is_trending_experiences == 0" ng-model="banners.is_trending_experiences" />
+                              <!-- <input type="checkbox" class="switch-input" ng-true-value="1" ng-if="banners.is_trending_experiences == 1" ng-model="banners.is_trending_experiences" />
+                              <input type="checkbox" class="switch-input" ng-false-value="1" ng-if="banners.is_trending_experiences == 0" ng-model="banners.is_trending_experiences" /> -->
+
+                              <input type="checkbox" class="switch-input" ng-if="banners.is_trending_experiences == 1"  ng-model="banners.is_trending_experiences"  ng-true-value="true" ng-false-value="false" ng-init='banners.is_trending_experiences=true' ng-checked='true'  />
+
+                              <input type="checkbox" class="switch-input" ng-if="banners.is_trending_experiences == 0" ng-model="banners.is_trending_experiences"  ng-true-value="true" ng-false-value="false" ng-init='banners.is_trending_experiences=false' ng-checked='false' />
+
 
                               <span class="switch-label" data-on="On" data-off="Off"></span>
                               <span class="switch-handle"></span>
@@ -166,8 +187,9 @@
                           <li class="list-inline-item">
                             <label class="switch switch-text switch-pill switch-primary">
                           
-                              <input type="checkbox" class="switch-input" ng-true-value="1" ng-if="banners.is_default == 1" ng-model="banners.is_default" />
-                              <input type="checkbox" class="switch-input" ng-false-value="1" ng-if="banners.is_default == 0" ng-model="banners.is_default" />
+                              <input type="checkbox" class="switch-input" ng-if="banners.is_default == 1"  ng-model="banners.is_default"  ng-true-value="true" ng-false-value="false" ng-init='banners.is_default=true' ng-checked='true'  />
+
+                              <input type="checkbox" class="switch-input" ng-if="banners.is_default == 0" ng-model="banners.is_default"  ng-true-value="true" ng-false-value="false" ng-init='banners.is_default=false' ng-checked='false' />
 
                               <span class="switch-label" data-on="On" data-off="Off"></span>
                               <span class="switch-handle"></span>

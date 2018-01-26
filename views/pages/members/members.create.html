@@ -2,99 +2,137 @@
      <div class="row">
       <div class="col-lg-12">
         <h3>Members Create</h3>
-          <div class="card">
+          <form name="form" ng-submit="saveMember(form)" role="form">
+            <div class="card">
               <div class="card-header">
-                  <strong>Members</strong>
-                  <small>detail</small>
+                <strong>Member</strong>
+                <div class="col-4 pull-right">
+                  <div class="form-group mb-0">
+                    <select class="form-control" id="members.club_id" name="members.club_id" ng-init="members.club_id=''" ng-model="members.club_id">
+                      <option value="">Select Organisation.</option>
+                      <option ng-repeat="clubs in clubList" value="{{clubs.id}}">{{clubs.name}}</option>
+                    </select>
+                  </div>
+                </div>
               </div>
               <div class="card-block">
-                <form name="form" ng-submit="saveMember(form)" role="form">
+                
+                <div class="row">
+                  <div class="col-3">
+                    <div class="form-group">
+                      <label for="image">Upload Image</label>
+                      <div ng-if="file" class="clearfix banner-image-wrapper" >
+                        <img ngf-thumbnail="file" />
+                      </div>
+                      <input class="form-control" type="file" ng-model="file" name="file" file></input>
+                    </div>
+                  </div>
 
-                  <div class="form-group">
+                  <div class="col-9">
+                    <div class="form-group">
                       <label for="email">Email</label>
                       <input name="email" type="email" class="form-control" id="email" ng-model="members.email" placeholder="Email">
-                  </div>
+                    </div>
 
-                  <div class="form-group">
+                    <div class="form-group">
                       <label for="first_name">First Name</label>
                       <input name="first_name" type="text" class="form-control" id="first_name" ng-model="members.first_name"  placeholder="Enter first name">
-                  </div>
+                    </div>
 
-                  <div class="form-group">
+                    <div class="form-group">
                       <label for="last_name">Last Name</label>
                       <input name="last_name" type="text" class="form-control" id="last_name" ng-model="members.last_name"  placeholder="Enter Last name">
+                    </div>
                   </div>
+                </div>
 
-                   <div class="form-group clearfix">
-                    <label for="dob">Date Of Birth</label>
 
-                    <datepicker date-format="yyyy-MM-dd" selector="form-control">
-                      <input ng-model="members.dob" type="text" class="form-control" name="dob" id="dob" placeholder="Enter your date of birth"/>
-                    </datepicker>
-                  </div>
-                 
+                <div class="row">
 
-                 <div class="form-group">
-                      <label for="member_number">Member Number</label>
-                      <input name="member_number" type="text" class="form-control" id="member_number" ng-model="members.member_number"  placeholder="Enter Member Number">
-                  </div>
+                  <div class="col-6">
+                    <div class="form-group clearfix">
+                      <label for="dob">Date Of Birth</label>
 
-                  <div class="form-group">
-                      <label for="member_season">Member Season</label>
-                      <input name="member_season" type="text" class="form-control" id="member_season" ng-model="members.member_season"  placeholder="Enter Member Season">
-                  </div>
-
-                  <div class="form-group">
-                      <label for="member_type">Member Type</label>
-                      <input name="member_type" type="text" class="form-control" id="member_type" ng-model="members.member_type"  placeholder="Enter Member Type">
-                  </div>
-
-                  <div class="form-group">
-                      <label for="sports_name">Sports Name</label>
-                      <input name="sports_name" type="text" class="form-control" id="sports_name" ng-model="members.sports_name"  placeholder="Enter Sports Name">
-                  </div>
-
-                  <div class="form-group">
-                      <label for="sports_season">Sports Season</label>
-                      <input name="sports_season" type="text" class="form-control" id="sports_season" ng-model="members.sports_season"  placeholder="Enter Sports Season">
-                  </div>
-
-                  <div class="form-group">
-                      <label for="financial_status">Financial Status</label>
-                      <input name="financial_status" type="text" class="form-control" id="financial_status" ng-model="members.financial_status"  placeholder="Enter Financial Status">
-                  </div>
-
-                  <div class="form-group">
-                      <label for="fire_arm_license">Fire Arm License</label>
-                      <input name="fire_arm_license" type="text" class="form-control" id="fire_arm_license" ng-model="members.fire_arm_license"  placeholder="Enter Fire Arm License">
-                  </div>
-
-                  <div class="form-group">
-                      <label for="fire_arm_license_expiry">Fire Arm License Expiry</label>
-                      <!-- <input name="fire_arm_license_expiry" type="text" class="form-control" id="fire_arm_license_expiry" ng-model="members.fire_arm_license_expiry"  placeholder="Enter Fire Arm License Expiry"> -->
                       <datepicker date-format="yyyy-MM-dd" selector="form-control">
-                        <input ng-model="members.fire_arm_license_expiry" type="text" class="form-control" name="fire_arm_license_expiry" id="fire_arm_license_expiry" placeholder="Enter Fire Arm License Expiry"/>
+                        <input ng-model="members.dob" type="text" class="form-control" name="dob" id="dob" placeholder="Enter your date of birth"/>
                       </datepicker>
+                    </div>
+                   
+
+                   <div class="form-group">
+                        <label for="member_number">Member Number</label>
+                        <input name="member_number" type="text" class="form-control" id="member_number" ng-model="members.member_number"  placeholder="Enter Member Number">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="member_season">Member Season</label>
+                        <input name="member_season" type="text" class="form-control" id="member_season" ng-model="members.member_season"  placeholder="Enter Member Season">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="member_type">Member Type</label>
+                        <input name="member_type" type="text" class="form-control" id="member_type" ng-model="members.member_type"  placeholder="Enter Member Type">
+                    </div>
                   </div>
 
-                  <div class="form-group">
+                  <div class="col-6">
+                    <div class="form-group">
+                        <label for="sports_name">Sports Name</label>
+                        <input name="sports_name" type="text" class="form-control" id="sports_name" ng-model="members.sports_name"  placeholder="Enter Sports Name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="sports_season">Sports Season</label>
+                        <input name="sports_season" type="text" class="form-control" id="sports_season" ng-model="members.sports_season"  placeholder="Enter Sports Season">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="financial_status">Financial Status</label>
+                        <input name="financial_status" type="text" class="form-control" id="financial_status" ng-model="members.financial_status"  placeholder="Enter Financial Status">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fire_arm_license">Fire Arm License</label>
+                        <input name="fire_arm_license" type="text" class="form-control" id="fire_arm_license" ng-model="members.fire_arm_license"  placeholder="Enter Fire Arm License">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fire_arm_license_expiry">Fire Arm License Expiry</label>
+                        <!-- <input name="fire_arm_license_expiry" type="text" class="form-control" id="fire_arm_license_expiry" ng-model="members.fire_arm_license_expiry"  placeholder="Enter Fire Arm License Expiry"> -->
+                        <datepicker date-format="yyyy-MM-dd" selector="form-control">
+                          <input ng-model="members.fire_arm_license_expiry" type="text" class="form-control" name="fire_arm_license_expiry" id="fire_arm_license_expiry" placeholder="Enter Fire Arm License Expiry"/>
+                        </datepicker>
+                    </div>
+                  </div>
+
+                </div>
+
+               <hr/>
+                <div class="row">
+                  <div class="col-6">
+                     <div class="form-group">
                       <label for="batch">Batch</label>
                       <input name="batch" type="text" class="form-control" id="batch" ng-model="members.batch"  placeholder="Enter Batch">
+                    </div>
                   </div>
-
-                  <div class="form-group">
+                  <div class="col-6">
+                    <div class="form-group">
                       <label for="sub_batch">Sub Batch</label>
                       <input name="sub_batch" type="text" class="form-control" id="sub_batch" ng-model="members.sub_batch"  placeholder="Enter Sub Batch">
-                  </div>
+                    </div>
 
+                  </div>
+                </div>
+                 
                   <div class="row">
                       <div class="col-6">
-                          <button type="submit" class="btn btn-primary px-4" >Save</button>
+                          <button type="submit" class="btn btn-primary px-4" ><i class="icon-lock icons"></i>&nbsp;Save</button>
                       </div>
                   </div>
                 </form>
               </div>
           </div>
+        </form>
       </div>
     </div>
 </div>

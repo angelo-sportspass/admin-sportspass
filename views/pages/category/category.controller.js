@@ -6,8 +6,8 @@
     .controller('CategoryController', CategoryController);
 
   /** @ngInject */
-  CategoryController.$inject = ['CategoryService', '$rootScope', '$scope', '$http', '$window', '$state', '$stateParams'];
-  function CategoryController(CategoryService, $rootScope, $scope, $http, $window, $state, $stateParams) {
+  CategoryController.$inject = ['CategoryService', '$rootScope', '$scope', '$http', '$window', '$state', '$stateParams', '$timeout', '$uibModal'];
+  function CategoryController(CategoryService, $rootScope, $scope, $http, $window, $state, $stateParams, $timeout, $uibModal) {
 
   	var vm = this;
     // $scope.bannerOptions = ['all_pages', 'home_page', 'shop_in_store', 'shop_experience', 'shop_local'];
@@ -46,7 +46,9 @@
     $scope.deleteCategory = function (id) {
 
       CategoryService.delete(id);
-      $state.go($state.current, {}, {reload: true});
+      $timeout( function(){
+         $state.go($state.current, {}, {reload: true});
+      }, 1000 );
       vm.categories();
       //@todo remove element from the table
     };
@@ -101,6 +103,27 @@
         });
       }
     };
+
+    $scope.open = function() {
+    
+       var modalInstance = $uibModal.open({
+        animation: true,
+        keyboard: false,
+        templateUrl: 'categorymodal.html',
+        size: 'sm',
+        // resolve: {
+        //   items: function () {
+        //     return '';
+        //   }
+        // }
+      });
+
+       modalInstance.result.then(function (selectedItem) {
+          
+        }, function () {
+       
+        });
+    }
 
     if ($state.params.id) {
        $scope.getCategory($state.params.id);

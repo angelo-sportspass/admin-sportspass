@@ -6,10 +6,11 @@
     .controller('MembersController', MembersController);
 
   /** @ngInject */
-  MembersController.$inject = ['MemberService', '$rootScope', '$scope', '$http', '$window', '$state', '$stateParams'];
-  function MembersController(MemberService, $rootScope, $scope, $http, $window, $state, $stateParams) {
+  MembersController.$inject = ['MemberService', 'ClubsService', '$rootScope', '$scope', '$http', '$window', '$state', '$stateParams'];
+  function MembersController(MemberService, ClubsService, $rootScope, $scope, $http, $window, $state, $stateParams) {
 
   	var vm = this;
+    $scope.clubName = '';
     
     vm.members = function() {
       MemberService.getAll().then(function(response) {
@@ -26,6 +27,14 @@
 
       MemberService.getOne(id).then(function(response){
         $scope.members = response.data;
+
+        ClubsService.getOne($scope.members.club_id).then(function(response){
+
+          $scope.clubName = response.data.name;
+         
+        }, function(response) {
+           console.log(response);
+        });
       }, function(response) {
          $state.go('app.members.list');
          console.log(response);
@@ -80,6 +89,17 @@
       });
 
     };
+
+
+    $scope.getClubList = function () {
+
+      ClubsService.getAll().then(function(response) {
+        $scope.clubList = response.data.clubs;
+      });
+
+    };
+
+    $scope.getClubList();
 
     if ($state.params.id) {
        $scope.getMember($state.params.id);

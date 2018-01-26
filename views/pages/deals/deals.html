@@ -7,7 +7,7 @@
                 <div class="card-header">
                     <i class="fa fa-align-justify"></i> Deals List
 
-                    <button type="button" class="btn btn-outline-success pull-right" ui-sref="app.deals.create"><i class="fa fa-plus"></i> Create</button>
+                    <button type="button" class="btn btn-primary pull-right" ui-sref="app.deals.create"><i class="fa fa-plus-square-o"></i> Create</button>
                 </div>
                 <div class="card-block">
 
@@ -20,7 +20,7 @@
                         </div>
                     </form>
         
-                    <table class="table table-striped">
+                    <!-- <table class="table table-striped">
                         <thead>
                             <tr>
                                 <th>ID</th>
@@ -65,7 +65,7 @@
                             </tr>
                         </tbody>
                     </table>
-                    <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="../../bower_components/angularUtils-pagination/dirPagination.tpl.html" pagination-id="dealsPagination"></dir-pagination-controls>
+                    <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="../../bower_components/angularUtils-pagination/dirPagination.tpl.html" pagination-id="dealsPagination"></dir-pagination-controls> -->
                     <!-- <ul class="pagination">
                         <li class="page-item"><a class="page-link" href="#">Prev</a>
                         </li>
@@ -81,6 +81,56 @@
                         <li class="page-item"><a class="page-link" href="#">Next</a>
                         </li>
                     </ul> -->
+
+                    <div class="row">
+                        <div class="col-3 mt-2" dir-paginate = "deals in dealList | filter: search | itemsPerPage: pageSize" current-page="currentPage" pagination-id="dealsPagination">
+                            <div class="list-wrap text-center clearfix">
+
+                                <span class="badge badge-success pull-left" ng-if="deals.status == 1">Active</span>
+                                <span class="badge badge-danger pull-left" ng-if="deals.status == 0">In Active</span>
+
+                                <ul class="list-inline pull-right">
+                                    <li class="list-inline-item">
+                                        <a class="nav-link" href="javascript:;" ng-click="editDeals(deals.id)">
+                                            <i class="icon-note"></i>  
+                                        </a>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <a class="nav-link" href="javascript:;" ng-click="deleteDeals(deals.id)">
+                                            <i class="icon-trash"></i>  
+                                        </a>
+                                    </li>
+                                </ul>
+                                
+                                <div class="img-wrapper">
+                                    <img src="{{ deals.image }}" width="100%" />
+                                </div>
+
+                                <div class=" mt-2">
+                                    <strong>{{ deals.name }}</strong>
+                                </div>
+
+                                <div class="row text-left">
+                                    <span class="col-6 ">Expiry </span>
+                                    <div class="col-6 bg-gray-300">{{ deals.days + ', ' + deals.hours + ' , ' + deals.minutes }}</div>
+                                </div>
+
+                                <div class="row text-left">
+                                    <span class="col-6">Redeemed </span>
+                                    <div class="col-6 bg-secondary">123</div>
+                                </div>
+                                <div class="row text-left">
+                                    <span class="col-6">Deal URL </span>
+                                    <div class="col-6 bg-secondary">test.com</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 mt-3">
+                            <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="../../bower_components/angularUtils-pagination/dirPagination.tpl.html" pagination-id="dealsPagination"></dir-pagination-controls>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

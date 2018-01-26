@@ -6,8 +6,8 @@
     .controller('RetailerController', RetailerController);
 
   /** @ngInject */
-  RetailerController.$inject = ['RetailerService', '$rootScope', '$scope', '$http', '$window', '$state', '$stateParams'];
-  function RetailerController(RetailerService, $rootScope, $scope, $http, $window, $state, $stateParams) {
+  RetailerController.$inject = ['RetailerService', '$rootScope', '$scope', '$http', '$window', '$state', '$stateParams', '$timeout'];
+  function RetailerController(RetailerService, $rootScope, $scope, $http, $window, $state, $stateParams, $timeout) {
 
   	var vm = this;
    
@@ -45,8 +45,9 @@
     $scope.deleteRetailer = function (id) {
 
       RetailerService.delete(id);
-      $scope.retailersList = {};
-      $state.go($state.current, {}, {reload: true});
+       $timeout( function(){
+         $state.go($state.current, {}, {reload: true});
+      }, 1000 );
       vm.retailers();
       //@todo remove element from the table
     };

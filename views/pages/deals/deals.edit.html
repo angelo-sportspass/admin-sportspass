@@ -9,57 +9,81 @@
               </div>
               <div class="card-block">
                 <form name="form" ng-submit="updateDeals(form, deals.id)" role="form">
+<div class="row">
+                    <div class="col-3">
 
-                  <div class="form-group">
-                      <label for="name">Deal Name</label>
-                      <input name="name" type="text" class="form-control" id="name" ng-model="deals.name"  placeholder="Enter deals name">
-                  </div>
-
-                  <div class="form-group">
-                      <label for="description">Deascription</label>
-                      <textarea id="description" name="description" ng-model="deals.description" rows="9" class="form-control" ng-attr-placeholder="Descriptio"></textarea>
-                  </div>
-
-                  <div class="form-group">
-                      <label for="image">Deals Image</label>
-                       <div ng-if="file" class="clearfix banner-image-wrapper" >
+                      <div class="form-group">
+                        <label for="image">Deals Image</label>
+                        <div ng-if="file" class="clearfix banner-image-wrapper" >
                           <img ngf-thumbnail="file" />
                         </div>
-                          <!-- <input name="image" type="file" class="form-control" id="image" fileread="banners.image" /> -->
-                          <!-- <input type="file" ngf-select ng-model="file" name="file"    
-             accept="image/*" ngf-max-size="256MB"> -->
 
-                        <input class="form-control" type="file" ng-model="file" name="file" onchange="angular.element(this).scope().dealsImage()" file></input>
+                        <input class="form-control" type="file" ng-model="file" name="file" file></input>
 
-                  </div>
-
-                  <div class="form-group row">
-                      <div class="col-md-2">
-                        <label for="">Time : </label>
                       </div>
-                      
-                      <div class="col-md-9">
-                        <label for="days">Days</label>
-                        <input name="days" type="text" class="form-control" id="days" ng-model="deals.days"  placeholder="Enter Days">
 
-                        <label for="hours">Hours</label>
-                        <input name="hours" type="text" class="form-control" id="hours" ng-model="deals.hours"  placeholder="Enter Hours">
-
-                        <label for="minutes">Minutes</label>
-                        <input name="minutes" type="text" class="form-control" id="minutes" ng-model="deals.minutes"  placeholder="Enter Minutes">
+                    </div>
+                    <div class="col-9">
+                      <div class="form-group">
+                          <label for="name">Deal Name</label>
+                          <input name="name" type="text" class="form-control" id="name" ng-model="deals.name"  placeholder="Enter deals name">
                       </div>
-                      
-                  </div>
 
-                  <div class="form-group">
-                      <label for="button_title">Buttin Title</label>
-                      <input type="text" id="button_title" name="button_title" ng-model="deals.button_title" rows="9" class="form-control" >
-                  </div>
-
-                  <div class="row">
-                      <div class="col-6">
-                          <button type="submit" class="btn btn-primary px-4" >Update</button>
+                      <div class="form-group">
+                          <label for="description">Deascription</label>
+                          <textarea id="description" name="description" ng-model="deals.description" rows="9" class="form-control" ng-attr-placeholder="Descriptio"></textarea>
                       </div>
+
+                      <div class="form-group row">
+                          <div class="col-md-2">
+                            <label for="">Expiry : </label>
+                          </div>
+                          
+                          <div class="col-md-3">
+                            <div class="input-group">
+                              <span class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-clock-o fa-lg"></i></span>
+                              </span>
+                              <input name="hours" type="text" class="form-control" id="hours" ng-model="deals.hours"  placeholder="Enter Hours">
+                            </div>
+                          </div>
+
+                          <div class="col-md-3">
+                            <input name="minutes" type="text" class="form-control" id="minutes" ng-model="deals.minutes"  placeholder="Enter Minutes">
+                          </div>
+
+                          <div class="col-md-3">
+                            <div class="input-group">
+                              <span class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-calendar fa-lg"></i></span>
+                              </span>
+                               <input name="days" type="text" class="form-control" id="days" ng-model="deals.days"  placeholder="Enter Days">
+                            </div>
+                          </div>
+
+
+                           <!--  <label for="days">Days</label>
+                            <input name="days" type="text" class="form-control" id="days" ng-model="deals.days"  placeholder="Enter Days">
+
+                            <label for="hours">Hours</label>
+                            <input name="hours" type="text" class="form-control" id="hours" ng-model="deals.hours"  placeholder="Enter Hours">
+
+                            <label for="minutes">Minutes</label>
+                            <input name="minutes" type="text" class="form-control" id="minutes" ng-model="deals.minutes"  placeholder="Enter Minutes">
+                           -->
+                          
+                      </div>
+                      <div class="form-group">
+                        <label for="button_title">Button Title</label>
+                        <input type="text" id="button_title" name="button_title" ng-model="deals.button_title" rows="9" class="form-control" >
+                      </div>
+                      <div class="row">
+                        <div class="col-6">
+                            <button type="submit" class="btn btn-primary px-4" > <i class="icon-lock icons"></i>&nbsp; Update</button>
+                        </div>
+                      </div>
+
+                    </div>
                   </div>
                 </form>
               </div>

@@ -30,7 +30,11 @@
          }
 
          service.getClubBanners = function(id) {
-          return $http.get( sportspass.baseUrl + '/club/get-club-banners/' + id);
+          return $http.get( sportspass.baseUrl + '/club/club-banners/' + id);
+         }
+
+         service.clubBannersSort = function(data) {
+          return $http.post( sportspass.baseUrl + '/club/sort-club-banners', data);
          }
 
          service.createClub = function(data) {
