@@ -21,5 +21,5 @@ angular
 
         var vm = this;
 
-        vm.default = [{"type":"text","label":"Last Name","name":"last-name","description":"Enter the last name of the participant/player","placeholder":"Last Name"},{"order":0,"label":"First Name","name":"first-name","description":"Enter the first name of the participant/player","type":"text","placeholder":"First Name"},{"order":0,"label":"Member Number","name":"member-number","description":"Enter the member number in your email","type":"text","placeholder":"Member Number"},{"order":0,"label":"Participant Photo","type":"file","description":"Upload a photo of the participant/player","name":"avatar"}];
+        vm.default = [{"type":"file","label":"Participant Photo","description":"Upload a photo of the participant/player","name":"avatar"},{"order":0,"label":"Member Number","name":"member-number","description":"Enter the member number in your email","type":"text","placeholder":"Member Number"},{"order":0,"label":"First Name","name":"first-name","description":"Enter the first name of the participant/player","placeholder":"First Name","type":"text"},{"order":0,"label":"Last Name","name":"last-name","description":"Enter the last name of the participant/player","type":"text","placeholder":"Last Name"}];
     });
